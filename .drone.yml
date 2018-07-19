@@ -41,13 +41,15 @@ pipeline:
   install:
     image: fpfis/php56-dev
     environment:
+      - DOCUMENT_ROOT=/test/toolkit/build
       - COMPOSER_CACHE_DIR=/cache/composer
       - TOOLKIT_ENV_PROPS=resources/build.project.cwt.props
     commands:
-      - rm -rf .git /var/www/html && ln -s ${PWD}/build /var/www/html
+      - rm -rf .git
       - wget -q https://$${ASDA_USER}:$${ASDA_PASS}@asda.fpfis.tech.ec.europa.eu/verbruggenalex/digital-transformation-dev/dist/build-develop.tar.gz
       - tar -xzf build-develop.tar.gz
       - ./toolkit/phing drush-settings-generate -D'project.url.base'='https://${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}-${DRONE_JOB_NUMBER}.ci.fpfis.tech.ec.europa.eu' -logger phing.listener.AnsiColorLogger
+      - sleep 10
       - ./toolkit/drush -r build sql-create -y
       - ./toolkit/drush -r build sqlc < /test/toolkit/dump.sql
       - ./toolkit/drush -r build uli
