@@ -47,8 +47,8 @@ pipeline:
       - rm -rf .git
       - wget -q https://$${ASDA_USER}:$${ASDA_PASS}@asda.fpfis.tech.ec.europa.eu/verbruggenalex/digital-transformation-dev/dist/build-develop.tar.gz
       - tar -xzf build-develop.tar.gz
-      - ./toolkit/phing drush-settings-generate"
-      - ./toolkit/drush -r build sql-create -y"
+      - ./toolkit/phing drush-settings-generate
+      - ./toolkit/drush -r build sql-create -y
       - ./toolkit/drush -r build sqlc < /test/toolkit/dump.sql
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
