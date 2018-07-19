@@ -1,0 +1,68 @@
+# ==============================================================================
+# Pull request clone ===========================================================
+# ==============================================================================
+# Use plugin to checkout pull requests for caching issue:
+# https://github.com/drone/drone/issues/2390
+# ==============================================================================
+clone:
+  git:
+    image: plugins/git:next
+
+# ==============================================================================
+# Workspace location.
+# ==============================================================================
+workspace:
+  base: /test
+  path: toolkit
+
+# ==============================================================================
+# Main services
+# ==============================================================================
+services:
+  web:
+    image: fpfis/php56-dev
+  mysql:
+    image: percona/percona-server:5.6
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+  solr:
+    image: fpfis/solr5
+  selenium:
+    image: selenium/standalone-chrome
+
+# ==============================================================================
+# Toolkit pipeline
+# ==============================================================================
+pipeline:
+
+  # ============================================================================
+  # Install section:
+  # ============================================================================
+  install:
+    image: fpfis/php56-dev
+    environment:
+      - COMPOSER_CACHE_DIR=/cache/composer
+      - TOOLKIT_ENV_PROPS=resources/build.project.cwt.props
+    commands:
+      - https://${ASDA_USER}:${ASDA_PASS}@asda.fpfis.tech.ec.europa.eu/verbruggenalex/digital-transformation-dev/dist/build-develop.tar.gz
+      - tar -xzf build--develop.tar.gz
+      - ./toolkit/phing drush-settings-generate"
+      - ./toolkit/drush -r build sql-create -y"
+      - ./toolkit/drush -r build sqlc < /test/toolkit/dump.sql
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+    secrets: [ asda_user, asda_pass ]
+    when:
+      event: [  pull_request, push ]
+
+  # ============================================================================
+  # Tunnel section:
+  # ============================================================================
+  tunnel:
+    image: fpfis/drone-frpc-plugin:latest
+    secrets: [ frpc_token, frpc_server ]
+    environment:
+      - PLUGIN_ENDPOINT=web:8080
+      - PLUGIN_GEN_AUTH=yes
+      - PLUGIN_DOMAIN=${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}-${DRONE_JOB_NUMBER}.ci.fpfis.tech.ec.europa.eu
+      - PLUGIN_URL_OUTPUT_FILE=/test/toolkit/.frpc
