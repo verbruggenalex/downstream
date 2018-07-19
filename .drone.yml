@@ -44,7 +44,7 @@ pipeline:
       - COMPOSER_CACHE_DIR=/cache/composer
       - TOOLKIT_ENV_PROPS=resources/build.project.cwt.props
     commands:
-      - https://$${ASDA_USER}:$${ASDA_PASS}@asda.fpfis.tech.ec.europa.eu/verbruggenalex/digital-transformation-dev/dist/build-develop.tar.gz
+      - wget -q https://$${ASDA_USER}:$${ASDA_PASS}@asda.fpfis.tech.ec.europa.eu/verbruggenalex/digital-transformation-dev/dist/build-develop.tar.gz
       - tar -xzf build--develop.tar.gz
       - ./toolkit/phing drush-settings-generate"
       - ./toolkit/drush -r build sql-create -y"
