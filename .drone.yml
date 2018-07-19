@@ -36,34 +36,18 @@ services:
 pipeline:
 
   # ============================================================================
-  # Demo section:
-  # ============================================================================
-  tunnel:
-    image: fpfis/drone-frpc-plugin:latest
-    secrets: [ frpc_token, frpc_server ]
-    group: demo
-    when:
-      status: [ success, failure ]
-    environment:
-      - PLUGIN_ENDPOINT=web:8080
-      - PLUGIN_GEN_AUTH=yes
-      - PLUGIN_DOMAIN=${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}-${DRONE_JOB_NUMBER}.ci.fpfis.tech.ec.europa.eu
-      - PLUGIN_URL_OUTPUT_FILE=/test/toolkit/.frpc
-
-  # ============================================================================
   # Install section:
   # ============================================================================
   install:
     image: fpfis/php56-dev
-    group: demo
     environment:
       - COMPOSER_CACHE_DIR=/cache/composer
       - TOOLKIT_ENV_PROPS=resources/build.project.cwt.props
     commands:
-      - rm -rf .git /var/www/html && ln -sf ./build /var/www/html
+      - rm -rf .git /var/www/html && ln -s ${PWD}/build /var/www/html
       - wget -q https://$${ASDA_USER}:$${ASDA_PASS}@asda.fpfis.tech.ec.europa.eu/verbruggenalex/digital-transformation-dev/dist/build-develop.tar.gz
       - tar -xzf build-develop.tar.gz
-      - ./toolkit/phing drush-settings-generate -D'project.url.base'="$(cat /test/toolkit/.frpc)" -logger phing.listener.AnsiColorLogger
+      - ./toolkit/phing drush-settings-generate -D'project.url.base'='https://${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}-${DRONE_JOB_NUMBER}.ci.fpfis.tech.ec.europa.eu' -logger phing.listener.AnsiColorLogger
       - ./toolkit/drush -r build sql-create -y
       - ./toolkit/drush -r build sqlc < /test/toolkit/dump.sql
       - ./toolkit/drush -r build uli
@@ -73,3 +57,18 @@ pipeline:
     when:
       event: [  pull_request, push ]
       status: [ success, failure ]
+
+
+  # ============================================================================
+  # Demo section:
+  # ============================================================================
+  tunnel:
+    image: fpfis/drone-frpc-plugin:latest
+    secrets: [ frpc_token, frpc_server ]
+    when:
+      status: [ success, failure ]
+    environment:
+      - PLUGIN_ENDPOINT=web:8080
+      - PLUGIN_GEN_AUTH=yes
+      - PLUGIN_DOMAIN=${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}-${DRONE_JOB_NUMBER}.ci.fpfis.tech.ec.europa.eu
+      - PLUGIN_URL_OUTPUT_FILE=/test/toolkit/.frpc
