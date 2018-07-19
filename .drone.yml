@@ -41,6 +41,7 @@ pipeline:
   tunnel:
     image: fpfis/drone-frpc-plugin:latest
     secrets: [ frpc_token, frpc_server ]
+    group: demo
     when:
       status: [ success, failure ]
     environment:
@@ -54,6 +55,7 @@ pipeline:
   # ============================================================================
   install:
     image: fpfis/php56-dev
+    group: demo
     environment:
       - COMPOSER_CACHE_DIR=/cache/composer
       - TOOLKIT_ENV_PROPS=resources/build.project.cwt.props
