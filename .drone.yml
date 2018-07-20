@@ -1,23 +1,9 @@
-# ==============================================================================
-# Pull request clone ===========================================================
-# ==============================================================================
-# Use plugin to checkout pull requests for caching issue:
-# https://github.com/drone/drone/issues/2390
-# ==============================================================================
 clone:
   git:
     image: plugins/git:next
-
-# ==============================================================================
-# Workspace location.
-# ==============================================================================
 workspace:
   base: /test
   path: toolkit
-
-# ==============================================================================
-# Main services
-# ==============================================================================
 services:
   web:
     image: fpfis/php56-dev
@@ -27,48 +13,25 @@ services:
     image: percona/percona-server:5.6
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
-
-# ==============================================================================
-# Toolkit pipeline
-# ==============================================================================
 pipeline:
-
-  # ============================================================================
-  # The solr step starts the service in preparation for the install section.
-  # ============================================================================
   solr:
     image: fpfis/solr5
     group: prepare
     detach: true
-
-  # ============================================================================
-  # The selenium step starts the service in preparation for the test section.
-  # ============================================================================
   selenium:
     image: selenium/standalone-chrome
     group: prepare
     detach: true
-
-  # ============================================================================
-  # Build:
-  # ============================================================================
   build:
     image: fpfis/php56-dev
     group: prepare
     secrets: [ ASDA_USER, ASDA_PASS ]
     commands:
-      - export DEMO_REPO=ec-europa/reps-unitedkingdom-reference
-      - export DEMO_BRANCH=master
-      - export DEMO_TIME=3600
       - rm -rf .git
-      - wget -q https://$${ASDA_USER}:$${ASDA_PASS}@asda.fpfis.tech.ec.europa.eu/$${DEMO_REPO}/dist/build-dev-$${DEMO_BRANCH}.tar.gz
-      - wget -q https://$${ASDA_USER}:$${ASDA_PASS}@asda.fpfis.tech.ec.europa.eu/$${DEMO_REPO}/asda/asda-dev-$${DEMO_BRANCH}.tar.gz
-      - tar -xzf build-dev-$${DEMO_BRANCH}.tar.gz
-      - tar -xzf asda-dev-$${DEMO_BRANCH}.tar.gz
-
-  # ============================================================================
-  # Install:
-  # ============================================================================
+      - wget -q https://$${ASDA_USER}:$${ASDA_PASS}@asda.fpfis.tech.ec.europa.eu/$${DOWNSTREAM_REPO}/dist/build-dev-$${DOWNSTREAM_BRANCH}.tar.gz
+      - wget -q https://$${ASDA_USER}:$${ASDA_PASS}@asda.fpfis.tech.ec.europa.eu/$${DOWNSTREAM_REPO}/asda/asda-dev-$${DOWNSTREAM_BRANCH}.tar.gz
+      - tar -xzf build-dev-$${DOWNSTREAM_BRANCH}.tar.gz
+      - tar -xzf asda-dev-$${DOWNSTREAM_BRANCH}.tar.gz
   install:
     image: fpfis/php56-dev
     group: demo
@@ -77,10 +40,6 @@ pipeline:
       - ./toolkit/drush -r build sql-create -y
       - ./toolkit/drush -r build sqlc < /test/toolkit/dump.sql
       - ./toolkit/drush -r build uli
-
-  # ============================================================================
-  # Tunnel section:
-  # ============================================================================
   tunnel:
     image: fpfis/drone-frpc-plugin:latest
     group: demo
