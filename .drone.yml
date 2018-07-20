@@ -50,16 +50,6 @@ pipeline:
     detach: true
 
   # ============================================================================
-  # Asda:
-  # ============================================================================
-  # asda:
-  #   image: fpfis/drone-plugin-asda
-  #   group: prepare
-  #   target: /test/toolkit/dump.sql
-  #   website: cwt
-  #   secrets: [ asda_url ]
-
-  # ============================================================================
   # Build:
   # ============================================================================
   build:
@@ -67,9 +57,14 @@ pipeline:
     group: prepare
     secrets: [ ASDA_USER, ASDA_PASS ]
     commands:
+      - export DEMO_REPO=verbruggenalex/reps-unitedkingdom-reference
+      - export DEMO_BRANCH=master
+      - export DEMO_TIME=3600
       - rm -rf .git
-      - wget -q https://$${ASDA_USER}:$${ASDA_PASS}@asda.fpfis.tech.ec.europa.eu/verbruggenalex/digital-transformation-dev/dist/build-develop.tar.gz
-      - tar -xzf build-develop.tar.gz
+      - wget -q https://$${ASDA_USER}:$${ASDA_PASS}@asda.fpfis.tech.ec.europa.eu/${DEMO_REPO}/dist/build-dev-${DEMO_BRANCH}.tar.gz
+      - wget -q https://$${ASDA_USER}:$${ASDA_PASS}@asda.fpfis.tech.ec.europa.eu/${DEMO_REPO}/dist/asda-dev-${DEMO_BRANCH}.tar.gz
+      - tar -xzf build-dev-${DEMO_BRANCH}.tar.gz
+      - tar -xzf asda-dev-${DEMO_BRANCH}.tar.gz
 
   # ============================================================================
   # Install:
@@ -77,8 +72,6 @@ pipeline:
   install:
     image: fpfis/php56-dev
     group: demo
-    environment:
-      - TOOLKIT_ENV_PROPS=resources/build.project.cwt.props
     commands:
       - ./toolkit/phing drush-settings-generate -D'project.url.base'='https://${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}-${DRONE_JOB_NUMBER}.ci.fpfis.tech.ec.europa.eu' -logger phing.listener.AnsiColorLogger
       - ./toolkit/drush -r build sql-create -y
