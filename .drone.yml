@@ -38,6 +38,28 @@ services:
 pipeline:
 
   # ============================================================================
+  # Asda:
+  # ============================================================================
+  download-asda:
+    image: fpfis/drone-plugin-asda
+    group: prepare
+    target: /test/toolkit/dump.sql
+    website: cwt
+    secrets: [ asda_url ]
+
+  # ============================================================================
+  # Restore:
+  # ============================================================================
+  restore-build:
+    image: fpfis/php56-dev
+    group: prepare
+    secrets: [ ASDA_USER, ASDA_PASS ]
+    commands:
+      - rm -rf .git
+      - wget -q https://$${ASDA_USER}:$${ASDA_PASS}@asda.fpfis.tech.ec.europa.eu/verbruggenalex/digital-transformation-dev/dist/build-develop.tar.gz
+      - tar -xzf build-develop.tar.gz
+
+  # ============================================================================
   # Build:
   # ============================================================================
   build:
@@ -45,13 +67,11 @@ pipeline:
     group: demo
     environment:
       - TOOLKIT_ENV_PROPS=resources/build.project.cwt.props
-    secrets: [ ASDA_USER, ASDA_PASS, ASDA_USER_1, ASDA_PASS_1 ]
     commands:
-      - rm -rf .git
-      - wget -q https://$${ASDA_USER}:$${ASDA_PASS}@asda.fpfis.tech.ec.europa.eu/verbruggenalex/digital-transformation-dev/dist/build-develop.tar.gz
-      - tar -xzf build-develop.tar.gz
-      - ./toolkit/phing install-clone -D'db.dl.username'='$${ASDA_USER_1}' -D'db.dl.password'='$${ASDA_PASS_1}' -D'project.url.base'='https://${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}-${DRONE_JOB_NUMBER}.ci.fpfis.tech.ec.europa.eu' -logger phing.listener.AnsiColorLogger
-      - ./toolkit/drush -r build uli | sed "s/.*\/user/$(cat \.frpc)/g"
+      - ./toolkit/phing install-clone -D'project.url.base'='https://${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}-${DRONE_JOB_NUMBER}.ci.fpfis.tech.ec.europa.eu' -logger phing.listener.AnsiColorLogger
+      - ./toolkit/drush -r build sql-create -y
+      - ./toolkit/drush -r build sqlc < /test/toolkit/dump.sql
+      - ./toolkit/drush -r build uli
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
 
