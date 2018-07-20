@@ -34,6 +34,22 @@ services:
 pipeline:
 
   # ============================================================================
+  # The solr step starts the service in preparation for the install section.
+  # ============================================================================
+  solr:
+    image: fpfis/solr5
+    group: prepare
+    detach: true
+
+  # ============================================================================
+  # The selenium step starts the service in preparation for the test section.
+  # ============================================================================
+  selenium:
+    image: selenium/standalone-chrome
+    group: prepare
+    detach: true
+
+  # ============================================================================
   # Asda:
   # ============================================================================
   # asda:
@@ -56,22 +72,6 @@ pipeline:
       - tar -xzf build-develop.tar.gz
 
   # ============================================================================
-  # The solr step starts the service in preparation for the install section.
-  # ============================================================================
-  solr:
-    image: fpfis/solr5
-    group: prepare
-    detach: true
-
-  # ============================================================================
-  # The selenium step starts the service in preparation for the test section.
-  # ============================================================================
-  selenium:
-    image: selenium/standalone-chrome
-    group: prepare
-    detach: true
-
-  # ============================================================================
   # Install:
   # ============================================================================
   install:
@@ -84,8 +84,6 @@ pipeline:
       - ./toolkit/drush -r build sql-create -y
       - ./toolkit/drush -r build sqlc < /test/toolkit/dump.sql
       - ./toolkit/drush -r build uli
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
 
   # ============================================================================
   # Tunnel section:
