@@ -24,7 +24,7 @@ pipeline:
     group: setup
     commands:
       - rm -rf .git && git init
-      - git pull https://$${GITHUB_API_TOKEN}@github.com/$${DOWNSTREAM_REPO}.git
+      - git pull https://$${GITHUB_API_TOKEN}@github.com/$${DOWNSTREAM_OWNER}/$${DOWNSTREAM_REPO}.git
       - git checkout $${DOWNSTREAM_BRANCH}
       - composer require ec-europa/toolkit:dev-feature/MULTISITE-19985
       - mkdir includes && ln -s $$(pwd)/vendor/ec-europa/toolkit/includes/docker $$(pwd)/includes/docker
@@ -42,7 +42,7 @@ pipeline:
     image: fpfis/drone-plugin-asda
     group: build
     target: /test/toolkit/dump.sql
-    website: $${DOWNSTREAM_REPO%%-reference}
+    website: ${DOWNSTREAM_REPO%%-reference}
     secrets: [ asda_url ]
     volumes:
       - /cache:/cache
@@ -72,10 +72,10 @@ pipeline:
     user: web_asda
     secrets: [ plugin_key, plugin_hosts ]
     source: ../build-dev-${DOWNSTREAM_BRANCH}.tar.gz
-    target: ${DOWNSTREAM_REPO}/dist/
+    target: ${DOWNSTREAM_OWNER}/${DOWNSTREAM_REPO}/dist/
   upload-asda:
     image: drillster/drone-rsync
     user: web_asda
     secrets: [ plugin_key, plugin_hosts ]
     source: ../asda-dev-${DOWNSTREAM_BRANCH}.tar.gz
-    target: ${DOWNSTREAM_REPO}/asda/
+    target: ${DOWNSTREAM_OWNER}/${DOWNSTREAM_REPO}/asda/
