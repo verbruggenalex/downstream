@@ -55,14 +55,14 @@ pipeline:
   build:
     image: fpfis/php56-dev
     group: prepare
-    secrets: [ asda_aws_url ]
+    secrets: [ ASDA_USER, ASDA_PASS ]
     commands:
       - export DEMO_REPO=ec-europa/reps-unitedkingdom-reference
       - export DEMO_BRANCH=master
       - export DEMO_TIME=3600
       - rm -rf .git
-      - wget $${asda_aws_url}$${DEMO_REPO}/dist/build-dev-$${DEMO_BRANCH}.tar.gz
-      - wget $${asda_aws_url}$${DEMO_REPO}/dist/asda-dev-$${DEMO_BRANCH}.tar.gz
+      - wget -q https://$${ASDA_USER}:$${ASDA_PASS}@asda.fpfis.tech.ec.europa.eu/$${DEMO_REPO}/dist/build-dev-$${DEMO_BRANCH}.tar.gz
+      - wget -q https://$${ASDA_USER}:$${ASDA_PASS}@asda.fpfis.tech.ec.europa.eu/$${DEMO_REPO}/dist/asda-dev-$${DEMO_BRANCH}.tar.gz
       - tar -xzf build-dev-${DEMO_BRANCH}.tar.gz
       - tar -xzf asda-dev-${DEMO_BRANCH}.tar.gz
 
