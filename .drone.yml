@@ -105,7 +105,7 @@ pipeline:
     image: fpfis/drone-plugin-asda
     group: build
     target: /test/toolkit/dump.sql
-    website: ${DRONE_REPO_NAME%%-reference}
+    website: reps-belgium
     secrets: [ asda_url ]
     volumes:
       - /cache:/cache
@@ -137,8 +137,8 @@ pipeline:
       - ./toolkit/phing install-clone docker-backstop-generate drush-gdpr-dump -D'database-file'='/test/toolkit/dump.sql' -logger phing.listener.AnsiColorLogger
       - ./toolkit/drush -r build sql-create -y
       - ./toolkit/drush -r build sqlc < /test/toolkit/dump.sql
-      - tar -czf ../build-dev-${DRONE_BRANCH}.tar.gz --exclude='./.drone.yml' --exclude='.git/' --exclude='./dump.sql' .
-      - tar -czf ../asda-dev-${DRONE_BRANCH}.tar.gz dump.sql backstop_data/ backstop.json
+      - tar -czf ../build-dev-master.tar.gz --exclude='./.drone.yml' --exclude='.git/' --exclude='./dump.sql' .
+      - tar -czf ../asda-dev-master.tar.gz dump.sql backstop_data/ backstop.json
 
   visreg:
     image: backstopjs/backstopjs
