@@ -24,7 +24,8 @@ pipeline:
     group: setup
     commands:
       - rm -rf .git && git init
-      - git pull origin $${DOWNSTREAM_BRANCH} https://$${GITHUB_API_TOKEN}@github.com/$${DOWNSTREAM_REPO}.git
+      - git pull https://$${GITHUB_API_TOKEN}@github.com/$${DOWNSTREAM_REPO}.git
+      - git checkout $${DOWNSTREAM_BRANCH}
       - composer require ec-europa/toolkit:dev-feature/MULTISITE-19985
       - mkdir includes && ln -s $$(pwd)/vendor/ec-europa/toolkit/includes/docker $$(pwd)/includes/docker
       - cp vendor/ec-europa/toolkit/includes/phing/props/drone.props build.develop.props
