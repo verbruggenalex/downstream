@@ -2,8 +2,8 @@ clone:
   git:
     image: plugins/git:next
 workspace:
-  base: /test
-  path: downstream
+  base: /toolkit
+  path: dev-master
 services:
   web:
     image: fpfis/php56-build
@@ -24,8 +24,7 @@ pipeline:
     group: setup
     commands:
       - rm -rf .git && git init
-      - export DOWNSTREAM_REPO=ec-europa/reps-belgium-reference
-      - git pull https://$${GITHUB_API_TOKEN}@github.com/$${DOWNSTREAM_REPO}.git
+      - git pull -b $${DOWNSTREAM_BRANCH} https://$${GITHUB_API_TOKEN}@github.com/$${DOWNSTREAM_REPO}.git
       - composer require ec-europa/toolkit:dev-feature/MULTISITE-19985
       - mkdir includes && ln -s $$(pwd)/vendor/ec-europa/toolkit/includes/docker $$(pwd)/includes/docker
       - cp vendor/ec-europa/toolkit/includes/phing/props/drone.props build.develop.props
@@ -42,7 +41,7 @@ pipeline:
     image: fpfis/drone-plugin-asda
     group: build
     target: /test/toolkit/dump.sql
-    website: reps-belgium
+    website: ${DOWNSTREAM_REPO%%-reference}
     secrets: [ asda_url ]
     volumes:
       - /cache:/cache
@@ -71,11 +70,11 @@ pipeline:
     image: drillster/drone-rsync
     user: web_asda
     secrets: [ plugin_key, plugin_hosts ]
-    source: ../build-dev-master.tar.gz
-    target: ec-europa/reps-belgium-reference/dist/
+    source: ../build-dev-${DOWNSTREAM_BRANCH}.tar.gz
+    target: ${DOWNSTREAM_REPO}/dist/
   upload-asda:
     image: drillster/drone-rsync
     user: web_asda
     secrets: [ plugin_key, plugin_hosts ]
-    source: ../asda-dev-master.tar.gz
-    target: ec-europa/reps-belgium-reference/asda/
+    source: ../asda-dev-${DOWNSTREAM_BRANCH}.tar.gz
+    target: ${DOWNSTREAM_REPO}/asda/
