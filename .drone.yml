@@ -37,12 +37,6 @@ services:
 # ==============================================================================
 pipeline:
 
-  asda:
-    image: fpfis/drone-plugin-asda
-    target: dump.sql.gz
-    website: cwt
-    secrets: [ asda_url ]
-
   # ============================================================================
   # Build:
   # ============================================================================
@@ -51,11 +45,12 @@ pipeline:
     group: demo
     environment:
       - TOOLKIT_ENV_PROPS=resources/build.project.cwt.props
+    secrets: [ ASDA_USER, ASDA_PASS, ASDA_USER_1, ASDA_PASS_1 ]
     commands:
-      - rm -rf .git && wget -q https://$${ASDA_USER}:$${ASDA_PASS}@asda.fpfis.tech.ec.europa.eu/verbruggenalex/digital-transformation-dev/dist/build-develop.tar.gz && tar -xzf build-develop.tar.gz
-      - ./toolkit/phing drush-settings-generate -D'project.url.base'='https://${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}-${DRONE_JOB_NUMBER}.ci.fpfis.tech.ec.europa.eu' -logger phing.listener.AnsiColorLogger
-      - ./toolkit/drush -r build sql-create -y
-      - ./toolkit/drush -r build sqlc < /test/toolkit/dump.sql
+      - rm -rf .git
+      - wget -q https://$${ASDA_USER}:$${ASDA_PASS}@asda.fpfis.tech.ec.europa.eu/verbruggenalex/digital-transformation-dev/dist/build-develop.tar.gz
+      - tar -xzf build-develop.tar.gz
+      - ./toolkit/phing install-clone -D'db.dl.username'='$${ASDA_USER_1}' -D'db.dl.password'='$${ASDA_PASS_1}' -D'project.url.base'='https://${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}-${DRONE_JOB_NUMBER}.ci.fpfis.tech.ec.europa.eu' -logger phing.listener.AnsiColorLogger
       - ./toolkit/drush -r build uli | sed "s/.*\/user/$(cat \.frpc)/g"
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
