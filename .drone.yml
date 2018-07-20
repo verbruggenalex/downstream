@@ -27,10 +27,6 @@ services:
     image: percona/percona-server:5.6
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
-  solr:
-    image: fpfis/solr5
-  selenium:
-    image: selenium/standalone-chrome
 
 # ==============================================================================
 # Toolkit pipeline
@@ -40,17 +36,17 @@ pipeline:
   # ============================================================================
   # Asda:
   # ============================================================================
-  download-asda:
-    image: fpfis/drone-plugin-asda
-    group: prepare
-    target: /test/toolkit/dump.sql
-    website: cwt
-    secrets: [ asda_url ]
+  # asda:
+  #   image: fpfis/drone-plugin-asda
+  #   group: prepare
+  #   target: /test/toolkit/dump.sql
+  #   website: cwt
+  #   secrets: [ asda_url ]
 
   # ============================================================================
-  # Restore:
+  # Build:
   # ============================================================================
-  restore-build:
+  build:
     image: fpfis/php56-dev
     group: prepare
     secrets: [ ASDA_USER, ASDA_PASS ]
@@ -60,15 +56,31 @@ pipeline:
       - tar -xzf build-develop.tar.gz
 
   # ============================================================================
-  # Build:
+  # The solr step starts the service in preparation for the install section.
   # ============================================================================
-  build:
+  solr:
+    image: fpfis/solr5
+    group: prepare
+    detach: true
+
+  # ============================================================================
+  # The selenium step starts the service in preparation for the test section.
+  # ============================================================================
+  selenium:
+    image: selenium/standalone-chrome
+    group: prepare
+    detach: true
+
+  # ============================================================================
+  # Install:
+  # ============================================================================
+  install:
     image: fpfis/php56-dev
     group: demo
     environment:
       - TOOLKIT_ENV_PROPS=resources/build.project.cwt.props
     commands:
-      - ./toolkit/phing install-clone -D'project.url.base'='https://${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}-${DRONE_JOB_NUMBER}.ci.fpfis.tech.ec.europa.eu' -logger phing.listener.AnsiColorLogger
+      - ./toolkit/phing drush-settings-generate -D'project.url.base'='https://${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}-${DRONE_JOB_NUMBER}.ci.fpfis.tech.ec.europa.eu' -logger phing.listener.AnsiColorLogger
       - ./toolkit/drush -r build sql-create -y
       - ./toolkit/drush -r build sqlc < /test/toolkit/dump.sql
       - ./toolkit/drush -r build uli
