@@ -9,18 +9,26 @@ clone:
     image: plugins/git:next
 
 # ==============================================================================
-# Workspace location.
+# Workspace location ===========================================================
+# ==============================================================================
+# The workspace location is at /test/toolkit. Git will place all files from the
+# repository in this folder. Useful to know if you want to access a demo build.
 # ==============================================================================
 workspace:
   base: /test
   path: toolkit
 
 # ==============================================================================
-# Main services
+# Main services ================================================================
+# ==============================================================================
+# We always start the web and mysql service before starting the pipeline as they
+# are used throughout the entire pipeline. Other services are only started in
+# the section before they are needed. This workflow saves several minutes off
+# of the entire pipeline duration.
 # ==============================================================================
 services:
   web:
-    image: fpfis/php56-dev
+    image: fpfis/php56-build
     environment:
       - DOCUMENT_ROOT=/test/toolkit/build
   mysql:
@@ -29,64 +37,126 @@ services:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
 
 # ==============================================================================
-# Toolkit pipeline
+# Toolkit pipeline =============================================================
+# ==============================================================================
+# This is the actual Toolkit pipeline section where you can find all steps that
+# will be executed. The pipeline is divided into different sections to allow for
+# parallelisation within sections.
 # ==============================================================================
 pipeline:
+
+  # ============================================================================
+  # Setup ======================================================================
+  # ============================================================================
+  # The toolkit step ensures that each build uses the latest release of toolkit.
+  # After toolkit is installed it will copy the default properties for Drone to
+  # build.develop.props in the root of the build. This is important to know when
+  # you need to add, remove or change properties that are used in this pipeline.
+  # ============================================================================
+
+  visreg:
+    image: backstopjs/backstopjs
+    commands:
+      - backstop init
+
+  toolkit:
+    image: fpfis/php56-build
+    secrets: [ github_api_token ]
+    group: setup
+    commands:
+      - rm -rf .git && git init
+      - export DOWNSTREAM_REPO=ec-europa/reps-belgium-reference
+      - git pull https://$${github_api_token}:x-oauth-basic@github.com/$${DOWNSTREAM_REPO}.git
+      - composer require ec-europa/toolkit:dev-feature/MULTISITE-19985
+      - mkdir includes && ln -s $$(pwd)/vendor/ec-europa/toolkit/includes/docker $$(pwd)/includes/docker
+      - cp vendor/ec-europa/toolkit/includes/phing/props/drone.props build.develop.props
+    volumes:
+      - /cache:/cache
+
+  # ============================================================================
+  # Build ======================================================================
+  # ============================================================================
+  # The build section sets up a full project codebase in development mode to
+  # prepare for a cloned installation of the project. It also starts any
+  # services that are required in the Test section.
+  # ============================================================================
+  
+  # ============================================================================
+  # The build step builds the platform codebase by downloading the release
+  # defined in the build properties. After that it builds the subsite codebase
+  # by symlinking the source code, executing make files and running composer
+  # install. As per documentation provided by toolkit.
+  # ============================================================================
+  build:
+    image: fpfis/php56-build
+    group: build
+    commands:
+      - ./toolkit/phing build-platform build-subsite-dev -logger phing.listener.AnsiColorLogger
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  # ============================================================================
+  # The asda step downloads a sanitized database of production if it has not
+  # been downloaded already. Currently we do not have a way to clear caches on
+  # asda downloads. To remove the cache either contact devops or use the tunnel
+  # to remove the sql download during the build.
+  # ============================================================================
+  asda:
+    image: fpfis/drone-plugin-asda
+    group: build
+    target: /test/toolkit/dump.sql
+    website: ${DRONE_REPO_NAME%%-reference}
+    secrets: [ asda_url ]
+    volumes:
+      - /cache:/cache
 
   # ============================================================================
   # The solr step starts the service in preparation for the install section.
   # ============================================================================
   solr:
     image: fpfis/solr5
-    group: prepare
+    group: build
     detach: true
+    when:
+      event: [ push, pull_request, tag ]
 
   # ============================================================================
-  # The selenium step starts the service in preparation for the test section.
+  # Install ====================================================================
   # ============================================================================
-  selenium:
-    image: selenium/standalone-chrome
-    group: prepare
-    detach: true
-
+  # The install section provides a working website and starts any services
+  # needed in the test section.
   # ============================================================================
-  # Build:
+  
   # ============================================================================
-  build:
-    image: fpfis/php56-dev
-    group: prepare
-    secrets: [ ASDA_USER, ASDA_PASS ]
-    commands:
-      - export DEMO_REPO=ec-europa/reps-unitedkingdom-reference
-      - export DEMO_BRANCH=master
-      - export DEMO_TIME=3600
-      - rm -rf .git
-      - wget -q https://$${ASDA_USER}:$${ASDA_PASS}@asda.fpfis.tech.ec.europa.eu/$${DEMO_REPO}/dist/build-dev-$${DEMO_BRANCH}.tar.gz
-      - wget -q https://$${ASDA_USER}:$${ASDA_PASS}@asda.fpfis.tech.ec.europa.eu/$${DEMO_REPO}/asda/asda-dev-$${DEMO_BRANCH}.tar.gz
-      - tar -xzf build-dev-$${DEMO_BRANCH}.tar.gz
-      - tar -xzf asda-dev-$${DEMO_BRANCH}.tar.gz
-
-  # ============================================================================
-  # Install:
+  # The install step creates a clone of the production website.
   # ============================================================================
   install:
-    image: fpfis/php56-dev
-    group: demo
+    image: fpfis/php56-build
+    group: install
     commands:
-      - ./toolkit/phing drush-settings-generate -D'project.url.base'='https://${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}-${DRONE_JOB_NUMBER}.ci.fpfis.tech.ec.europa.eu' -logger phing.listener.AnsiColorLogger
+      - ./toolkit/phing install-clone docker-backstop-generate drush-gdpr-dump -D'database-file'='/test/toolkit/dump.sql' -logger phing.listener.AnsiColorLogger
       - ./toolkit/drush -r build sql-create -y
       - ./toolkit/drush -r build sqlc < /test/toolkit/dump.sql
-      - ./toolkit/drush -r build uli
+      - tar -czf ../build-dev-${DRONE_BRANCH}.tar.gz --exclude='./.drone.yml' --exclude='.git/' --exclude='./dump.sql' .
+      - tar -czf ../asda-dev-${DRONE_BRANCH}.tar.gz dump.sql backstop_data/ backstop.json
 
-  # ============================================================================
-  # Tunnel section:
-  # ============================================================================
-  tunnel:
-    image: fpfis/drone-frpc-plugin:latest
-    group: demo
-    secrets: [ frpc_token, frpc_server ]
-    environment:
-      - PLUGIN_ENDPOINT=web:8080
-      - PLUGIN_GEN_AUTH=yes
-      - PLUGIN_DOMAIN=${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}-${DRONE_JOB_NUMBER}.ci.fpfis.tech.ec.europa.eu
-      - PLUGIN_URL_OUTPUT_FILE=/test/toolkit/.frpc
+  visreg:
+    image: backstopjs/backstopjs
+    commands:
+      - cp -f includes/docker/docker-backstopjs/core/util/runPuppet.js /usr/local/lib/node_modules/backstopjs/core/util/runPuppet.js
+      - cp -f includes/docker/docker-backstopjs/core/util/compare/index.js /usr/local/lib/node_modules/backstopjs/core/util/compare/index.js
+      - backstop reference
+
+  upload-build:
+    image: drillster/drone-rsync
+    user: web_asda
+    secrets: [ plugin_key, plugin_hosts ]
+    source: ../build-dev-master.tar.gz
+    target: ec-europa/reps-belgium-reference/dist/
+
+  upload-asda:
+    image: drillster/drone-rsync
+    user: web_asda
+    secrets: [ plugin_key, plugin_hosts ]
+    source: ../asda-dev-master.tar.gz
+    target: ec-europa/reps-belgium-reference/asda/
