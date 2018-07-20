@@ -13,89 +13,29 @@ clone:
 # ==============================================================================
 workspace:
   base: /test
-  path: toolkit
+  path: downstream
 
 # ==============================================================================
 # Main services
 # ==============================================================================
-services:
-  web:
-    image: fpfis/php56-dev
-    environment:
-      - DOCUMENT_ROOT=/test/toolkit/build
-  mysql:
-    image: percona/percona-server:5.6
-    environment:
-      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+# services:
+#   web:
+#     image: fpfis/php56-dev
+#     environment:
+#       - DOCUMENT_ROOT=/test/toolkit/build
+#   mysql:
+#     image: percona/percona-server:5.6
+#     environment:
+#       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
 
 # ==============================================================================
-# Toolkit pipeline
+# Downstream pipeline
 # ==============================================================================
 pipeline:
-
-  # ============================================================================
-  # The solr step starts the service in preparation for the install section.
-  # ============================================================================
-  solr:
-    image: fpfis/solr5
-    group: prepare
-    detach: true
-
-  # ============================================================================
-  # The selenium step starts the service in preparation for the test section.
-  # ============================================================================
-  selenium:
-    image: selenium/standalone-chrome
-    group: prepare
-    detach: true
-
-  # ============================================================================
-  # Asda:
-  # ============================================================================
-  # asda:
-  #   image: fpfis/drone-plugin-asda
-  #   group: prepare
-  #   target: /test/toolkit/dump.sql
-  #   website: cwt
-  #   secrets: [ asda_url ]
-
-  # ============================================================================
-  # Build:
-  # ============================================================================
-  build:
-    image: fpfis/php56-dev
-    group: prepare
-    secrets: [ ASDA_USER, ASDA_PASS ]
-    commands:
-      - rm -rf .git
-      - wget -q https://$${ASDA_USER}:$${ASDA_PASS}@asda.fpfis.tech.ec.europa.eu/verbruggenalex/digital-transformation-dev/dist/build-develop.tar.gz
-      - tar -xzf build-develop.tar.gz
-
-  # ============================================================================
-  # Install:
-  # ============================================================================
-  install:
-    image: fpfis/php56-dev
-    group: demo
-    environment:
-      - TOOLKIT_ENV_PROPS=resources/build.project.cwt.props
-    commands:
-      - ./toolkit/phing drush-settings-generate -D'project.url.base'='https://${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}-${DRONE_JOB_NUMBER}.ci.fpfis.tech.ec.europa.eu' -logger phing.listener.AnsiColorLogger
-      - ./toolkit/drush -r build sql-create -y
-      - ./toolkit/drush -r build sqlc < /test/toolkit/dump.sql
-      - ./toolkit/drush -r build uli
-
-  # ============================================================================
-  # Tunnel section:
-  # ============================================================================
-  tunnel:
-    image: fpfis/drone-frpc-plugin:latest
-    group: demo
-    secrets: [ frpc_token, frpc_server ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - PLUGIN_ENDPOINT=web:8080
-      - PLUGIN_GEN_AUTH=yes
-      - PLUGIN_DOMAIN=${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}-${DRONE_JOB_NUMBER}.ci.fpfis.tech.ec.europa.eu
-      - PLUGIN_URL_OUTPUT_FILE=/test/toolkit/.frpc
+  trigger:
+    image: plugins/downstream
+    server: https://drone.fpfis.eu
+    fork: true
+    repositories:
+      - verbruggenalex/downstream@${DOWNSTREAM_BRANCH:-toolkit/demo}
+    secrets: [ downstream_token ]
