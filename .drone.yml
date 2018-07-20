@@ -66,7 +66,7 @@ pipeline:
     commands:
       - rm -rf .git && git init
       - export DOWNSTREAM_REPO=ec-europa/reps-belgium-reference
-      - git pull https://$${github_api_token}@github.com/$${DOWNSTREAM_REPO}.git
+      - git pull https://${github_api_token}@github.com/$${DOWNSTREAM_REPO}.git
       - composer require ec-europa/toolkit:dev-feature/MULTISITE-19985
       - mkdir includes && ln -s $$(pwd)/vendor/ec-europa/toolkit/includes/docker $$(pwd)/includes/docker
       - cp vendor/ec-europa/toolkit/includes/phing/props/drone.props build.develop.props
