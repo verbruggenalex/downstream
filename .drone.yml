@@ -16,26 +16,18 @@ workspace:
   path: downstream
 
 # ==============================================================================
-# Main services
-# ==============================================================================
-# services:
-#   web:
-#     image: fpfis/php56-dev
-#     environment:
-#       - DOCUMENT_ROOT=/test/toolkit/build
-#   mysql:
-#     image: percona/percona-server:5.6
-#     environment:
-#       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
-
-# ==============================================================================
-# Downstream pipeline
+# Downstream pipelines
 # ==============================================================================
 pipeline:
-  trigger:
+
+  toolkit-demo:
     image: plugins/downstream
     server: https://drone.fpfis.eu
+    secrets: [ downstream_token ]
     fork: true
     repositories:
       - verbruggenalex/downstream@${DOWNSTREAM_BRANCH:-toolkit/demo}
-    secrets: [ downstream_token ]
+    params:
+      - DEMO_TIMEOUT=${DEMO_TIMEOUT}
+      - DEMO_BRANCH=${DEMO_BRANCH}
+      - DEMO_REPOSITORY=${DEMO_REPOSITORY}
