@@ -61,8 +61,8 @@ pipeline:
       - export DEMO_BRANCH=master
       - export DEMO_TIME=3600
       - rm -rf .git
-      - wget -q https://$${ASDA_USER}:$${ASDA_PASS}@asda.fpfis.tech.ec.europa.eu/$${DEMO_REPO}/dist/build-dev-$${DEMO_BRANCH}.tar.gz
-      - wget -q https://$${ASDA_USER}:$${ASDA_PASS}@asda.fpfis.tech.ec.europa.eu/$${DEMO_REPO}/dist/asda-dev-$${DEMO_BRANCH}.tar.gz
+      - wget https://$${ASDA_USER}:$${ASDA_PASS}@asda.fpfis.tech.ec.europa.eu/$${DEMO_REPO}/dist/build-dev-$${DEMO_BRANCH}.tar.gz
+      - wget https://$${ASDA_USER}:$${ASDA_PASS}@asda.fpfis.tech.ec.europa.eu/$${DEMO_REPO}/dist/asda-dev-$${DEMO_BRANCH}.tar.gz
       - tar -xzf build-dev-${DEMO_BRANCH}.tar.gz
       - tar -xzf asda-dev-${DEMO_BRANCH}.tar.gz
 
@@ -85,8 +85,6 @@ pipeline:
     image: fpfis/drone-frpc-plugin:latest
     group: demo
     secrets: [ frpc_token, frpc_server ]
-    when:
-      status: [ success, failure ]
     environment:
       - PLUGIN_ENDPOINT=web:8080
       - PLUGIN_GEN_AUTH=yes
