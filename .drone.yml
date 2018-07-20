@@ -28,8 +28,8 @@ pipeline:
     secrets: [ ASDA_USER, ASDA_PASS ]
     commands:
       - rm -rf .git
-      - wget https://$${ASDA_USER}:$${ASDA_PASS}@asda.fpfis.tech.ec.europa.eu/$${DOWNSTREAM_REPO}/dist/build-dev-$${DOWNSTREAM_BRANCH}.tar.gz
-      - wget https://$${ASDA_USER}:$${ASDA_PASS}@asda.fpfis.tech.ec.europa.eu/$${DOWNSTREAM_REPO}/asda/asda-dev-$${DOWNSTREAM_BRANCH}.tar.gz
+      - wget -q https://$${ASDA_USER}:$${ASDA_PASS}@asda.fpfis.tech.ec.europa.eu/$${DOWNSTREAM_REPO}/dist/build-dev-$${DOWNSTREAM_BRANCH}.tar.gz
+      - wget -q https://$${ASDA_USER}:$${ASDA_PASS}@asda.fpfis.tech.ec.europa.eu/$${DOWNSTREAM_REPO}/asda/asda-dev-$${DOWNSTREAM_BRANCH}.tar.gz
       - tar -xzf build-dev-$${DOWNSTREAM_BRANCH}.tar.gz
       - tar -xzf asda-dev-$${DOWNSTREAM_BRANCH}.tar.gz
   install:
