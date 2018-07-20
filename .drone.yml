@@ -42,7 +42,9 @@ pipeline:
     image: fpfis/drone-plugin-asda
     group: build
     target: /test/toolkit/dump.sql
-    website: ${DOWNSTREAM_REPO%%-reference}
+    environment:
+      - PROJECT_ID=${DOWNSTREAM_REPO%%-reference}
+    website: $${PROJECT_ID}
     secrets: [ asda_url ]
     volumes:
       - /cache:/cache
