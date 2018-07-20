@@ -61,8 +61,8 @@ pipeline:
       - export DEMO_BRANCH=master
       - export DEMO_TIME=3600
       - rm -rf .git
-      - wget https://$${ASDA_USER}:$${ASDA_PASS}@asda.fpfis.tech.ec.europa.eu/$${DEMO_REPO}/dist/build-dev-$${DEMO_BRANCH}.tar.gz
-      - wget https://$${ASDA_USER}:$${ASDA_PASS}@asda.fpfis.tech.ec.europa.eu/$${DEMO_REPO}/dist/asda-dev-$${DEMO_BRANCH}.tar.gz
+      - wget -q https://$${ASDA_USER}:$${ASDA_PASS}@asda.fpfis.tech.ec.europa.eu/$${DEMO_REPO}/dist/build-dev-$${DEMO_BRANCH}.tar.gz
+      - wget -q https://$${ASDA_USER}:$${ASDA_PASS}@asda.fpfis.tech.ec.europa.eu/$${DEMO_REPO}/asda/asda-dev-$${DEMO_BRANCH}.tar.gz
       - tar -xzf build-dev-${DEMO_BRANCH}.tar.gz
       - tar -xzf asda-dev-${DEMO_BRANCH}.tar.gz
 
