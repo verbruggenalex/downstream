@@ -63,8 +63,8 @@ pipeline:
       - rm -rf .git
       - wget -q https://$${ASDA_USER}:$${ASDA_PASS}@asda.fpfis.tech.ec.europa.eu/$${DEMO_REPO}/dist/build-dev-$${DEMO_BRANCH}.tar.gz
       - wget -q https://$${ASDA_USER}:$${ASDA_PASS}@asda.fpfis.tech.ec.europa.eu/$${DEMO_REPO}/asda/asda-dev-$${DEMO_BRANCH}.tar.gz
-      - tar -xzf build-dev-${DEMO_BRANCH}.tar.gz
-      - tar -xzf asda-dev-${DEMO_BRANCH}.tar.gz
+      - tar -xzf build-dev-$${DEMO_BRANCH}.tar.gz
+      - tar -xzf asda-dev-$${DEMO_BRANCH}.tar.gz
 
   # ============================================================================
   # Install:
