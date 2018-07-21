@@ -1,13 +1,6 @@
 clone:
   git:
     image: plugins/git:next
-matrix:
-  REPO_OWNER:
-    - ${DOWNSTREAM_OWNER}
-  REPO_NAME:
-    - ${DOWNSTREAM_REPO}
-  REPO_BRANCH:
-    - ${DOWNSTREAM_BRANCH}
 workspace:
   base: /toolkit
   path: refresh-dev
