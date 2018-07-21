@@ -67,12 +67,12 @@ pipeline:
     group: upload
     user: web_asda
     secrets: [ plugin_key, plugin_hosts ]
-    source: ../build-dev-${DOWNSTREAM_BRANCH}.tar.gz
-    target: ${DOWNSTREAM_OWNER}/${DOWNSTREAM_REPO}/build/
+    source: ../build-dev-$${DOWNSTREAM_BRANCH}.tar.gz
+    target: $${DOWNSTREAM_OWNER}/$${DOWNSTREAM_REPO}/build/
   upload-asda:
     image: drillster/drone-rsync
     group: upload
     user: web_asda
     secrets: [ plugin_key, plugin_hosts ]
-    source: ../dump-dev-${DOWNSTREAM_BRANCH}.tar.gz
-    target: ${DOWNSTREAM_OWNER}/${DOWNSTREAM_REPO}/dumps/
+    source: ../dump-dev-$${DOWNSTREAM_BRANCH}.tar.gz
+    target: $${DOWNSTREAM_OWNER}/$${DOWNSTREAM_REPO}/dumps/
