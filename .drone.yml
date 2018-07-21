@@ -38,14 +38,6 @@ pipeline:
       - ./toolkit/phing build-platform build-subsite-dev -logger phing.listener.AnsiColorLogger
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
-  # asda:
-  #   image: fpfis/drone-plugin-asda
-  #   group: build
-  #   target: /test/toolkit/dump.sql
-  #   website: ${DOWNSTREAM_REPO%%-reference}
-  #   secrets: [ asda_url ]
-  #   volumes:
-  #     - /cache:/cache
   solr:
     image: fpfis/solr5
     group: build
