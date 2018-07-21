@@ -8,7 +8,7 @@ services:
   web:
     image: fpfis/php56-build
     environment:
-      - DOCUMENT_ROOT=/test/toolkit/build
+      - DOCUMENT_ROOT=/toolkit/refresh-dev
   mysql:
     image: percona/percona-server:5.6
     environment:
@@ -50,7 +50,7 @@ pipeline:
     secrets: [ ASDA_USER_1, ASDA_PASS_1 ]
     commands:
       - ./toolkit/phing install-clone docker-backstop-generate -D'db.dl.username'='$${ASDA_USER_1}' -D'db.dl.password'='$${ASDA_PASS_1}'
-      - ./toolkit/phing drush-gdpr-dump -D'database-file'='/test/toolkit/dump.sql' -logger phing.listener.AnsiColorLogger
+      - ./toolkit/phing drush-gdpr-dump -D'database-file'='/toolkit/refresh-dev/dump.sql' -logger phing.listener.AnsiColorLogger
       - ./toolkit/drush -r build sql-create -y
       - ./toolkit/drush -r build sqlc < /toolkit/refresh-dev/dump.sql
       - tar -czf ../build-dev-master.tar.gz --exclude='./.drone.yml' --exclude='.git/' --exclude='./dump.sql' .
