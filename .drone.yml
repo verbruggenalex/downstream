@@ -18,10 +18,9 @@ pipeline:
     image: backstopjs/backstopjs
     commands:
       - backstop init
-  toolkit:
+  toolkit-setup:
     image: fpfis/php56-build
     secrets: [ GITHUB_API_TOKEN ]
-    group: setup
     commands:
       - rm -rf .git && git init
       - git pull https://$${GITHUB_API_TOKEN}@github.com/$${DOWNSTREAM_OWNER}/$${DOWNSTREAM_REPO}.git
@@ -31,20 +30,20 @@ pipeline:
       - cp vendor/ec-europa/toolkit/includes/phing/props/drone.props build.develop.props
     volumes:
       - /cache:/cache
-  build:
+  build-project:
     image: fpfis/php56-build
     group: build
     commands:
       - ./toolkit/phing build-platform build-subsite-dev -logger phing.listener.AnsiColorLogger
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
-  solr:
+  solr-start:
     image: fpfis/solr5
     group: build
     detach: true
     when:
       event: [ push, pull_request, tag ]
-  install:
+  install-project:
     image: fpfis/php56-build
     group: install
     secrets: [ ASDA_USER_1, ASDA_PASS_1 ]
@@ -52,22 +51,27 @@ pipeline:
       - ./toolkit/phing install-clone docker-backstop-generate -D'db.dl.username'='$${ASDA_USER_1}' -D'db.dl.password'='$${ASDA_PASS_1}' -logger phing.listener.AnsiColorLogger
       - ./toolkit/phing drush-gdpr-dump -D'database-file'='/toolkit/refresh-dev/dump.sql' -logger phing.listener.AnsiColorLogger
       - ./toolkit/drush -r build sql-create -y && ./toolkit/drush -r build sqlc < /toolkit/refresh-dev/dump.sql
-      - tar -czf ../build-dev-master.tar.gz --exclude='./.drone.yml' --exclude='.git/' --exclude='./dump.sql' .
-      - tar -czf ../dump-dev-master.tar.gz dump.sql backstop_data/ backstop.json
   backstop-reference:
     image: backstopjs/backstopjs
     commands:
       - cp -f includes/docker/docker-backstopjs/core/util/runPuppet.js /usr/local/lib/node_modules/backstopjs/core/util/runPuppet.js
       - cp -f includes/docker/docker-backstopjs/core/util/compare/index.js /usr/local/lib/node_modules/backstopjs/core/util/compare/index.js
       - backstop reference
+  package-files:
+    image: fpfis/php56-build
+    commands:
+      - tar -czf ../build-dev-master.tar.gz --exclude='./.drone.yml' --exclude='.git/' --exclude='./dump.sql' .
+      - tar -czf ../dump-dev-master.tar.gz dump.sql backstop_data/ backstop.json
   upload-build:
     image: drillster/drone-rsync
+    group: upload
     user: web_asda
     secrets: [ plugin_key, plugin_hosts ]
     source: ../build-dev-${DOWNSTREAM_BRANCH}.tar.gz
     target: ${DOWNSTREAM_OWNER}/${DOWNSTREAM_REPO}/build/
   upload-asda:
     image: drillster/drone-rsync
+    group: upload
     user: web_asda
     secrets: [ plugin_key, plugin_hosts ]
     source: ../dump-dev-${DOWNSTREAM_BRANCH}.tar.gz
