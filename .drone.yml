@@ -2,11 +2,11 @@ clone:
   git:
     image: plugins/git:next
 matrix:
-  DOWNSTREAM_OWNER:
+  REPO_OWNER:
     - ${DOWNSTREAM_OWNER}
-  DOWNSTREAM_REPO:
+  REPO_NAME:
     - ${DOWNSTREAM_REPO}
-  DOWNSTREAM_BRANCH:
+  REPO_BRANCH:
     - ${DOWNSTREAM_BRANCH}
 workspace:
   base: /toolkit
