@@ -49,10 +49,9 @@ pipeline:
     group: install
     secrets: [ ASDA_USER_1, ASDA_PASS_1 ]
     commands:
-      - ./toolkit/phing install-clone docker-backstop-generate -D'db.dl.username'='$${ASDA_USER_1}' -D'db.dl.password'='$${ASDA_PASS_1}'
+      - ./toolkit/phing install-clone docker-backstop-generate -D'db.dl.username'='$${ASDA_USER_1}' -D'db.dl.password'='$${ASDA_PASS_1}' -logger phing.listener.AnsiColorLogger
       - ./toolkit/phing drush-gdpr-dump -D'database-file'='/toolkit/refresh-dev/dump.sql' -logger phing.listener.AnsiColorLogger
-      - ./toolkit/drush -r build sql-create -y
-      - ./toolkit/drush -r build sqlc < /toolkit/refresh-dev/dump.sql
+      - ./toolkit/drush -r build sql-create -y && ./toolkit/drush -r build sqlc < /toolkit/refresh-dev/dump.sql
       - tar -czf ../build-dev-master.tar.gz --exclude='./.drone.yml' --exclude='.git/' --exclude='./dump.sql' .
       - tar -czf ../dump-dev-master.tar.gz dump.sql backstop_data/ backstop.json
   backstop-reference:
