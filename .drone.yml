@@ -1,6 +1,13 @@
 clone:
   git:
     image: plugins/git:next
+matrix:
+  DOWNSTREAM_OWNER:
+    - ${DOWNSTREAM_OWNER}
+  DOWNSTREAM_REPO:
+    - ${DOWNSTREAM_REPO}
+  DOWNSTREAM_BRANCH:
+    - ${DOWNSTREAM_BRANCH}
 workspace:
   base: /toolkit
   path: refresh-dev
@@ -54,7 +61,7 @@ pipeline:
       - ./toolkit/drush -r build sql-create -y
       - ./toolkit/drush -r build sqlc < /toolkit/refresh-dev/dump.sql
       - tar -czf ../build-dev-master.tar.gz --exclude='./.drone.yml' --exclude='.git/' --exclude='./dump.sql' .
-      - tar -czf ../asda-dev-master.tar.gz dump.sql backstop_data/ backstop.json
+      - tar -czf ../dump-dev-master.tar.gz dump.sql backstop_data/ backstop.json
   backstop-reference:
     image: backstopjs/backstopjs
     commands:
@@ -66,10 +73,10 @@ pipeline:
     user: web_asda
     secrets: [ plugin_key, plugin_hosts ]
     source: ../build-dev-${DOWNSTREAM_BRANCH}.tar.gz
-    target: ${DOWNSTREAM_OWNER}/${DOWNSTREAM_REPO}/dist/
+    target: ${DOWNSTREAM_OWNER}/${DOWNSTREAM_REPO}/build/
   upload-asda:
     image: drillster/drone-rsync
     user: web_asda
     secrets: [ plugin_key, plugin_hosts ]
-    source: ../asda-dev-${DOWNSTREAM_BRANCH}.tar.gz
-    target: ${DOWNSTREAM_OWNER}/${DOWNSTREAM_REPO}/asda/
+    source: ../dump-dev-${DOWNSTREAM_BRANCH}.tar.gz
+    target: ${DOWNSTREAM_OWNER}/${DOWNSTREAM_REPO}/dumps/
