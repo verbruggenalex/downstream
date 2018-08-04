@@ -84,16 +84,6 @@ pipeline:
       event: pull_request
       branch: "toolkit/remote"
 
-  asda:
-    image: fpfis/drone-plugin-asda
-    group: setup
-    target: /test/toolkit/dump.sql
-    website: $${DOWNSTREAM_REPO}
-    secrets: [ asda_url, downstream_repo ]
-    when:
-      event: push
-      branch: "toolkit/remote"
-
   # ============================================================================
   # Coding Standards ===========================================================
   # ============================================================================
@@ -179,8 +169,9 @@ pipeline:
     group: install
     secrets: [ asda_user, asda_pass]
     commands:
-      - ./toolkit/phing install-clone -D'db.dl.username'='$${ASDA_USER}' -D'db.dl.password'='$${ASDA_PASS}' ${PHING_OPTS}
+      - ./toolkit/phing install-clone project-database-link -D'db.dl.username'='$${ASDA_USER}' -D'db.dl.password'='$${ASDA_PASS}' ${PHING_OPTS}
       - ./toolkit/phing docker-backstop-generate ${PHING_OPTS}
+      - ls -la
     volumes:
       - /cache/$${DOWNSTREAM_REPO}:/cache
 
@@ -207,6 +198,7 @@ pipeline:
       - cp -f vendor/ec-europa/toolkit/includes/docker/docker-backstopjs/core/util/runPuppet.js /usr/local/lib/node_modules/backstopjs/core/util/runPuppet.js
       - cp -f vendor/ec-europa/toolkit/includes/docker/docker-backstopjs/core/util/compare/index.js /usr/local/lib/node_modules/backstopjs/core/util/compare/index.js
       - backstop reference || echo 'Proceed ...'
+      - ls -la
       - tar -czf dev-$${DOWNSTREAM_BRANCH}.tar.gz dump.sql backstop_data/ backstop.json
     volumes:
       - /cache/$${DOWNSTREAM_REPO}:/cache
