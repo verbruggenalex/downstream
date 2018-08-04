@@ -84,34 +84,29 @@ pipeline:
     group: setup
     secrets: [ asda_aws_url, github_api_token ]
     commands:
-      - composer install --ansi --no-suggest
+      - composer require ec-europa/toolkit:dev-develop
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
+
   ec-europa/euetfa-reference:
-    image: fpfis/php56-build
-    group: setup
+    image: fpfis/php71-build
+    group: test
     secrets: [ asda_aws_url, github_api_token ]
     commands:
-      - git clone https://$${GITHUB_API_TOKEN}@github.com/ec-europa/euetfa-reference.git
-      - cd /test/downstream/euetfa-reference
-      - composer require ec-europa/toolkit:dev-develop
-      - cp vendor/ec-europa/toolkit/includes/phing/props/drone.props build.develop.props
-      - ./toolkit/phing project-properties-validate ${PHING_OPTS}
-      - ./toolkit/phing test-run-phpcs ${PHING_OPTS}
+      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/euetfa-reference.git -b master
+      - cp vendor/ec-europa/toolkit/includes/phing/props/drone.props euetfa-reference/build.develop.props
+      - ./toolkit/phing -f euetfa-reference/build.xml test-run-phpcs ${PHING_OPTS}
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
 
   ec-europa/europaeu-reference:
-    image: fpfis/php56-build
-    group: setup
+    image: fpfis/php71-build
+    group: test
     secrets: [ asda_aws_url, github_api_token ]
     commands:
-      - git clone https://$${GITHUB_API_TOKEN}@github.com/ec-europa/europaeu-reference.git
-      - cd /test/downstream/europaeu-reference
-      - composer require ec-europa/toolkit:dev-develop
-      - cp vendor/ec-europa/toolkit/includes/phing/props/drone.props build.develop.props
-      - ./toolkit/phing project-properties-validate ${PHING_OPTS}
-      - ./toolkit/phing test-run-phpcs ${PHING_OPTS}
+      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/europaeu-reference.git -b master
+      - cp vendor/ec-europa/toolkit/includes/phing/props/drone.props europaeu-reference/build.develop.props
+      - ./toolkit/phing -f europaeu-reference/build.xml test-run-phpcs ${PHING_OPTS}
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
 
