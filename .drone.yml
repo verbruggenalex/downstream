@@ -9,9 +9,9 @@ matrix:
         - 56
         - 71
     PHING_OPTS:
-        - '-D''toolkit.dir''=''/test/downstream/vendor/ec-europa/toolkit'' -logger phing.listener.AnsiColorLogger'
+        - "-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
     TOOLKIT_ENV_PROPS:
-        - /test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
+        - "/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props"
 pipeline:
     setup:
         image: 'fpfis/php${PHP_VERSION}-build'
