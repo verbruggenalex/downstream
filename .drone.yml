@@ -65,7 +65,7 @@ pipeline:
     group: setup
     secrets: [ asda_aws_url ]
     commands:
-      - rm -rf .git
+      - rm -rf .git .drone
       - git clone git@github.com:$${DOWNSTREAM_OWNER}/$${DOWNSTREAM_REPO}.git .
       - composer require ec-europa/toolkit:dev-develop
       - cp vendor/ec-europa/toolkit/includes/phing/props/drone.props build.develop.props
