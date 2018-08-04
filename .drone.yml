@@ -84,7 +84,8 @@ pipeline:
     group: setup
     secrets: [ asda_aws_url, github_api_token ]
     commands:
-      - composer require ec-europa/toolkit:dev-develop
+      - composer require ec-europa/toolkit:dev-develop --ansi --no-suggest
+      - composer install --working-dir=ec-europa/toolkit/includes/composer --ignore-platform-reqs --no-suggest --no-scripts --ansi
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
 
@@ -95,7 +96,7 @@ pipeline:
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/euetfa-reference.git -b master
       - cp vendor/ec-europa/toolkit/includes/phing/props/drone.props euetfa-reference/build.develop.props
-      - ./toolkit/phing -f euetfa-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./vendor/ec-europa/toolkit/bin/phing -f euetfa-reference/build.xml test-run-phpcs ${PHING_OPTS}
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
 
@@ -106,7 +107,7 @@ pipeline:
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/europaeu-reference.git -b master
       - cp vendor/ec-europa/toolkit/includes/phing/props/drone.props europaeu-reference/build.develop.props
-      - ./toolkit/phing -f europaeu-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./vendor/ec-europa/toolkit/bin/phing -f europaeu-reference/build.xml test-run-phpcs ${PHING_OPTS}
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
 
