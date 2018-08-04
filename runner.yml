@@ -25,8 +25,8 @@ github:
 # -----------------------------------------------------------------------------
 commands:
   project:phpcs:
-    - git clone --depth 1 https://${GITHUB_API_TOKEN}@github.com/${REPO_OWNER}/${REPO_NAME}.git -b master
-    - ./toolkit/phing -f ${REPO_OWNER}/${REPO_NAME}/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
+    - "[[ ! -d ${REPO_OWNER}/${REPO_NAME} ]] && mkdir -p ${REPO_OWNER}/${REPO_NAME} && git clone --depth 1 https://${GITHUB_API_TOKEN}@github.com/${REPO_OWNER}/${REPO_NAME}.git -b master ${REPO_OWNER}/${REPO_NAME}"
+    - "./toolkit/phing -f ${REPO_OWNER}/${REPO_NAME}/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
 repositories:
   - ec-europa/euetfa-reference
   - ec-europa/europaeu-reference
