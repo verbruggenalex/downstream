@@ -66,7 +66,7 @@ pipeline:
     secrets: [ asda_aws_url, github_api_token ]
     commands:
       - rm -rf .git .drone.yml
-      - git clone https://${GITHUB_API_TOKEN}@github.com/$${DOWNSTREAM_OWNER}/$${DOWNSTREAM_REPO}.git .
+      - git clone https://$${GITHUB_API_TOKEN}@github.com/$${DOWNSTREAM_OWNER}/$${DOWNSTREAM_REPO}.git .
       - composer require ec-europa/toolkit:dev-develop
       - cp vendor/ec-europa/toolkit/includes/phing/props/drone.props build.develop.props
       - ./toolkit/phing project-properties-validate ${PHING_OPTS}
