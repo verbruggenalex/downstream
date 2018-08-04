@@ -85,7 +85,7 @@ pipeline:
     secrets: [ asda_aws_url, github_api_token ]
     commands:
       - composer require ec-europa/toolkit:dev-develop --ansi --no-suggest
-      - composer install --working-dir=ec-europa/toolkit/includes/composer --ignore-platform-reqs --no-suggest --no-scripts --ansi
+      - composer install --working-dir=vendor/ec-europa/toolkit/includes/composer --ignore-platform-reqs --no-suggest --no-scripts --ansi
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
 
