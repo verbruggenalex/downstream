@@ -88,7 +88,7 @@ pipeline:
     image: fpfis/drone-plugin-asda
     group: setup
     target: /test/toolkit/dump.sql
-    website: ${DOWNSTREAM_REPO%%-reference}
+    website: $${DOWNSTREAM_REPO}
     secrets: [ asda_url ]
     when:
       event: push
