@@ -9,25 +9,253 @@ clone:
     image: plugins/git:next
 
 # ==============================================================================
-# Workspace location.
+# Matrix =======================================================================
+# ==============================================================================
+matrix:
+  PHING_OPTS:
+    - -logger phing.listener.AnsiColorLogger
+
+# ==============================================================================
+# Workspace location ===========================================================
+# ==============================================================================
+# The workspace location is at /test/toolkit. Git will place all files from the
+# repository in this folder. Useful to know if you want to access a demo build.
 # ==============================================================================
 workspace:
   base: /test
-  path: downstream
+  path: toolkit
 
 # ==============================================================================
-# Downstream pipelines
+# Main services ================================================================
+# ==============================================================================
+# We always start the web and mysql service before starting the pipeline as they
+# are used throughout the entire pipeline. Other services are only started in
+# the section before they are needed. This workflow saves several minutes off
+# of the entire pipeline duration.
+# ==============================================================================
+services:
+  web:
+    image: fpfis/php56-build
+    environment:
+      - DOCUMENT_ROOT=/test/toolkit/build
+  mysql:
+    image: percona/percona-server:5.6
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+
+# ==============================================================================
+# Toolkit pipeline =============================================================
+# ==============================================================================
+# This is the actual Toolkit pipeline section where you can find all steps that
+# will be executed. The pipeline is divided into different sections to allow for
+# parallelisation within sections.
 # ==============================================================================
 pipeline:
 
-  toolkit-demo:
-    image: plugins/downstream
-    server: https://drone.fpfis.eu
-    secrets: [ downstream_token ]
-    fork: true
-    repositories:
-      - verbruggenalex/downstream@${DOWNSTREAM_BRANCH:-toolkit/demo}
-    params:
-      - DEMO_TIMEOUT=${DEMO_TIMEOUT}
-      - DEMO_BRANCH=${DEMO_BRANCH}
-      - DEMO_REPOSITORY=${DEMO_REPOSITORY}
+  # ============================================================================
+  # Setup ======================================================================
+  # ============================================================================
+  # The toolkit step ensures that each build uses the latest release of toolkit.
+  # After toolkit is installed it will copy the default properties for Drone to
+  # build.develop.props in the root of the build. This is important to know when
+  # you need to add, remove or change properties that are used in this pipeline.
+  # ============================================================================
+  toolkit:
+    image: fpfis/php56-build
+    group: setup
+    secrets: [ asda_aws_url ]
+    commands:
+      - rm -rf .git
+      - git clone git@github.com:${DOWNSTREAM_OWNER}/${DOWNSTREAM_REPO}.git .
+      - composer require ec-europa/toolkit:dev-develop
+      - cp vendor/ec-europa/toolkit/includes/phing/props/drone.props build.develop.props
+      - ./toolkit/phing project-properties-validate ${PHING_OPTS}
+    volumes:
+      - /cache:/cache
+
+  dump:
+    image: backstopjs/backstopjs
+    group: setup
+    secrets: [ asda_aws_url ]
+    commands:
+      - backstop init
+      - wget -q ${ASDA_AWS_URL}${DOWNSTREAM_OWNER}/${DOWNSTREAM_REPO}/dumps/dev-${DOWNSTREAM_BRANCH}.tar.gz && tar -xzf dev-${DOWNSTREAM_BRANCH}.tar.gz || echo "Proceed..."
+    when:
+      event: pull_request
+      branch: "toolkit/remote"
+
+  asda:
+    image: fpfis/drone-plugin-asda
+    group: setup
+    target: /test/toolkit/dump.sql
+    website: ${DOWNSTREAM_REPO%%-reference}
+    secrets: [ asda_url ]
+    when:
+      event: push
+      branch: "toolkit/remote"
+
+  # ============================================================================
+  # Coding Standards ===========================================================
+  # ============================================================================
+  # The coding standards checks are run with a php71 docker image to improve the
+  # performance and save time. The steps in this section are also ran in
+  # parallel.
+  # ============================================================================
+
+  # ============================================================================
+  # The phpcs step has to pass! If it fails the Quality Assurance team will not
+  # start manual code review. Developers need to be added to the GitHub team of
+  # the repository to be able to check the log for what they need to do.
+  # ============================================================================
+  phpcs:
+    image: fpfis/php71-build
+    group: coding-standards
+    commands:
+      - ./toolkit/phing test-run-phpcs ${PHING_OPTS}
+    when:
+      refspec:
+        exclude: [ "demo:master" ]
+
+  # # ============================================================================
+  # # The php7-comp is run on the result of build-subsite-dist to check if the
+  # # project is ready to switch over to PHP7. This step will always be green
+  # # regardless of whether it fails or not.
+  # # ============================================================================
+  # php7-comp:
+  #   image: fpfis/php71-build
+  #   group: coding-standards
+  #   commands:
+  #     - ./toolkit/phing build-subsite-dist ${PHING_OPTS}
+  #     - ./toolkit/phing test-phpcs-setup -D'phpcs.files'='$${build.dist.dir}' -D'phpcs.standards'='PHPCompatibility' -D'phpcs.extensions'='php inc module install test profile theme'  ${PHING_OPTS}
+  #     - ./toolkit/phpcs --runtime-set testVersion 7.0- || echo "PHPCompatibility failed..."
+  #   when:
+  #     refspec:
+  #       exclude: [ "demo:master" ]
+
+  # ============================================================================
+  # Build ======================================================================
+  # ============================================================================
+  # The build section sets up a full project codebase in development mode to
+  # prepare for a cloned installation of the project. It also starts any
+  # services that are required in the Test section.
+  # ============================================================================
+  
+  # ============================================================================
+  # The build step builds the platform codebase by downloading the release
+  # defined in the build properties. After that it builds the subsite codebase
+  # by symlinking the source code, executing make files and running composer
+  # install. As per documentation provided by toolkit.
+  # ============================================================================
+  build:
+    image: fpfis/php56-build
+    group: build
+    commands:
+      - ./toolkit/phing build-platform build-subsite-dev ${PHING_OPTS}
+    volumes:
+      - /cache/${DOWNStREAM_REPO}:/cache
+
+  # ============================================================================
+  # The solr step starts the service in preparation for the install section.
+  # ============================================================================
+  solr:
+    image: fpfis/solr5
+    group: build
+    detach: true
+    when:
+      event: [ push, pull_request, tag ]
+
+  # ============================================================================
+  # Install ====================================================================
+  # ============================================================================
+  # The install section provides a working website and starts any services
+  # needed in the test section.
+  # ============================================================================
+  
+  # ============================================================================
+  # The install step creates a clone of the production website.
+  # ============================================================================
+  install:
+    image: fpfis/php56-build
+    group: install
+    secrets: [ asda_user, asda_pass]
+    commands:
+      - ./toolkit/phing install-clone -D'db.dl.username'='$${ASDA_USER}' -D'db.dl.password'='$${ASDA_PASS}' ${PHING_OPTS}
+      - ./toolkit/phing docker-backstop-generate ${PHING_OPTS}
+    volumes:
+      - /cache/${DOWNStREAM_REPO}:/cache
+
+  # ============================================================================
+  # The selenium step starts the service in preparation for the test section.
+  # ============================================================================
+  chrome:
+    image: selenium/standalone-chrome
+    group: install
+    detach: true
+
+  # ============================================================================
+  # Test =======================================================================
+  # ============================================================================
+  # The test section contains all steps, aside from coding standards which
+  # should give QA a way to assess the stability of the delivery. Testing steps
+  # are run sequentially instead of parallel because we are using a local base
+  # url for behat and the tunnel base url for visual regression.
+  # ============================================================================
+  # TODO ONLY UPDATE REFERENCE ON MERGE IN MASTER.
+  visreg:
+    image: backstopjs/backstopjs
+    commands:
+      - cp -f vendor/ec-europa/toolkit/includes/docker/docker-backstopjs/core/util/runPuppet.js /usr/local/lib/node_modules/backstopjs/core/util/runPuppet.js
+      - cp -f vendor/ec-europa/toolkit/includes/docker/docker-backstopjs/core/util/compare/index.js /usr/local/lib/node_modules/backstopjs/core/util/compare/index.js
+      - backstop reference || echo 'Proceed ...'
+      - tar -czf dev-${DOWNStREAM_BRANCH}.tar.gz dump.sql backstop_data/ backstop.json
+    volumes:
+      - /cache/${DOWNStREAM_REPO}:/cache
+    when:
+      event: push
+      branch: "toolkit/remote"
+
+  # TODO ONLY UPLOAD ON MERGE IN MASTER.
+  dump:
+    image: drillster/drone-rsync
+    user: web_asda
+    secrets: [ plugin_key, plugin_hosts ]
+    source: dev-${DOWNStREAM_BRANCH}.tar.gz
+    target: ec-europa/${DOWNStREAM_REPO}/dumps/
+    when:
+      event: push
+      branch: "toolkit/remote"
+
+  visreg:
+    image: backstopjs/backstopjs
+    commands:
+      - cp -f vendor/ec-europa/toolkit/includes/docker/docker-backstopjs/core/util/runPuppet.js /usr/local/lib/node_modules/backstopjs/core/util/runPuppet.js
+      - cp -f vendor/ec-europa/toolkit/includes/docker/docker-backstopjs/core/util/compare/index.js /usr/local/lib/node_modules/backstopjs/core/util/compare/index.js
+      - backstop test || echo 'Proceed ...'
+    when:
+      event: pull_request
+      branch: "toolkit/remote"
+
+  smoke:
+    image: fpfis/php56-dev
+    commands:
+      - ./toolkit/phing drush-run-smoketest ${PHING_OPTS}
+  
+  # ============================================================================
+  # The behat step runs the custom tests from the project on the cloned site
+  # installation. We currently do not have any other way yet for a subsite to
+  # test a clean installation other than overriding the installation target or
+  # placing a custom pipeline into their repository. This step should be
+  # considered a blocking issue if it fails.
+  # ============================================================================
+  behat:
+    image: fpfis/php56-build
+    commands:
+      - find ./build/profiles/ -type f -name "*.behat.inc" -delete
+      - ./toolkit/phing test-run-behat ${PHING_OPTS}
+    volumes:
+      - /cache/${DOWNStREAM_REPO}:/cache
+    when:
+      refspec:
+        exclude: [ "demo:master" ]
+
+branches: toolkit/remote
