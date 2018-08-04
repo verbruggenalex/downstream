@@ -1,7 +1,6 @@
   {repo_name}:
     image: fpfis/php{php_version}-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:

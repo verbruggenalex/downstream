@@ -21,7 +21,6 @@ pipeline:
   euetfa-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -32,7 +31,6 @@ pipeline:
   europaeu-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -43,7 +41,6 @@ pipeline:
   ewrc-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -54,7 +51,6 @@ pipeline:
   horizon2020-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -65,7 +61,6 @@ pipeline:
   maritimeforum-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -76,7 +71,6 @@ pipeline:
   stages2-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -87,7 +81,6 @@ pipeline:
   srb-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -98,7 +91,6 @@ pipeline:
   eu-aid-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -109,7 +101,6 @@ pipeline:
   kci-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -120,7 +111,6 @@ pipeline:
   farnet-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -131,7 +121,6 @@ pipeline:
   digital-agenda-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -142,7 +131,6 @@ pipeline:
   health-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -153,7 +141,6 @@ pipeline:
   dms-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -164,7 +151,6 @@ pipeline:
   euandme-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -175,7 +161,6 @@ pipeline:
   amr-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -186,7 +171,6 @@ pipeline:
   crosportal-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -197,7 +181,6 @@ pipeline:
   primeinfrastructure-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -208,7 +191,6 @@ pipeline:
   edpsweb-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -219,7 +201,6 @@ pipeline:
   oil-mit-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -230,7 +211,6 @@ pipeline:
   food-animals-plants-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -241,7 +221,6 @@ pipeline:
   esf-tc-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -252,7 +231,6 @@ pipeline:
   erasmusplus2-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -263,7 +241,6 @@ pipeline:
   sport-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -274,7 +251,6 @@ pipeline:
   easme-site-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -285,7 +261,6 @@ pipeline:
   eych-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -296,7 +271,6 @@ pipeline:
   eiopa-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -307,7 +281,6 @@ pipeline:
   microdata-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -318,7 +291,6 @@ pipeline:
   taxud-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -329,7 +301,6 @@ pipeline:
   comm-digitaltransformation-blog-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -340,7 +311,6 @@ pipeline:
   expert-pane-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -351,7 +321,6 @@ pipeline:
   anti-fraud-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -362,7 +331,6 @@ pipeline:
   education2-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -373,7 +341,6 @@ pipeline:
   epale-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -384,7 +351,6 @@ pipeline:
   edpb-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -395,7 +361,6 @@ pipeline:
   epsc-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -406,7 +371,6 @@ pipeline:
   eu-aid-explorer-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -417,7 +381,6 @@ pipeline:
   echo-site-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -428,7 +391,6 @@ pipeline:
   argiculture-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -439,7 +401,6 @@ pipeline:
   creativeeurope-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -450,7 +411,6 @@ pipeline:
   safety_alerts-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -461,7 +421,6 @@ pipeline:
   mossportal-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -472,7 +431,6 @@ pipeline:
   road-safety-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -483,7 +441,6 @@ pipeline:
   encasia-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -494,7 +451,6 @@ pipeline:
   eusinglesky-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -505,7 +461,6 @@ pipeline:
   euprotects-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -516,7 +471,6 @@ pipeline:
   eusdgs-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -527,7 +481,6 @@ pipeline:
   cem-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -538,7 +491,6 @@ pipeline:
   commpo-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -549,7 +501,6 @@ pipeline:
   publicare-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -560,7 +511,6 @@ pipeline:
   inseparable-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -571,7 +521,6 @@ pipeline:
   mare-emd-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -582,7 +531,6 @@ pipeline:
   mare-magaz-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -593,7 +541,6 @@ pipeline:
   eurydice-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -604,7 +551,6 @@ pipeline:
   youthwiki-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -615,7 +561,6 @@ pipeline:
   basext-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
@@ -626,7 +571,6 @@ pipeline:
   jrccties-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    group: test
     when:
       status: [ success, failure ]
     environment:
