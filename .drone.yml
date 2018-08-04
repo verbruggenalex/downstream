@@ -95,7 +95,7 @@ pipeline:
     secrets: [ asda_aws_url, github_api_token ]
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/euetfa-reference.git -b master && cd euetfa-reference
-      - ln -sf ../vendor/ec-europa/toolkit/bin toolkit
+      - ln -sf ../vendor/ec-europa/toolkit/bin toolkit && ln -sf ../vendor vendor
       - cp /test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props build.develop.props
       - ./toolkit/phing test-run-phpcs ${PHING_OPTS}
     volumes:
