@@ -66,7 +66,7 @@ pipeline:
     secrets: [ asda_aws_url ]
     commands:
       - rm -rf .git
-      - git clone git@github.com:${DOWNSTREAM_OWNER}/${DOWNSTREAM_REPO}.git .
+      - git clone git@github.com:$${DOWNSTREAM_OWNER}/$${DOWNSTREAM_REPO}.git .
       - composer require ec-europa/toolkit:dev-develop
       - cp vendor/ec-europa/toolkit/includes/phing/props/drone.props build.develop.props
       - ./toolkit/phing project-properties-validate ${PHING_OPTS}
@@ -79,7 +79,7 @@ pipeline:
     secrets: [ asda_aws_url ]
     commands:
       - backstop init
-      - wget -q ${ASDA_AWS_URL}${DOWNSTREAM_OWNER}/${DOWNSTREAM_REPO}/dumps/dev-${DOWNSTREAM_BRANCH}.tar.gz && tar -xzf dev-${DOWNSTREAM_BRANCH}.tar.gz || echo "Proceed..."
+      - wget -q ${ASDA_AWS_URL}$${DOWNSTREAM_OWNER}/$${DOWNSTREAM_REPO}/dumps/dev-$${DOWNSTREAM_BRANCH}.tar.gz && tar -xzf dev-${DOWNSTREAM_BRANCH}.tar.gz || echo "Proceed..."
     when:
       event: pull_request
       branch: "toolkit/remote"
@@ -88,7 +88,7 @@ pipeline:
     image: fpfis/drone-plugin-asda
     group: setup
     target: /test/toolkit/dump.sql
-    website: ${DOWNSTREAM_REPO%%-reference}
+    website: $${DOWNSTREAM_REPO%%-reference}
     secrets: [ asda_url ]
     when:
       event: push
@@ -152,7 +152,7 @@ pipeline:
     commands:
       - ./toolkit/phing build-platform build-subsite-dev ${PHING_OPTS}
     volumes:
-      - /cache/${DOWNStREAM_REPO}:/cache
+      - /cache/$${DOWNSTREAM_REPO}:/cache
 
   # ============================================================================
   # The solr step starts the service in preparation for the install section.
@@ -182,7 +182,7 @@ pipeline:
       - ./toolkit/phing install-clone -D'db.dl.username'='$${ASDA_USER}' -D'db.dl.password'='$${ASDA_PASS}' ${PHING_OPTS}
       - ./toolkit/phing docker-backstop-generate ${PHING_OPTS}
     volumes:
-      - /cache/${DOWNStREAM_REPO}:/cache
+      - /cache/$${DOWNSTREAM_REPO}:/cache
 
   # ============================================================================
   # The selenium step starts the service in preparation for the test section.
@@ -207,9 +207,9 @@ pipeline:
       - cp -f vendor/ec-europa/toolkit/includes/docker/docker-backstopjs/core/util/runPuppet.js /usr/local/lib/node_modules/backstopjs/core/util/runPuppet.js
       - cp -f vendor/ec-europa/toolkit/includes/docker/docker-backstopjs/core/util/compare/index.js /usr/local/lib/node_modules/backstopjs/core/util/compare/index.js
       - backstop reference || echo 'Proceed ...'
-      - tar -czf dev-${DOWNStREAM_BRANCH}.tar.gz dump.sql backstop_data/ backstop.json
+      - tar -czf dev-$${DOWNSTREAM_BRANCH}.tar.gz dump.sql backstop_data/ backstop.json
     volumes:
-      - /cache/${DOWNStREAM_REPO}:/cache
+      - /cache/$${DOWNSTREAM_REPO}:/cache
     when:
       event: push
       branch: "toolkit/remote"
@@ -219,8 +219,8 @@ pipeline:
     image: drillster/drone-rsync
     user: web_asda
     secrets: [ plugin_key, plugin_hosts ]
-    source: dev-${DOWNStREAM_BRANCH}.tar.gz
-    target: ec-europa/${DOWNStREAM_REPO}/dumps/
+    source: dev-$${DOWNSTREAM_BRANCH}.tar.gz
+    target: ec-europa/$${DOWNSTREAM_REPO}/dumps/
     when:
       event: push
       branch: "toolkit/remote"
@@ -253,7 +253,7 @@ pipeline:
       - find ./build/profiles/ -type f -name "*.behat.inc" -delete
       - ./toolkit/phing test-run-behat ${PHING_OPTS}
     volumes:
-      - /cache/${DOWNStREAM_REPO}:/cache
+      - /cache/$${DOWNSTREAM_REPO}:/cache
     when:
       refspec:
         exclude: [ "demo:master" ]
