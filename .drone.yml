@@ -8,10 +8,6 @@ matrix:
   PHP_VERSION:
     - 56
     - 71
-  PHING_OPTS:
-    - -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
-  TOOLKIT_ENV_PROPS:
-    - /test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
 pipeline:
   setup:
     image: fpfis/php${PHP_VERSION}-build
@@ -24,456 +20,627 @@ pipeline:
   ec-europa/euetfa-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/euetfa-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/euetfa-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/euetfa-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/europaeu-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/europaeu-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/europaeu-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/europaeu-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/ewrc-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/ewrc-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/ewrc-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/ewrc-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/horizon2020-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/horizon2020-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/horizon2020-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/horizon2020-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/maritimeforum-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/maritimeforum-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/maritimeforum-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/maritimeforum-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/stages2-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/stages2-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/stages2-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/stages2-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/srb-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/srb-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/srb-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/srb-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/eu-aid-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/eu-aid-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/eu-aid-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/eu-aid-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/kci-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/kci-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/kci-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/kci-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/farnet-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/farnet-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/farnet-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/farnet-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/digital-agenda-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/digital-agenda-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/digital-agenda-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/digital-agenda-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/health-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/health-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/health-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/health-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/dms-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/dms-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/dms-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/dms-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/euandme-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/euandme-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/euandme-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/euandme-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/amr-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/amr-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/amr-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/amr-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/crosportal-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/crosportal-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/crosportal-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/crosportal-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/primeinfrastructure-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/primeinfrastructure-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/primeinfrastructure-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/primeinfrastructure-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/edpsweb-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/edpsweb-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/edpsweb-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/edpsweb-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/oil-mit-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/oil-mit-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/oil-mit-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/oil-mit-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/food-animals-plants-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/food-animals-plants-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/food-animals-plants-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/food-animals-plants-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/esf-tc-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/esf-tc-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/esf-tc-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/esf-tc-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/erasmusplus2-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/erasmusplus2-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/erasmusplus2-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/erasmusplus2-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/sport-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/sport-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/sport-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/sport-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/education2-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/education2-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/education2-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/education2-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/easme-site-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/easme-site-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/easme-site-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/easme-site-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/eych-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/eych-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/eych-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/eych-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/eiopa-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/eiopa-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/eiopa-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/eiopa-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/microdata-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/microdata-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/microdata-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/microdata-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/taxud-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/taxud-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/taxud-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/taxud-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/comm-digitaltransformation-blog-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/comm-digitaltransformation-blog-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/comm-digitaltransformation-blog-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/comm-digitaltransformation-blog-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/expert-pane-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/expert-pane-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/expert-pane-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/expert-pane-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/anti-fraud-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/anti-fraud-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/anti-fraud-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/anti-fraud-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/education2-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/education2-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/education2-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/education2-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/epale-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/epale-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/epale-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/epale-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/edpb-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/edpb-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/edpb-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/edpb-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/epsc-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/epsc-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/epsc-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/epsc-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/eu-aid-explorer-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/eu-aid-explorer-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/eu-aid-explorer-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/eu-aid-explorer-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/echo-site-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/echo-site-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/echo-site-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/echo-site-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/argiculture-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/argiculture-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/argiculture-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/argiculture-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/creativeeurope-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/creativeeurope-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/creativeeurope-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/creativeeurope-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/safety_alerts-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/safety_alerts-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/safety_alerts-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/safety_alerts-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/mossportal-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/mossportal-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/mossportal-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/mossportal-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/road-safety-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/road-safety-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/road-safety-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/road-safety-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/encasia-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/encasia-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/encasia-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/encasia-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/eusinglesky-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/eusinglesky-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/eusinglesky-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/eusinglesky-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/euprotects-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/euprotects-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/euprotects-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/euprotects-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/eusdgs-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/eusdgs-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/eusdgs-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/eusdgs-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/cem-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/cem-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/cem-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/cem-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/commpo-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/commpo-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/commpo-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/commpo-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/publicare-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/publicare-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/publicare-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/publicare-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/inseparable-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/inseparable-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/inseparable-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/inseparable-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/mare-emd-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/mare-emd-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/mare-emd-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/mare-emd-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/mare-magaz-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/mare-magaz-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/mare-magaz-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/mare-magaz-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/eurydice-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/eurydice-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/eurydice-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/eurydice-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/youthwiki-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/youthwiki-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/youthwiki-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/youthwiki-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/basext-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/basext-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/basext-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/basext-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
   ec-europa/jrccties-reference:
     image: fpfis/php${PHP_VERSION}-build
     secrets: [ github_api_token ]
+    environment:
+      - PHING_OPTS="-D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/jrccties-reference.git -b master
-      - ./toolkit/phing -f $ec-europa/jrccties-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/phing -f $ec-europa/jrccties-reference/build.xml test-run-phpcs $${PHING_OPTS}
     when:
       status: [ success, failure ]
