@@ -79,7 +79,13 @@ services:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
 
 pipeline:
-  toolkit:
+  setup:
+    image: fpfis/php71-build
+    group: setup
+    secrets: [ asda_aws_url, github_api_token ]
+    commands:
+      - composer install --no-suggest
+  test:
     image: fpfis/php56-build
     group: setup
     secrets: [ asda_aws_url, github_api_token ]
