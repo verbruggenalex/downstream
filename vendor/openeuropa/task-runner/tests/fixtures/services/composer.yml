@@ -1,0 +1,38 @@
+-
+  composer: >
+    {
+        "name": "openeuropa/task-runner",
+        "type": "library"
+    }
+  expected:
+    getName: "openeuropa/task-runner"
+    getVendor: "openeuropa"
+    getProject: "task-runner"
+    getType: "library"
+    hasName: true
+    hasType: true
+
+-
+  composer: >
+    {
+        "name": "openeuropa/task-runner"
+    }
+  expected:
+    getName: "openeuropa/task-runner"
+    getVendor: "openeuropa"
+    getProject: "task-runner"
+    getType: ~
+    hasName: true
+    hasType: false
+
+-
+  composer: >
+    {
+    }
+  expected:
+    getName: ~
+    getVendor: ~
+    getProject: ~
+    getType: ~
+    hasName: false
+    hasType: false

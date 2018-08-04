@@ -1,0 +1,29 @@
+{
+    "name": "openeuropa/task-runner",
+    "license": "EUPL-1.1",
+    "type": "library",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "consolidation/robo": "^1.2",
+        "gitonomy/gitlib": "~1",
+        "nuvoleweb/robo-config": "~0.2",
+        "jakeasmith/http_build_url": "^1.0"
+    },
+    "require-dev": {
+        "openeuropa/code-review": "^0.2",
+        "phpunit/phpunit": "^5"
+    },
+    "autoload": {
+        "psr-4": {
+            "OpenEuropa\\TaskRunner\\": "./src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "OpenEuropa\\TaskRunner\\Tests\\": "./tests/",
+            "My\\Custom\\": "./tests/custom/src/"
+        }
+    },
+    "bin": ["bin/run"]
+}

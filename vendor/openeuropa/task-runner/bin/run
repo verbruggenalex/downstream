@@ -1,0 +1,15 @@
+#!/usr/bin/env php
+<?php
+
+use Symfony\Component\Console\Input\ArgvInput;
+use OpenEuropa\TaskRunner\TaskRunner;
+
+if (file_exists(__DIR__.'/../vendor/autoload.php')) {
+    $classLoader = require __DIR__.'/../vendor/autoload.php';
+} elseif (file_exists(__DIR__.'/../../../autoload.php')) {
+    $classLoader = require __DIR__ . '/../../../autoload.php';
+}
+
+$runner = new TaskRunner();
+$runner->registerExternalCommands($classLoader);
+exit($runner->run());

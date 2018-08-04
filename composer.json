@@ -1,0 +1,7 @@
+{
+    
+    "require": {
+        "openeuropa/task-runner": "^0.7.0",
+        "gboddin/php-github-cli": "^0.2.11"
+    }
+}

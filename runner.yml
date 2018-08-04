@@ -1,0 +1,26 @@
+# =============================================================================
+# Default Task Runner configuration
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Global Task Runner settings
+# -----------------------------------------------------------------------------
+#
+# The "runner.working_dir" will contain the full path to current working directory.
+# @see OpenEuropa\TaskRunner\TaskRunner::createConfiguration()
+runner:
+  bin_dir: "./vendor/bin"
+#  working_dir: ~
+
+# -----------------------------------------------------------------------------
+# GitHub configuration values.
+# -----------------------------------------------------------------------------
+github:
+  # GitHub personal access token token.
+  # @link https://github.com/settings/tokens
+  token: ~
+
+# -----------------------------------------------------------------------------
+# List of dynamically-defined commands.
+# -----------------------------------------------------------------------------
+commands: []

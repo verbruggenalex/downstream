@@ -1,33 +1,165 @@
-# ==============================================================================
-# Pull request clone ===========================================================
-# ==============================================================================
-# Use plugin to checkout pull requests for caching issue:
-# https://github.com/drone/drone/issues/2390
-# ==============================================================================
 clone:
   git:
     image: plugins/git:next
 
-# ==============================================================================
-# Workspace location.
-# ==============================================================================
+matrix:
+  REPOSITORY:
+    - ec-europa/euetfa-reference
+    - ec-europa/europaeu-reference
+    # - ec-europa/ewrc-reference
+    # - ec-europa/horizon2020-reference
+    # - ec-europa/maritimeforum-reference
+    # - ec-europa/stages2-reference
+    # - ec-europa/srb-reference
+    # - ec-europa/eu-aid-reference
+    # - ec-europa/kci-reference
+    # - ec-europa/farnet-reference
+    # - ec-europa/digital-agenda-reference
+    # - ec-europa/health-reference
+    # - ec-europa/dms-reference
+    # - ec-europa/euandme-reference
+    # - ec-europa/amr-reference
+    # - ec-europa/crosportal-reference
+    # - ec-europa/primeinfrastructure-reference
+    # - ec-europa/edpsweb-reference
+    # - ec-europa/oil-mit-reference
+    # - ec-europa/food-animals-plants-reference
+    # - ec-europa/esf-tc-reference
+    # - ec-europa/erasmusplus2-reference
+    # - ec-europa/sport-reference
+    # - ec-europa/education2-reference
+    # - ec-europa/easme-site-reference
+    # - ec-europa/eych-reference
+    # - ec-europa/eiopa-reference
+    # - ec-europa/microdata-reference
+    # - ec-europa/taxud-reference
+    # - ec-europa/comm-digitaltransformation-blog-reference
+    # - ec-europa/expert-pane-reference
+    # - ec-europa/anti-fraud-reference
+    # - ec-europa/education2-reference
+    # - ec-europa/epale-reference
+    # - ec-europa/edpb-reference
+    # - ec-europa/epsc-reference
+    # - ec-europa/eu-aid-explorer-reference
+    # - ec-europa/echo-site-reference
+    # - ec-europa/argiculture-reference
+    # - ec-europa/creativeeurope-reference
+    # - ec-europa/safety_alerts-reference
+    # - ec-europa/mossportal-reference
+    # - ec-europa/road-safety-reference
+    # - ec-europa/encasia-reference
+    # - ec-europa/eusinglesky-reference
+    # - ec-europa/euprotects-reference
+    # - ec-europa/eusdgs-reference
+    # - ec-europa/cem-reference
+    # - ec-europa/commpo-reference
+    # - ec-europa/publicare-reference
+    # - ec-europa/inseparable-reference
+    # - ec-europa/mare-emd-reference
+    # - ec-europa/mare-magaz-reference
+    # - ec-europa/eurydice-reference
+    # - ec-europa/youthwiki-reference
+    # - ec-europa/basext-reference
+    # - ec-europa/jrccties-reference
+  PHING_OPTS:
+    - -logger phing.listener.AnsiColorLogger
+
 workspace:
   base: /test
-  path: downstream
+  path: toolkit
 
-# ==============================================================================
-# Downstream pipelines
-# ==============================================================================
+services:
+  web:
+    image: fpfis/php56-build
+    environment:
+      - DOCUMENT_ROOT=/test/toolkit/build
+  mysql:
+    image: percona/percona-server:5.6
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+
 pipeline:
+  toolkit:
+    image: fpfis/php56-build
+    group: setup
+    secrets: [ asda_aws_url, github_api_token ]
+    commands:
+      - git clone https://$${GITHUB_API_TOKEN}@github.com/${REPOSITORY}.git
+      - cd /test/downstream/${REPOSITORY##*/}
+      - composer require ec-europa/toolkit:dev-develop
+      - cp vendor/ec-europa/toolkit/includes/phing/props/drone.props build.develop.props
+      - ./toolkit/phing project-properties-validate ${PHING_OPTS}
+      - ./toolkit/phing test-run-phpcs
+    volumes:
+      - /cache:/cache
 
-  toolkit-demo:
-    image: plugins/downstream
-    server: https://drone.fpfis.eu
-    secrets: [ downstream_token ]
-    fork: true
-    repositories:
-      - verbruggenalex/downstream@${DOWNSTREAM_BRANCH:-toolkit/demo}
-    params:
-      - DEMO_TIMEOUT=${DEMO_TIMEOUT}
-      - DEMO_BRANCH=${DEMO_BRANCH}
-      - DEMO_REPOSITORY=${DEMO_REPOSITORY}
+#   dump:
+#     image: backstopjs/backstopjs
+#     group: setup
+#     secrets: [ asda_aws_url ]
+#     commands:
+#       - backstop init
+#       - wget -q ${ASDA_AWS_URL}$${DOWNSTREAM_OWNER}/$${DOWNSTREAM_REPO}/dumps/dev-$${DOWNSTREAM_BRANCH}.tar.gz && tar -xzf dev-${DOWNSTREAM_BRANCH}.tar.gz || echo "Proceed..."
+#     when:
+#       event: pull_request
+#       branch: "toolkit/remote"
+
+#   build:
+#     image: fpfis/php56-build
+#     group: build
+#     commands:
+#       - ./toolkit/phing build-platform build-subsite-dev ${PHING_OPTS}
+#     volumes:
+#       - /cache/$${DOWNSTREAM_REPO}:/cache
+
+#   solr:
+#     image: fpfis/solr5
+#     group: build
+#     detach: true
+#     when:
+#       event: [ push, pull_request, tag ]
+
+#   install:
+#     image: fpfis/php56-build
+#     group: install
+#     secrets: [ asda_user, asda_pass]
+#     commands:
+#       - ./toolkit/phing install-clone project-database-link -D'db.dl.username'='$${ASDA_USER}' -D'db.dl.password'='$${ASDA_PASS}' ${PHING_OPTS}
+#       - ./toolkit/phing docker-backstop-generate ${PHING_OPTS}
+#     volumes:
+#       - /cache/$${DOWNSTREAM_REPO}:/cache
+
+#   visreg:
+#     image: backstopjs/backstopjs
+#     commands:
+#       - cp -f vendor/ec-europa/toolkit/includes/docker/docker-backstopjs/core/util/runPuppet.js /usr/local/lib/node_modules/backstopjs/core/util/runPuppet.js
+#       - cp -f vendor/ec-europa/toolkit/includes/docker/docker-backstopjs/core/util/compare/index.js /usr/local/lib/node_modules/backstopjs/core/util/compare/index.js
+#       - backstop reference || echo 'Proceed ...'
+#       - tar -czf dev-$${DOWNSTREAM_BRANCH}.tar.gz dump.sql backstop_data/ backstop.json
+#     volumes:
+#       - /cache/$${DOWNSTREAM_REPO}:/cache
+#     when:
+#       event: push
+#       branch: "toolkit/remote"
+
+#   dump:
+#     image: drillster/drone-rsync
+#     user: web_asda
+#     secrets: [ plugin_key, plugin_hosts ]
+#     source: dev-$${DOWNSTREAM_BRANCH}.tar.gz
+#     target: ec-europa/$${DOWNSTREAM_REPO}/dumps/
+#     when:
+#       event: push
+#       branch: "toolkit/remote"
+
+#   visreg:
+#     image: backstopjs/backstopjs
+#     commands:
+#       - cp -f vendor/ec-europa/toolkit/includes/docker/docker-backstopjs/core/util/runPuppet.js /usr/local/lib/node_modules/backstopjs/core/util/runPuppet.js
+#       - cp -f vendor/ec-europa/toolkit/includes/docker/docker-backstopjs/core/util/compare/index.js /usr/local/lib/node_modules/backstopjs/core/util/compare/index.js
+#       - backstop test || echo 'Proceed ...'
+#     when:
+#       event: pull_request
+#       branch: "toolkit/remote"
+
+# branches: toolkit/remote

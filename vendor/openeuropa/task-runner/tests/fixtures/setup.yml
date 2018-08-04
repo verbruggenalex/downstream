@@ -1,0 +1,51 @@
+- command: setup:behat
+  source: behat.yml.dist
+  destination: behat.yml
+  configuration:
+    drupal:
+      root: "web"
+    commands:
+      setup:behat:
+        - { task: "process", source: "behat.yml.dist", destination: "behat.yml" }
+      setup:phpunit:
+        - { task: "process", source: "phpunit.xml.dist", destination: "phpunit.xml" }
+  content: >
+    default:
+      extensions:
+        Behat\MinkExtension:
+          base_url: ${drupal.base_url}
+      formatters:
+        progress: ~
+  expected: >
+    default:
+      extensions:
+        Behat\MinkExtension:
+          base_url: http://127.0.0.1:8888
+      formatters:
+        progress: ~
+
+- command: setup:phpunit
+  source: phpunit.xml.dist
+  destination: phpunit.xml
+  configuration:
+    drupal:
+      root: "web"
+    commands:
+      setup:behat:
+        - { task: "process", source: "behat.yml.dist", destination: "behat.yml" }
+      setup:phpunit:
+        - { task: "process", source: "phpunit.xml.dist", destination: "phpunit.xml" }
+  content: >
+    <?xml version="1.0" encoding="UTF-8"?>
+    <phpunit bootstrap="vendor/autoload.php">
+      <php>
+        <env name="BASE_URL" value="${drupal.base_url}"/>
+      </php>
+    </phpunit>
+  expected: >
+    <?xml version="1.0" encoding="UTF-8"?>
+    <phpunit bootstrap="vendor/autoload.php">
+      <php>
+        <env name="BASE_URL" value="http://127.0.0.1:8888"/>
+      </php>
+    </phpunit>
