@@ -62,8 +62,9 @@ matrix:
     # - ec-europa/basext-reference
     # - ec-europa/jrccties-reference
   PHING_OPTS:
-    - -logger phing.listener.AnsiColorLogger
-
+    - -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
+  TOOLKIT_ENV_PROPS:
+    - /test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
 workspace:
   base: /test
   path: downstream
@@ -95,8 +96,7 @@ pipeline:
     secrets: [ asda_aws_url, github_api_token ]
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/euetfa-reference.git -b master
-      - cp ./vendor/ec-europa/toolkit/includes/phing/props/drone.props build.develop.props
-      - ./toolkit/phing -f euetfa-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' ${PHING_OPTS}
+      - ./toolkit/phing -f euetfa-reference/build.xml test-run-phpcs ${PHING_OPTS}
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
 
@@ -106,8 +106,7 @@ pipeline:
     secrets: [ asda_aws_url, github_api_token ]
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/europaeu-reference.git -b master
-      - cp vendor/ec-europa/toolkit/includes/phing/props/drone.props europaeu-reference/build.develop.props
-      - ./vendor/ec-europa/toolkit/bin/phing -f europaeu-reference/build.xml test-run-phpcs ${PHING_OPTS}
+      - ./toolkit/bin/phing -f europaeu-reference/build.xml test-run-phpcs ${PHING_OPTS}
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
 
