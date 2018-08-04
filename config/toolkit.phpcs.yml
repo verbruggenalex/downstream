@@ -1,0 +1,10 @@
+  {repo_name}:
+    image: fpfis/php{php_version}-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+    environment:
+      - REPO_OWNER={repo_owner}
+      - REPO_NAME={repo_name}
+    commands:
+      - ./vendor/bin/run project:phpcs

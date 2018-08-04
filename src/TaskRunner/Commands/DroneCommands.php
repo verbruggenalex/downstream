@@ -23,20 +23,25 @@ class DroneCommands extends AbstractCommands implements FilesystemAwareInterface
     use TaskRunnerTraits\FilesystemAwareTrait;
     use TaskRunnerTasks\CollectionFactory\loadTasks;
     use NuvoleWebTasks\Config\Php\loadTasks;
-    /**
-     * {@inheritdoc}
-     */
-    public function getConfigurationFile()
-    {
-        return __DIR__.'/../../../config/toolkit.drone.yml';
-    }
+
     /**
      * @command drone:generate-yml
      */
     public function generateYml()
     {
-        $drone = $this->getConfig()->get('drone');
-        $pipeline = $this->getConfig()->get('pipelines.phpcs');
-        var_dump($pipeline);
+        $php_version = 71;
+        $drone = $this->taskWriteToFile('.drone.yml')
+          ->textFromFile('config/toolkit.drone.yml')
+          ->place('php_version', $php_version);
+        $repositories = $this->getConfig()->get('repositories');
+        foreach ($repositories as $repo) {
+            $owner = explode('/', $repo)[0];
+            $name = explode('/', $repo)[1];
+            $drone->textFromFile('config/toolkit.phpcs.yml')
+            ->place('php_version', $php_version)
+            ->place('repo_owner', $owner)
+            ->place('repo_name', $name);
+        }
+        $drone->run();
     }
 }

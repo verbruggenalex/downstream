@@ -18,451 +18,563 @@ pipeline:
       - PROJECT=$(pwd) composer run-script toolkit-install -d ./vendor/ec-europa/toolkit
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
-  ec-europa/euetfa-reference:
+  euetfa-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/euetfa-reference.git -b master
-      - ./toolkit/phing -f euetfa-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/europaeu-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=euetfa-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  europaeu-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/europaeu-reference.git -b master
-      - ./toolkit/phing -f europaeu-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/ewrc-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=europaeu-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  ewrc-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/ewrc-reference.git -b master
-      - ./toolkit/phing -f ewrc-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/horizon2020-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=ewrc-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  horizon2020-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/horizon2020-reference.git -b master
-      - ./toolkit/phing -f horizon2020-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/maritimeforum-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=horizon2020-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  maritimeforum-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/maritimeforum-reference.git -b master
-      - ./toolkit/phing -f maritimeforum-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/stages2-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=maritimeforum-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  stages2-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/stages2-reference.git -b master
-      - ./toolkit/phing -f stages2-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/srb-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=stages2-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  srb-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/srb-reference.git -b master
-      - ./toolkit/phing -f srb-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/eu-aid-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=srb-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  eu-aid-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/eu-aid-reference.git -b master
-      - ./toolkit/phing -f eu-aid-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/kci-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=eu-aid-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  kci-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/kci-reference.git -b master
-      - ./toolkit/phing -f kci-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/farnet-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=kci-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  farnet-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/farnet-reference.git -b master
-      - ./toolkit/phing -f farnet-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/digital-agenda-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=farnet-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  digital-agenda-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/digital-agenda-reference.git -b master
-      - ./toolkit/phing -f digital-agenda-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/health-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=digital-agenda-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  health-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/health-reference.git -b master
-      - ./toolkit/phing -f health-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/dms-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=health-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  dms-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/dms-reference.git -b master
-      - ./toolkit/phing -f dms-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/euandme-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=dms-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  euandme-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/euandme-reference.git -b master
-      - ./toolkit/phing -f euandme-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/amr-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=euandme-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  amr-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/amr-reference.git -b master
-      - ./toolkit/phing -f amr-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/crosportal-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=amr-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  crosportal-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/crosportal-reference.git -b master
-      - ./toolkit/phing -f crosportal-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/primeinfrastructure-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=crosportal-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  primeinfrastructure-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/primeinfrastructure-reference.git -b master
-      - ./toolkit/phing -f primeinfrastructure-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/edpsweb-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=primeinfrastructure-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  edpsweb-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/edpsweb-reference.git -b master
-      - ./toolkit/phing -f edpsweb-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/oil-mit-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=edpsweb-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  oil-mit-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/oil-mit-reference.git -b master
-      - ./toolkit/phing -f oil-mit-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/food-animals-plants-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=oil-mit-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  food-animals-plants-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/food-animals-plants-reference.git -b master
-      - ./toolkit/phing -f food-animals-plants-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/esf-tc-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=food-animals-plants-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  esf-tc-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/esf-tc-reference.git -b master
-      - ./toolkit/phing -f esf-tc-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/erasmusplus2-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=esf-tc-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  erasmusplus2-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/erasmusplus2-reference.git -b master
-      - ./toolkit/phing -f erasmusplus2-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/sport-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=erasmusplus2-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  sport-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/sport-reference.git -b master
-      - ./toolkit/phing -f sport-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/easme-site-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=sport-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  easme-site-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/easme-site-reference.git -b master
-      - ./toolkit/phing -f easme-site-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/eych-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=easme-site-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  eych-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/eych-reference.git -b master
-      - ./toolkit/phing -f eych-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/eiopa-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=eych-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  eiopa-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/eiopa-reference.git -b master
-      - ./toolkit/phing -f eiopa-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/microdata-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=eiopa-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  microdata-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/microdata-reference.git -b master
-      - ./toolkit/phing -f microdata-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/taxud-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=microdata-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  taxud-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/taxud-reference.git -b master
-      - ./toolkit/phing -f taxud-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/comm-digitaltransformation-blog-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=taxud-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  comm-digitaltransformation-blog-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/comm-digitaltransformation-blog-reference.git -b master
-      - ./toolkit/phing -f comm-digitaltransformation-blog-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/expert-pane-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=comm-digitaltransformation-blog-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  expert-pane-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/expert-pane-reference.git -b master
-      - ./toolkit/phing -f expert-pane-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/anti-fraud-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=expert-pane-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  anti-fraud-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/anti-fraud-reference.git -b master
-      - ./toolkit/phing -f anti-fraud-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/education2-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=anti-fraud-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  education2-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/education2-reference.git -b master
-      - ./toolkit/phing -f education2-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/epale-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=education2-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  epale-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/epale-reference.git -b master
-      - ./toolkit/phing -f epale-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/edpb-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=epale-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  edpb-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/edpb-reference.git -b master
-      - ./toolkit/phing -f edpb-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/epsc-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=edpb-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  epsc-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/epsc-reference.git -b master
-      - ./toolkit/phing -f epsc-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/eu-aid-explorer-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=epsc-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  eu-aid-explorer-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/eu-aid-explorer-reference.git -b master
-      - ./toolkit/phing -f eu-aid-explorer-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/echo-site-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=eu-aid-explorer-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  echo-site-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/echo-site-reference.git -b master
-      - ./toolkit/phing -f echo-site-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/argiculture-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=echo-site-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  argiculture-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/argiculture-reference.git -b master
-      - ./toolkit/phing -f argiculture-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/creativeeurope-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=argiculture-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  creativeeurope-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/creativeeurope-reference.git -b master
-      - ./toolkit/phing -f creativeeurope-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/safety_alerts-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=creativeeurope-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  safety_alerts-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/safety_alerts-reference.git -b master
-      - ./toolkit/phing -f safety_alerts-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/mossportal-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=safety_alerts-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  mossportal-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/mossportal-reference.git -b master
-      - ./toolkit/phing -f mossportal-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/road-safety-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=mossportal-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  road-safety-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/road-safety-reference.git -b master
-      - ./toolkit/phing -f road-safety-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/encasia-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=road-safety-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  encasia-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/encasia-reference.git -b master
-      - ./toolkit/phing -f encasia-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/eusinglesky-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=encasia-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  eusinglesky-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/eusinglesky-reference.git -b master
-      - ./toolkit/phing -f eusinglesky-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/euprotects-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=eusinglesky-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  euprotects-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/euprotects-reference.git -b master
-      - ./toolkit/phing -f euprotects-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/eusdgs-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=euprotects-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  eusdgs-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/eusdgs-reference.git -b master
-      - ./toolkit/phing -f eusdgs-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/cem-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=eusdgs-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  cem-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/cem-reference.git -b master
-      - ./toolkit/phing -f cem-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/commpo-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=cem-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  commpo-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/commpo-reference.git -b master
-      - ./toolkit/phing -f commpo-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/publicare-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=commpo-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  publicare-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/publicare-reference.git -b master
-      - ./toolkit/phing -f publicare-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/inseparable-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=publicare-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  inseparable-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/inseparable-reference.git -b master
-      - ./toolkit/phing -f inseparable-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/mare-emd-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=inseparable-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  mare-emd-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/mare-emd-reference.git -b master
-      - ./toolkit/phing -f mare-emd-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/mare-magaz-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=mare-emd-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  mare-magaz-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/mare-magaz-reference.git -b master
-      - ./toolkit/phing -f mare-magaz-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/eurydice-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=mare-magaz-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  eurydice-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/eurydice-reference.git -b master
-      - ./toolkit/phing -f eurydice-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/youthwiki-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=eurydice-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  youthwiki-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/youthwiki-reference.git -b master
-      - ./toolkit/phing -f youthwiki-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/basext-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=youthwiki-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  basext-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/basext-reference.git -b master
-      - ./toolkit/phing -f basext-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
-  ec-europa/jrccties-reference:
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=basext-reference
+    commands:
+      - ./vendor/bin/run project:phpcs
+  jrccties-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
-    commands:
-      - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/jrccties-reference.git -b master
-      - ./toolkit/phing -f jrccties-reference/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
     when:
       status: [ success, failure ]
+    environment:
+      - REPO_OWNER=ec-europa
+      - REPO_NAME=jrccties-reference
+    commands:
+      - ./vendor/bin/run project:phpcs

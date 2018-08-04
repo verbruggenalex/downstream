@@ -1,35 +1,20 @@
-drone:
-  clone:
-    git:
-      image: plugins/git:next
-  workspace:
-    base: /test
-    path: downstream
-  matrix:
-    PHP_VERSION:
-      - 56
-      - 71
-    PHING_OPTS:
-      - -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger
-    TOOLKIT_ENV_PROPS:
-      - /test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
-  pipeline:
-    setup:
-      image: fpfis/php${PHP_VERSION}-build
-      group: setup
-      commands:
-        - composer require ec-europa/toolkit:dev-develop --ansi --no-suggest
-        - PROJECT=$(pwd) composer run-script toolkit-install -d ./vendor/ec-europa/toolkit
-      volumes:
-        - /cache/${DRONE_REPO_NAME}:/cache
-pipelines:
-  phpcs:
-    test:
-      image: fpfis/php${PHP_VERSION}-build
-      group: test
-      secrets: [ github_api_token ]
-      commands:
-        - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/${REPO_NAME}.git -b master
-        - ./toolkit/phing -f ${REPO_NAME}/build.xml test-run-phpcs ${PHING_OPTS}
-      when:
-        status: [ success, failure ]
+clone:
+  git:
+    image: plugins/git:next
+workspace:
+  base: /test
+  path: downstream
+services:
+  web:
+    image: fpfis/php{php_version}-build
+    environment:
+      - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
+pipeline:
+  setup:
+    image: fpfis/php{php_version}-build
+    group: setup
+    commands:
+      - composer require ec-europa/toolkit:dev-master --ansi --no-suggest
+      - PROJECT=$(pwd) composer run-script toolkit-install -d ./vendor/ec-europa/toolkit
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
