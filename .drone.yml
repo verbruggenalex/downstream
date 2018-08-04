@@ -3,9 +3,9 @@ clone:
     image: plugins/git:next
 
 matrix:
-  REPOSITORY:
-    - ec-europa/euetfa-reference
-    - ec-europa/europaeu-reference
+  # REPOSITORY:
+  #   - ec-europa/euetfa-reference
+  #   - ec-europa/europaeu-reference
     # - ec-europa/ewrc-reference
     # - ec-europa/horizon2020-reference
     # - ec-europa/maritimeforum-reference
@@ -87,17 +87,31 @@ pipeline:
       - composer install --ansi --no-suggest
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
-  test:
+  ec-europa/euetfa-reference:
     image: fpfis/php56-build
     group: setup
     secrets: [ asda_aws_url, github_api_token ]
     commands:
-      - git clone https://$${GITHUB_API_TOKEN}@github.com/${REPOSITORY}.git
-      - cd /test/downstream/${REPOSITORY##*/}
+      - git clone https://$${GITHUB_API_TOKEN}@github.com/ec-europa/euetfa-reference.git
+      - cd /test/downstream/euetfa-reference
       - composer require ec-europa/toolkit:dev-develop
       - cp vendor/ec-europa/toolkit/includes/phing/props/drone.props build.develop.props
       - ./toolkit/phing project-properties-validate ${PHING_OPTS}
-      - ./toolkit/phing test-run-phpcs
+      - ./toolkit/phing test-run-phpcs ${PHING_OPTS}
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  ec-europa/europaeu-reference:
+    image: fpfis/php56-build
+    group: setup
+    secrets: [ asda_aws_url, github_api_token ]
+    commands:
+      - git clone https://$${GITHUB_API_TOKEN}@github.com/ec-europa/europaeu-reference.git
+      - cd /test/downstream/europaeu-reference
+      - composer require ec-europa/toolkit:dev-develop
+      - cp vendor/ec-europa/toolkit/includes/phing/props/drone.props build.develop.props
+      - ./toolkit/phing project-properties-validate ${PHING_OPTS}
+      - ./toolkit/phing test-run-phpcs ${PHING_OPTS}
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
 
