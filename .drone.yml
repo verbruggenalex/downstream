@@ -13,7 +13,7 @@ pipeline:
     image: fpfis/php${PHP_VERSION}-build
     group: setup
     commands:
-      - composer require ec-europa/toolkit:dev-develop --ansi --no-suggest
+      - composer require ec-europa/toolkit:dev-master --ansi --no-suggest
       - PROJECT=$(pwd) composer run-script toolkit-install -d ./vendor/ec-europa/toolkit
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
