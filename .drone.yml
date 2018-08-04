@@ -95,7 +95,7 @@ pipeline:
     secrets: [ asda_aws_url, github_api_token ]
     commands:
       - git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/ec-europa/euetfa-reference.git -b master
-      - ln -s ${PWD}/vendor ${PWD}/euetfa-reference/vendor
+      - ln -s /test/downstream/vendor /test/downstream/euetfa-reference/vendor
       - rm -rf euetfa-reference/composer.json && ln -s composer.json euetfa-reference/composer.json
       - rm -rf euetfa-reference/composer.lock && ln -s composer.lock euetfa-reference/composer.lock
       - cp /test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props build.develop.props
