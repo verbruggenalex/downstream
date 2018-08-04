@@ -100,6 +100,7 @@ pipeline:
       - rm -rf euetfa-reference/composer.json && ln -s composer.json euetfa-reference/composer.json
       - rm -rf euetfa-reference/composer.lock && ln -s composer.lock euetfa-reference/composer.lock
       - cp /test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props build.develop.props
+      - cd euetfa-reference
       - ./toolkit/phing test-run-phpcs ${PHING_OPTS}
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
