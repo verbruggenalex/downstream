@@ -9,10 +9,10 @@ services:
     image: fpfis/php71-build
     environment:
       - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
-matrix:
-  REPOSITORY:
-    - ec-europa/euetfa-reference
-    - ec-europa/europaeu-reference
+# matrix:
+#   REPOSITORY:
+    # - ec-europa/euetfa-reference
+    # - ec-europa/europaeu-reference
     # - ec-europa/ewrc-reference
     # - ec-europa/horizon2020-reference
     # - ec-europa/maritimeforum-reference
@@ -76,10 +76,10 @@ pipeline:
     volumes:
       - /cache/${DRONE_REPO_NAME}/cache:/cache
       - /cache/${DRONE_REPO_NAME}/vendor:/test/downstream/vendor
-  phpcs:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    commands:
-      - ./vendor/bin/run project:phpcs
+  # phpcs:
+  #   image: fpfis/php71-build
+  #   secrets: [ github_api_token ]
+  #   when:
+  #     status: [ success, failure ]
+  #   commands:
+  #     - ./vendor/bin/run project:phpcs
