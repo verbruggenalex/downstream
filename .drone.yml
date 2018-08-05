@@ -67,6 +67,7 @@ services:
     # - ec-europa/youthwiki-reference
     # - ec-europa/basext-reference
     # - ec-europa/jrccties-reference
+pipeline:
   composer-install:
     image: fpfis/php71-build
     group: setup
