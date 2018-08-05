@@ -75,7 +75,7 @@ pipeline:
       - export CHECKSUM=$(md5sum composer.lock | cut -d ' ' -f 1)
       - tar -xzf /cache/composer/$${CHECKSUM}.tar.gz || composer install --ansi --no-suggest && tar -czf /cache/composer/$${CHECKSUM}.tar.gz ./vendor/
       - export CHECKSUM=$(git ls-remote https://$${GITHUB_API_TOKEN}@github.com/${REPOSITORY} master | cut -c1-8)
-      - tar -xzf /cache/${REPOSITORY}/$${CHECKSUM}.tar.gz || git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/${REPOSITORY}.git -b master ./${REPOSITORY} && tar -czf /cache/${REPOSITORY}/$${CHECKSUM}.tar.gz ./${REPOSITORY}/
+      - tar -xzf /cache/${REPOSITORY}/$${CHECKSUM}.tar.gz || mkdir -p ./${REPOSITORY} && git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/${REPOSITORY}.git -b master ./${REPOSITORY} && tar -czf /cache/${REPOSITORY}/$${CHECKSUM}.tar.gz ./${REPOSITORY}/
       - ls -la /cache/${REPOSITORY}
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
