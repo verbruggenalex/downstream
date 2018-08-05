@@ -76,8 +76,7 @@ pipeline:
       - export CHECKSUM=$(md5sum composer.lock | cut -d ' ' -f 1)
       - tar -xzf /cache/composer/$${CHECKSUM}.tar.gz || composer install --ansi --no-suggest && tar -czf /cache/composer/$${CHECKSUM}.tar.gz ./vendor/
       - export CHECKSUM=$(git ls-remote https://$${GITHUB_API_TOKEN}@github.com/${REPOSITORY} master | cut -c1-8)
-      - tar -xzf -C repositories/${REPOSITORY} /cache/${REPOSITORY}/$${CHECKSUM}.tar.gz || git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/${REPOSITORY}.git -b master repositories/${REPOSITORY} && mkdir -p /cache/${REPOSITORY} && tar -czf /cache/${REPOSITORY}/$${CHECKSUM}.tar.gz ./repositories/${REPOSITORY}/
-      - ls -la /cache/${REPOSITORY}/
+      - tar -xzf /cache/${REPOSITORY}/$${CHECKSUM}.tar.gz -C ./repositories/${REPOSITORY} || git clone --depth 1 https://$${GITHUB_API_TOKEN}@github.com/${REPOSITORY}.git -b master repositories/${REPOSITORY} && mkdir -p /cache/${REPOSITORY} && tar -czf /cache/${REPOSITORY}/$${CHECKSUM}.tar.gz ./repositories/${REPOSITORY}/
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
   phpcs:
