@@ -72,6 +72,7 @@ pipeline:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
     commands:
+      - rm -rf repositories/${REPOSITORY}
       - mkdir -p repositories/${REPOSITORY}
       - export CHECKSUM=$(md5sum composer.lock | cut -d ' ' -f 1)
       - tar -xzf /cache/composer/$${CHECKSUM}.tar.gz || composer install --ansi --no-suggest && tar -czf /cache/composer/$${CHECKSUM}.tar.gz ./vendor/
