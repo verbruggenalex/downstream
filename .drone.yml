@@ -9,6 +9,64 @@ services:
     image: fpfis/php71-build
     environment:
       - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
+matrix:
+  REPOSITORIES:
+    - ec-europa/euetfa-reference
+    - ec-europa/europaeu-reference
+    # - ec-europa/ewrc-reference
+    # - ec-europa/horizon2020-reference
+    # - ec-europa/maritimeforum-reference
+    # - ec-europa/stages2-reference
+    # - ec-europa/srb-reference
+    # - ec-europa/eu-aid-reference
+    # - ec-europa/kci-reference
+    # - ec-europa/farnet-reference
+    # - ec-europa/digital-agenda-reference
+    # - ec-europa/health-reference
+    # - ec-europa/dms-reference
+    # - ec-europa/euandme-reference
+    # - ec-europa/amr-reference
+    # - ec-europa/crosportal-reference
+    # - ec-europa/primeinfrastructure-reference
+    # - ec-europa/edpsweb-reference
+    # - ec-europa/oil-mit-reference
+    # - ec-europa/food-animals-plants-reference
+    # - ec-europa/esf-tc-reference
+    # - ec-europa/erasmusplus2-reference
+    # - ec-europa/sport-reference
+    # - ec-europa/easme-site-reference
+    # - ec-europa/eych-reference
+    # - ec-europa/eiopa-reference
+    # - ec-europa/microdata-reference
+    # - ec-europa/taxud-reference
+    # - ec-europa/comm-digitaltransformation-blog-reference
+    # - ec-europa/expert-pane-reference
+    # - ec-europa/anti-fraud-reference
+    # - ec-europa/education2-reference
+    # - ec-europa/epale-reference
+    # - ec-europa/edpb-reference
+    # - ec-europa/epsc-reference
+    # - ec-europa/eu-aid-explorer-reference
+    # - ec-europa/echo-site-reference
+    # - ec-europa/argiculture-reference
+    # - ec-europa/creativeeurope-reference
+    # - ec-europa/safety_alerts-reference
+    # - ec-europa/mossportal-reference
+    # - ec-europa/road-safety-reference
+    # - ec-europa/encasia-reference
+    # - ec-europa/eusinglesky-reference
+    # - ec-europa/euprotects-reference
+    # - ec-europa/eusdgs-reference
+    # - ec-europa/cem-reference
+    # - ec-europa/commpo-reference
+    # - ec-europa/publicare-reference
+    # - ec-europa/inseparable-reference
+    # - ec-europa/mare-emd-reference
+    # - ec-europa/mare-magaz-reference
+    # - ec-europa/eurydice-reference
+    # - ec-europa/youthwiki-reference
+    # - ec-europa/basext-reference
+    # - ec-europa/jrccties-reference
 pipeline:
   setup:
     image: fpfis/php71-build
@@ -18,563 +76,10 @@ pipeline:
       - PROJECT=$(pwd) composer run-script toolkit-install -d ./vendor/ec-europa/toolkit
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
-  euetfa-reference:
+  phpcs:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
     when:
       status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=euetfa-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  europaeu-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=europaeu-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  ewrc-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=ewrc-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  horizon2020-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=horizon2020-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  maritimeforum-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=maritimeforum-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  stages2-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=stages2-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  srb-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=srb-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  eu-aid-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=eu-aid-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  kci-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=kci-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  farnet-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=farnet-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  digital-agenda-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=digital-agenda-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  health-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=health-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  dms-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=dms-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  euandme-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=euandme-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  amr-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=amr-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  crosportal-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=crosportal-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  primeinfrastructure-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=primeinfrastructure-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  edpsweb-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=edpsweb-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  oil-mit-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=oil-mit-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  food-animals-plants-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=food-animals-plants-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  esf-tc-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=esf-tc-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  erasmusplus2-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=erasmusplus2-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  sport-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=sport-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  easme-site-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=easme-site-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  eych-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=eych-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  eiopa-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=eiopa-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  microdata-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=microdata-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  taxud-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=taxud-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  comm-digitaltransformation-blog-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=comm-digitaltransformation-blog-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  expert-pane-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=expert-pane-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  anti-fraud-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=anti-fraud-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  education2-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=education2-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  epale-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=epale-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  edpb-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=edpb-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  epsc-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=epsc-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  eu-aid-explorer-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=eu-aid-explorer-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  echo-site-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=echo-site-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  argiculture-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=argiculture-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  creativeeurope-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=creativeeurope-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  safety_alerts-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=safety_alerts-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  mossportal-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=mossportal-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  road-safety-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=road-safety-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  encasia-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=encasia-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  eusinglesky-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=eusinglesky-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  euprotects-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=euprotects-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  eusdgs-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=eusdgs-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  cem-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=cem-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  commpo-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=commpo-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  publicare-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=publicare-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  inseparable-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=inseparable-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  mare-emd-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=mare-emd-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  mare-magaz-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=mare-magaz-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  eurydice-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=eurydice-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  youthwiki-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=youthwiki-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  basext-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=basext-reference
-    commands:
-      - ./vendor/bin/run project:phpcs
-  jrccties-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-    environment:
-      - REPO_OWNER=ec-europa
-      - REPO_NAME=jrccties-reference
     commands:
       - ./vendor/bin/run project:phpcs
