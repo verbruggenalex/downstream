@@ -68,15 +68,28 @@ services:
     # - ec-europa/basext-reference
     # - ec-europa/jrccties-reference
 pipeline:
-  setup:
+  restore-cache:
+    image: drillster/drone-volume-cache
+    restore: true
+    mount:
+      - ./vendor
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+    cache_key: [ DRONE_REPO_OWNER, DRONE_REPO_NAME, DRONE_BRANCH ]
+  composer-install:
     image: fpfis/php71-build
     group: setup
     commands:
-      - rm -rf vendor/*
-      - composer install --ansi
+      - composer install --ansi --no-suggest
     volumes:
-      - /cache/${DRONE_REPO_NAME}/cache:/cache
-      - /cache/${DRONE_REPO_NAME}/vendor:/test/downstream/vendor
+      - /cache/${DRONE_REPO_NAME}:/cache
+  rebuild-cache:
+    image: drillster/drone-volume-cache
+    rebuild: true
+    mount:
+      - ./vendor
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
   # phpcs:
   #   image: fpfis/php71-build
   #   secrets: [ github_api_token ]
