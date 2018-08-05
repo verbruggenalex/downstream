@@ -44,4 +44,39 @@ class DroneCommands extends AbstractCommands implements FilesystemAwareInterface
         }
         $drone->run();
     }
+
+    /**
+     * @command project:create-project
+     */
+    public function createProject()
+    {
+        // Configuration.
+        $projectRepository = $this->getConfig()->get('project.repository');
+        $projectBasedir = $this->getConfig()->get('project.basedir');
+        $cacheDir = $this->getConfig()->get('project.cachedir');
+        
+        // To be made configurable.
+        $gitBranch = 'master';
+        $gitUrl = 'git@github.com:' . $projectRepository . '.git';
+        //$gitHash = preg_split ("/\s+/", $this->taskGitStack()->exec('ls-remote ' . $gitUrl . ' ' . $gitBranch)->printOutput(false)->run()->getMessage())[0];
+
+        // Create project directory and repository.
+        if (!file_exists($projectBasedir) && $this->_mkdir($projectBasedir)) {
+            $gitCacheFile = $cacheDir . '/' . $projectRepository . '/build-dev-' . $gitBranch . '.tar.gz';
+            if (file_exists($gitCacheFile)) {
+                $this->taskExtract($toolkitCachedVendor)->to($projectBasedir)->preserveTopDirectory(true)->run();
+            }
+            else {
+                $this->taskGitStack()->cloneShallow($gitUrl, $projectBasedir, 'master')->run();
+            }
+        }
+        
+        if ($composerJson = file_get_contents($projectBasedir . '/composer.json')) {
+            $this->taskComposerInstall()->workingDir($projectBasedir)->run();
+            $composer = json_decode($composerJson, TRUE);
+            if (isset($composer['require']['ec-europa/toolkit'])) {
+                $this->taskExec()->dir($projectBasedir)->rawArg('./toolkit/phing build-platform build-subsite-dev')->run();
+            }
+        }
+    }
 }
