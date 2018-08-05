@@ -68,13 +68,14 @@ matrix:
     - ec-europa/basext-reference
     - ec-europa/jrccties-reference
 pipeline:
-  vendor:
+  composer:
     image: fpfis/php71-build
     group: setup
     commands:
-      - tar -xzf /cache/vendor.tar.gz || composer install --ansi --no-suggest && tar -czf /cache/vendor.tar.gz ./vendor/
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
+      - export CHECKSUM=$(md5sum composer.lock  | cut -d ' ' -f 1)
+      - tar -xzf /cache/composer-${CHECKSUM}.tar.gz || composer install --ansi --no-suggest && tar -czf /cache/composer-${CHECKSUM}.tar.gz ./vendor/
+      - export CHECKSUM=${REPOSITORY}/$(git ls-remote https://${GITHUB_API_TOKEN}@github.com/${REPOSITORY} master) | cut -c1-8
+      - echo ${CHECKSUM}
   phpcs:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
