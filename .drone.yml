@@ -10,7 +10,7 @@ services:
     environment:
       - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
 matrix:
-  REPOSITORIES:
+  REPOSITORY:
     - ec-europa/euetfa-reference
     - ec-europa/europaeu-reference
     # - ec-europa/ewrc-reference
