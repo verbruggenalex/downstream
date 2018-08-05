@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "9f890bd2d869662fb8fac090b755d6f6",
+    "content-hash": "c45423a0290d7df6a28d7e02a90fd0aa",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -437,6 +437,28 @@
                 "notation"
             ],
             "time": "2017-01-20T21:14:22+00:00"
+        },
+        {
+            "name": "ec-europa/toolkit",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ec-europa/toolkit.git",
+                "reference": "33a7118d2140652b7d3f0158cd284a15fcdaa8d2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ec-europa/toolkit/zipball/33a7118d2140652b7d3f0158cd284a15fcdaa8d2",
+                "reference": "33a7118d2140652b7d3f0158cd284a15fcdaa8d2",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "EUPL-1.1"
+            ],
+            "description": "NextEuropa Toolkit packaged for composer",
+            "time": "2018-06-08T12:13:37+00:00"
         },
         {
             "name": "gboddin/php-github-cli",
@@ -2288,7 +2310,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "ec-europa/toolkit": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

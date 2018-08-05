@@ -72,11 +72,10 @@ pipeline:
     image: fpfis/php71-build
     group: setup
     commands:
-      - composer require ec-europa/toolkit:dev-master --ansi --no-suggest
-      - PROJECT=$(pwd) composer run-script toolkit-install -d ./vendor/ec-europa/toolkit
+      - composer install
     volumes:
       - /cache/${DRONE_REPO_NAME}/cache:/cache
-      - /cache/${DRONE_REPO_NAME}/vendor:/test/downstream/vendor
+#      - /cache/${DRONE_REPO_NAME}/vendor:/test/downstream/vendor
   phpcs:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
