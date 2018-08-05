@@ -30,4 +30,4 @@ project:
 commands:
   project:phpcs:
     - "[[ ! -d ${project.basedir} ]] && mkdir -p ${project.basedir} && git clone --depth 1 https://${GITHUB_API_TOKEN}@github.com/${project.repository}.git -b master ${project.basedir}"
-    - "./toolkit/phing -f ${project.basedir}/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
+    - "/test/downstream/vendor/ec-europa/toolkit/bin/phing -f ${project.basedir}/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
