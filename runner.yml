@@ -18,8 +18,7 @@ runner:
 github:
   # GitHub personal access token token.
   # @link https://github.com/settings/tokens
-#  token: ${GITHUB_API_TOKEN}
-  token: 'bfd2743a5aea3b98e4a270733a48f5c1af3fe0d5'
+  token: ~
 
 # -----------------------------------------------------------------------------
 # List of dynamically-defined commands.
@@ -30,4 +29,5 @@ project:
 
 commands:
   project:phpcs:
+    - "[[ ! -d ${project.basedir} ]] && mkdir -p ${project.basedir} && git clone --depth 1 https://${GITHUB_API_TOKEN}@github.com/${project.repository}.git -b master ${project.basedir}"
     - "./toolkit/phing -f ${project.basedir}/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
