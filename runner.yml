@@ -25,7 +25,7 @@ github:
 # -----------------------------------------------------------------------------
 project:
   repository: ${REPOSITORY}
-  basedir: repositories/${project.repository.owner}/${project.repository.name}
+  basedir: repositories/${project.repository}
 
 commands:
   project:phpcs:
