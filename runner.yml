@@ -24,8 +24,7 @@ github:
 # List of dynamically-defined commands.
 # -----------------------------------------------------------------------------
 project:
-  repository: ec-europa/euetfa-reference
-#  repository: ${REPOSITORY}
+  repository: ${REPOSITORY}
   basedir: repositories/${project.repository}
 
 commands:
