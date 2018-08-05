@@ -72,10 +72,10 @@ pipeline:
     image: fpfis/php71-build
     group: setup
     commands:
-      - composer install
+      - composer install --ansi
     volumes:
       - /cache/${DRONE_REPO_NAME}/cache:/cache
-#      - /cache/${DRONE_REPO_NAME}/vendor:/test/downstream/vendor
+      - /cache/${DRONE_REPO_NAME}/vendor:/test/downstream/vendor
   phpcs:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
