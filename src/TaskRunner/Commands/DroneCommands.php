@@ -47,39 +47,55 @@ class DroneCommands extends AbstractCommands implements FilesystemAwareInterface
 
     /**
      * @command project:run-phpcs
+     *
+     * @option repository   Project repository.
+     *
+     * @param array $options
      */
-    public function runPhpcs()
+    public function runPhpcs(array $options = [
+      'repository' => InputOption::VALUE_REQUIRED,
+    ])
     {
         // Configuration.
-        $projectRepository = $this->getConfig()->get('project.repository');
-        $projectBasedir = $this->getConfig()->get('project.basedir');
+        $repodir = $this->getConfig()->get('project.repodir');
+        $projectRepository = $options['repository'];
+        $workingDir = $this->getConfig()->get('runner.working_dir');
+        $projectBasedir = $repodir . '/' . $projectRepository;
 
         if ($composerJson = file_get_contents($projectBasedir . '/composer.json')) {
             $composer = json_decode($composerJson, TRUE);
             if (isset($composer['require']['ec-europa/toolkit'])) {
-                $this->taskExec('../../vendor/ec-europa/toolkit/bin/phing test-run-phpcs -logger phing.listener.AnsiColorLogger')->dir($projectBasedir)->run();
+                $this->taskExec('./toolkit/phing test-run-phpcs -logger phing.listener.AnsiColorLogger')->dir($projectBasedir)->run();
             }
             else {
             //if (isset($composer['require']['ec-europa/subsite-starterkit'])) {
-                $this->taskExec('../../vendor/ec-europa/subsite-starterkit/bin/phing setup-php-codesniffer -logger phing.listener.AnsiColorLogger')->dir($projectBasedir)->run();
-                $this->taskExec('../../vendor/ec-europa/subsite-starterkit/bin/phpcs')->dir($projectBasedir)->run();
+                $this->taskExec('./bin/phing setup-php-codesniffer -logger phing.listener.AnsiColorLogger')->dir($projectBasedir)->run();
+                $this->taskExec('./bin/phpcs')->dir($projectBasedir)->run();
             }
         }
     }
 
     /**
      * @command project:create-project
+     *
+     * @option repository   Project repository.
+     *
+     * @param array $options
      */
-    public function createProject()
+    public function createProject(array $options = [
+      'repository' => InputOption::VALUE_REQUIRED,
+    ])
     {
         // Configuration.
-        $projectRepository = $this->getConfig()->get('project.repository');
-        $projectBasedir = $this->getConfig()->get('project.basedir');
         $cacheDir = $this->getConfig()->get('project.cachedir');
+        $repodir = $this->getConfig()->get('project.repodir');
+        $githubToken = $this->getConfig()->get('github.token');
+        $projectRepository = $options['repository'];
+        $projectBasedir = $repodir . '/' . $projectRepository;
         
         // To be made configurable.
         $gitBranch = 'master';
-        $gitUrl = 'git@github.com:' . $projectRepository . '.git';
+        $gitUrl = 'https://' . $githubToken . '@github.com:' . $projectRepository . '.git';
         $gitHash = preg_split ("/\s+/", $this->taskGitStack()->exec('ls-remote ' . $gitUrl . ' ' . $gitBranch)->printOutput(false)->run()->getMessage())[0];
         $gitCacheFile = $cacheDir . '/' . $projectRepository . '/build-dev-' . $gitHash . '.tar.gz';
 
@@ -94,9 +110,9 @@ class DroneCommands extends AbstractCommands implements FilesystemAwareInterface
                 if ($composerJson = file_get_contents($projectBasedir . '/composer.json')) {
                     $this->taskComposerInstall()->workingDir($projectBasedir)->run();
                     $composer = json_decode($composerJson, TRUE);
-                    if (isset($composer['require']['ec-europa/toolkit'])) {
-                        $this->taskExec('./toolkit/phing build-platform build-subsite-dev')->dir($projectBasedir)->run();
-                    }
+                    // if (isset($composer['require']['ec-europa/toolkit'])) {
+                    //     $this->taskExec('./toolkit/phing build-platform build-subsite-dev')->dir($projectBasedir)->run();
+                    // }
                 }
                 if ($this->_mkdir(dirname($gitCacheFile))) {
                     $this->taskExecStack()->dir(dirname($projectBasedir))->exec("tar -czf $gitCacheFile ./" . basename($projectBasedir) ."/")->run();

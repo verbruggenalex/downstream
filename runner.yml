@@ -10,7 +10,7 @@
 # @see OpenEuropa\TaskRunner\TaskRunner::createConfiguration()
 runner:
   bin_dir: "./vendor/bin"
-#  working_dir: ~
+  working_dir: ~
 
 # -----------------------------------------------------------------------------
 # GitHub configuration values.
@@ -18,13 +18,11 @@ runner:
 github:
   # GitHub personal access token token.
   # @link https://github.com/settings/tokens
-  token: ~
+  token: $GITHUB_API_TOKEN
 
 # -----------------------------------------------------------------------------
 # List of dynamically-defined commands.
 # -----------------------------------------------------------------------------
 project:
-#  repository: ec-europa/euetfa-reference
-  repository: ${REPOSITORY}
-  basedir: ${project.repository}
+  repodir: repositories
   cachedir: /cache
