@@ -13,60 +13,60 @@ matrix:
   REPOSITORY:
     - ec-europa/euetfa-reference
     - ec-europa/chafea-reference
-    # - ec-europa/ewrc-reference
-    # - ec-europa/horizon2020-reference
-    # - ec-europa/maritimeforum-reference
-    # - ec-europa/stages2-reference
-    # - ec-europa/srb-reference
-    # - ec-europa/eu-aid-reference
-    # - ec-europa/kci-reference
-    # - ec-europa/farnet-reference
-    # - ec-europa/digital-agenda-reference
-    # - ec-europa/health-reference
-    # - ec-europa/dms-reference
-    # - ec-europa/euandme-reference
-    # - ec-europa/amr-reference
-    # - ec-europa/crosportal-reference
-    # - ec-europa/primeinfrastructure-reference
-    # - ec-europa/edpsweb-reference
-    # - ec-europa/oil-mit-reference
-    # - ec-europa/food-animals-plants-reference
-    # - ec-europa/esf-tc-reference
-    # - ec-europa/erasmusplus2-reference
-    # - ec-europa/sport-reference
-    # - ec-europa/easme-site-reference
-    # - ec-europa/eych-reference
-    # - ec-europa/eiopa-reference
-    # - ec-europa/microdata-reference
-    # - ec-europa/taxud-reference
-    # - ec-europa/comm-digitaltransformation-blog-reference
-    # - ec-europa/expert-pane-reference
-    # - ec-europa/anti-fraud-reference
-    # - ec-europa/education2-reference
-    # - ec-europa/epale-reference
-    # - ec-europa/edpb-reference
-    # - ec-europa/epsc-reference
-    # - ec-europa/eu-aid-explorer-reference
-    # - ec-europa/echo-site-reference
-    # - ec-europa/argiculture-reference
-    # - ec-europa/creativeeurope-reference
-    # - ec-europa/safety_alerts-reference
-    # - ec-europa/mossportal-reference
-    # - ec-europa/road-safety-reference
-    # - ec-europa/encasia-reference
-    # - ec-europa/eusinglesky-reference
-    # - ec-europa/euprotects-reference
-    # - ec-europa/eusdgs-reference
-    # - ec-europa/cem-reference
-    # - ec-europa/commpo-reference
-    # - ec-europa/publicare-reference
-    # - ec-europa/inseparable-reference
-    # - ec-europa/mare-emd-reference
-    # - ec-europa/mare-magaz-reference
-    # - ec-europa/eurydice-reference
-    # - ec-europa/youthwiki-reference
-    # - ec-europa/basext-reference
-    # - ec-europa/jrccties-reference
+    - ec-europa/ewrc-reference
+    - ec-europa/horizon2020-reference
+    - ec-europa/maritimeforum-reference
+    - ec-europa/stages2-reference
+    - ec-europa/srb-reference
+    - ec-europa/eu-aid-reference
+    - ec-europa/kci-reference
+    - ec-europa/farnet-reference
+    - ec-europa/digital-agenda-reference
+    - ec-europa/health-reference
+    - ec-europa/dms-reference
+    - ec-europa/euandme-reference
+    - ec-europa/amr-reference
+    - ec-europa/crosportal-reference
+    - ec-europa/primeinfrastructure-reference
+    - ec-europa/edpsweb-reference
+    - ec-europa/oil-mit-reference
+    - ec-europa/food-animals-plants-reference
+    - ec-europa/esf-tc-reference
+    - ec-europa/erasmusplus2-reference
+    - ec-europa/sport-reference
+    - ec-europa/easme-site-reference
+    - ec-europa/eych-reference
+    - ec-europa/eiopa-reference
+    - ec-europa/microdata-reference
+    - ec-europa/taxud-reference
+    - ec-europa/comm-digitaltransformation-blog-reference
+    - ec-europa/expert-pane-reference
+    - ec-europa/anti-fraud-reference
+    - ec-europa/education2-reference
+    - ec-europa/epale-reference
+    - ec-europa/edpb-reference
+    - ec-europa/epsc-reference
+    - ec-europa/eu-aid-explorer-reference
+    - ec-europa/echo-site-reference
+    - ec-europa/argiculture-reference
+    - ec-europa/creativeeurope-reference
+    - ec-europa/safety_alerts-reference
+    - ec-europa/mossportal-reference
+    - ec-europa/road-safety-reference
+    - ec-europa/encasia-reference
+    - ec-europa/eusinglesky-reference
+    - ec-europa/euprotects-reference
+    - ec-europa/eusdgs-reference
+    - ec-europa/cem-reference
+    - ec-europa/commpo-reference
+    - ec-europa/publicare-reference
+    - ec-europa/inseparable-reference
+    - ec-europa/mare-emd-reference
+    - ec-europa/mare-magaz-reference
+    - ec-europa/eurydice-reference
+    - ec-europa/youthwiki-reference
+    - ec-europa/basext-reference
+    - ec-europa/jrccties-reference
 pipeline:
   composer:
     image: fpfis/php71-build
