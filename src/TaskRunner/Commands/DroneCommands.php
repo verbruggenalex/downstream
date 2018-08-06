@@ -88,7 +88,7 @@ class DroneCommands extends AbstractCommands implements FilesystemAwareInterface
                 $phpcs->exec('./bin/phpcs')->dir($projectBasedir);
             }
         }
-        $phpcs->run();
+        return $phpcs->run();
     }
 
     /**
