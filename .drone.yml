@@ -29,10 +29,42 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-NAN
+        MACHINE_NAME: machine-1
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/agm-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/agm-reference --ansi
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
+
+  ami-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-1
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/ami-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/ami-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  amr-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-2
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/amr-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/amr-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+matrix:
+  MACHINE_NAME:
+    - machine-0
+    - machine-1
+    - machine-2
 
