@@ -1,180 +1,19 @@
 clone:
   git:
     image: plugins/git:next
+
 workspace:
   base: /test
   path: downstream
+
 services:
   web:
     image: fpfis/php71-build
     environment:
       - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
-matrix:
-  REPOSITORY:
-    - ec-europa/agm-reference
-    - ec-europa/agri-eip-reference
-    - ec-europa/amr-reference
-    - ec-europa/anti-fraud-reference
-    - ec-europa/antitrafficking-reference
-    - ec-europa/argiculture-reference
-    - ec-europa/basext-reference
-    - ec-europa/cem-reference
-    - ec-europa/chafea-reference
-    - ec-europa/cim-reference
-    - ec-europa/clima-reference
-    - ec-europa/comm-digitaltransformation-blog-reference
-    - ec-europa/commpo-reference
-    - ec-europa/consular-protection-reference
-    - ec-europa/creativeeurope-reference
-    - ec-europa/crosportal-reference
-    - ec-europa/culture-reference
-    - ec-europa/daphne-toolkit-reference
-    - ec-europa/devco-reference
-#    - ec-europa/digit-ict-reference
-    - ec-europa/digital-agenda-reference
-    - ec-europa/dm-trainet-reference
-    - ec-europa/dms-reference
-    # - ec-europa/dt_brp_reference
-    # - ec-europa/dt_cwt_reference
-    # - ec-europa/dt_info_reference
-    # - ec-europa/dt_pol_reference
-    # - ec-europa/eac-eqf-reference
-    - ec-europa/eac-eyp-reference
-    - ec-europa/eacea-site-reference
-    - ec-europa/easme-site-reference
-    - ec-europa/echo-site-reference
-    - ec-europa/ecn-brief-reference
-    - ec-europa/eco-innovation-projects-reference
-    - ec-europa/ecoap_stayconnected-reference
-    - ec-europa/edpb-reference
-    - ec-europa/edpsweb-reference
-    - ec-europa/education2-reference
-    - ec-europa/eductraining-reference
-    - ec-europa/eeas-reference
-    - ec-europa/efsa-reference
-    - ec-europa/eiopa-reference
-    - ec-europa/eip-aha-reference
-    - ec-europa/ejtp-reference
-    - ec-europa/ema-reference
-    - ec-europa/emnies-reference
-    - ec-europa/encasia-reference
-    - ec-europa/ener-reference
-    - ec-europa/enrd-reference
-    - ec-europa/env-efe-reference
-    - ec-europa/epale-reference
-    - ec-europa/epsc-reference
-    - ec-europa/epso-reference
-    - ec-europa/epsocontact-reference
-    - ec-europa/era-reference
-    - ec-europa/erasmusplus-reference
-    - ec-europa/erasmusplus2-reference
-    - ec-europa/ersc-reference
-    - ec-europa/esf-tc-reference
-    - ec-europa/euandme-reference
-    - ec-europa/eu-aid-reference
-    - ec-europa/eu-invest-reference
-    - ec-europa/euetfa-reference
-    - ec-europa/eufinance-reference
-    - ec-europa/euip-reference
-    - ec-europa/euprojects-reference
-    - ec-europa/europaeu-reference
-    - ec-europa/europahub-reference
-    - ec-europa/eurydice-reference
-    - ec-europa/eusdgs-reference
-    - ec-europa/eusinglesky-reference
-    - ec-europa/euvp-reference
-    - ec-europa/ewrc-reference
-    - ec-europa/expert-pane-reference
-    - ec-europa/eych-reference
-    - ec-europa/farnet-reference
-    - ec-europa/food-animals-plants-reference
-    - ec-europa/fpi-reference
-    - ec-europa/fra-reference
-    - ec-europa/futurium-reference
-    - ec-europa/globalstrategy-reference
-    - ec-europa/grid-communications-toolkit-reference
-    - ec-europa/growth-reference
-    - ec-europa/health-reference
-    - ec-europa/home-affairs-reference
-    - ec-europa/horizon2020-reference
-    - ec-europa/hr-contact-reference
-    - ec-europa/iee-projects-reference
-    - ec-europa/inforegio-reference
-    - ec-europa/inea-reference
-    - ec-europa/inseparable-reference
-    - ec-europa/isa-reference
-    - ec-europa/jrccties-reference
-    - ec-europa/jrcsh-reference
-    - ec-europa/kci-reference
-    - ec-europa/know4pol-reference
-    - ec-europa/mare-emd-reference
-    - ec-europa/mare-magaz-reference
-    - ec-europa/mariecurie-actions-reference
-    - ec-europa/mariecurie2-reference
-    - ec-europa/maritime-affaires-reference
-    - ec-europa/maritimeforum-reference
-    - ec-europa/microdata-reference
-    - ec-europa/migr-fisheries-reference
-    - ec-europa/migr-move-reference
-    - ec-europa/mossportal-reference
-    - ec-europa/n-lex-migration-reference
-    - ec-europa/near-reference
-    - ec-europa/newsroom-reference
-    - ec-europa/oil-mit-reference
-    - ec-europa/organic-reference
-    - ec-europa/pics-reference
-    - ec-europa/pmo-contact-reference
-    - ec-europa/ppcm-reference
-    - ec-europa/primeinfrastructure-reference
-    - ec-europa/publicare-reference
-    - ec-europa/rawmaterials-reference
-    - ec-europa/reps-austria-reference
-    - ec-europa/reps-barcelona-reference
-    - ec-europa/reps-belgium-reference
-    - ec-europa/reps-bulgaria-reference
-    - ec-europa/reps-ceskarepublika-reference
-    - ec-europa/reps-croatia-reference
-    - ec-europa/reps-cyprus-reference
-    - ec-europa/reps-denmark-reference
-    - ec-europa/reps-deutschland-reference
-    - ec-europa/reps-estonia-reference
-    - ec-europa/reps-finland-reference
-    - ec-europa/reps-france-reference
-    - ec-europa/reps-greece-reference
-    - ec-europa/reps-hungary-reference
-    - ec-europa/reps-ireland-reference
-    - ec-europa/reps-italy-reference
-    - ec-europa/reps-latvia-reference
-    - ec-europa/reps-lietuva-reference
-    - ec-europa/reps-luxembourg-reference
-    - ec-europa/reps-malta-reference
-    - ec-europa/reps-netherlands-reference
-    - ec-europa/reps-polska-reference
-    - ec-europa/reps-portugal-reference
-    - ec-europa/reps-romania-reference
-    - ec-europa/reps-slovakia-reference
-    - ec-europa/reps-slovenia-reference
-    - ec-europa/reps-spain-reference
-    - ec-europa/reps-sweden-reference
-    - ec-europa/reps-unitedkingdom-reference
-    - ec-europa/road-safety-reference
-    - ec-europa/roma-reference
-    - ec-europa/safety_alerts-reference
-    - ec-europa/scicnet-reference
-    - ec-europa/service-catalogue-reference
-    - ec-europa/sfc2014-reference
-    - ec-europa/speech-repository-reference
-    - ec-europa/sport-reference
-    - ec-europa/srb-reference
-    - ec-europa/stages-reference
-    - ec-europa/stages2-reference
-    - ec-europa/taxedu-reference
-    - ec-europa/taxud-reference
-    - ec-europa/teachers-corner-reference
-    - ec-europa/vocational-skills-week-reference
-    - ec-europa/youthwiki-reference
-    - ec-europa/youth-reference
+
 pipeline:
+
   composer:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
@@ -184,9 +23,99 @@ pipeline:
       - ./vendor/bin/run project:create-project --ansi --repository=${REPOSITORY}
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
-  phpcs:
+
+  agm-reference:
     image: fpfis/php71-build
     when:
       status: [ success, failure ]
+      matrix:
+        - MACHINE_NAME=machine-1
     commands:
-      - ./vendor/bin/run project:run-phpcs --ansi --repository=${REPOSITORY}
+      - ./vendor/bin/run project:run-phpcs --ansi --repository=ec-europa/agm-reference
+
+  agri-eip-reference:
+    image: fpfis/php71-build
+    when:
+      status: [ success, failure ]
+      matrix:
+        - MACHINE_NAME=machine-1
+    commands:
+      - ./vendor/bin/run project:run-phpcs --ansi --repository=ec-europa/agri-eip-reference
+
+  amr-reference:
+    image: fpfis/php71-build
+    when:
+      status: [ success, failure ]
+      matrix:
+        - MACHINE_NAME=machine-1
+    commands:
+      - ./vendor/bin/run project:run-phpcs --ansi --repository=ec-europa/amr-reference
+
+  anti-fraud-reference:
+    image: fpfis/php71-build
+    when:
+      status: [ success, failure ]
+      matrix:
+        - MACHINE_NAME=machine-1
+    commands:
+      - ./vendor/bin/run project:run-phpcs --ansi --repository=ec-europa/anti-fraud-reference
+
+  antitrafficking-reference:
+    image: fpfis/php71-build
+    when:
+      status: [ success, failure ]
+      matrix:
+        - MACHINE_NAME=machine-1
+    commands:
+      - ./vendor/bin/run project:run-phpcs --ansi --repository=ec-europa/antitrafficking-reference
+
+  argiculture-reference:
+    image: fpfis/php71-build
+    when:
+      status: [ success, failure ]
+      matrix:
+        - MACHINE_NAME=machine-2
+    commands:
+      - ./vendor/bin/run project:run-phpcs --ansi --repository=ec-europa/argiculture-reference
+
+  basext-reference:
+    image: fpfis/php71-build
+    when:
+      status: [ success, failure ]
+      matrix:
+        - MACHINE_NAME=machine-2
+    commands:
+      - ./vendor/bin/run project:run-phpcs --ansi --repository=ec-europa/basext-reference
+
+  cem-reference:
+    image: fpfis/php71-build
+    when:
+      status: [ success, failure ]
+      matrix:
+        - MACHINE_NAME=machine-2
+    commands:
+      - ./vendor/bin/run project:run-phpcs --ansi --repository=ec-europa/cem-reference
+
+  chafea-reference:
+    image: fpfis/php71-build
+    when:
+      status: [ success, failure ]
+      matrix:
+        - MACHINE_NAME=machine-2
+    commands:
+      - ./vendor/bin/run project:run-phpcs --ansi --repository=ec-europa/chafea-reference
+
+  cim-reference:
+    image: fpfis/php71-build
+    when:
+      status: [ success, failure ]
+      matrix:
+        - MACHINE_NAME=machine-2
+    commands:
+      - ./vendor/bin/run project:run-phpcs --ansi --repository=ec-europa/cim-reference
+
+matrix:
+  MACHINE_NAME:
+    - machine-1
+    - machine-2
+
