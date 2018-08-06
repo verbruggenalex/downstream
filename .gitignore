@@ -1,3 +1,4 @@
 /vendor/
 /toolkit
 /repositories/
+/composer.lock

@@ -34,8 +34,9 @@ class DroneCommands extends AbstractCommands implements FilesystemAwareInterface
           ->textFromFile('config/toolkit.drone.yml')
           ->place('php_version', $php_version);
         $machines = $this->getConfig()->get('project.machines');
+        $machine_divider = $machines == 1 ? 1 : $machines -1;
         $repositories = $this->getConfig()->get('project.repositories');
-        $repos_per_machine =  round(count($repositories) / ($machines -1));
+        $repos_per_machine =  round(count($repositories) / $machine_divider);
         foreach ($repositories as $number => $repo) {
             $machine_name = 'machine-' . round(($number + $repos_per_machine) / $repos_per_machine);
             $owner = explode('/', $repo)[0];
@@ -47,7 +48,7 @@ class DroneCommands extends AbstractCommands implements FilesystemAwareInterface
             ->place('repo_name', $name);
         }
 
-        if ($machines > 1) {
+        if ($machines > 0) {
             $drone->line('matrix:');
             $drone->line('  MACHINE_NAME:');
             for ($x = 1; $x <= $machines; $x++) {
