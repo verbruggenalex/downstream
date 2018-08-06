@@ -94,7 +94,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-2
+        MACHINE_NAME: machine-1
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/argiculture-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/argiculture-reference --ansi
@@ -137,6 +137,19 @@ pipeline:
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/chafea-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/chafea-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  cim-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-2
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/cim-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/cim-reference --ansi
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
 
