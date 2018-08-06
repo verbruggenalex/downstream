@@ -1,20 +1,25 @@
 clone:
   git:
     image: plugins/git:next
+
 workspace:
   base: /test
   path: downstream
+
 services:
   web:
     image: fpfis/php{php_version}-build
     environment:
       - TOOLKIT_ENV_PROPS=/test/downstream/vendor/ec-europa/toolkit/includes/phing/props/drone.props
+
 pipeline:
-  setup:
-    image: fpfis/php{php_version}-build
-    group: setup
+
+  composer:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
     commands:
-      - composer require ec-europa/toolkit:dev-master --ansi --no-suggest
-      - PROJECT=$(pwd) composer run-script toolkit-install -d ./vendor/ec-europa/toolkit
+      - export CHECKSUM=$(md5sum composer.lock | cut -d ' ' -f 1)
+      - tar -xzf /cache/composer/$${CHECKSUM}.tar.gz || composer install --ansi --no-suggest && tar -czf /cache/composer/$${CHECKSUM}.tar.gz ./vendor/
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
+

@@ -80,12 +80,12 @@ class DroneCommands extends AbstractCommands implements FilesystemAwareInterface
         if ($composerJson = file_get_contents($projectBasedir . '/composer.json')) {
             $composer = json_decode($composerJson, TRUE);
             if (isset($composer['require']['ec-europa/toolkit'])) {
-                $phpcs->exec('./toolkit/phing test-run-phpcs -logger phing.listener.AnsiColorLogger')->dir($projectBasedir)->run();
+                $phpcs->exec('./toolkit/phing test-run-phpcs -logger phing.listener.AnsiColorLogger')->dir($projectBasedir);
             }
             else {
             //if (isset($composer['require']['ec-europa/subsite-starterkit'])) {
-                $phpcs->exec('./bin/phing setup-php-codesniffer -logger phing.listener.AnsiColorLogger')->dir($projectBasedir)->run();
-                $phpcs->exec('./bin/phpcs')->dir($projectBasedir)->run();
+                $phpcs->exec('./bin/phing setup-php-codesniffer -logger phing.listener.AnsiColorLogger')->dir($projectBasedir);
+                $phpcs->exec('./bin/phpcs')->dir($projectBasedir);
             }
         }
         $phpcs->run();

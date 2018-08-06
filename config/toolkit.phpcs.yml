@@ -3,8 +3,11 @@
     secrets: [ github_api_token ]
     when:
       status: [ success, failure ]
-    environment:
-      - REPO_OWNER={repo_owner}
-      - REPO_NAME={repo_name}
+      matrix:
+        MACHINE_NAME: {machine_name}
     commands:
-      - ./vendor/bin/run project:phpcs
+      - ./vendor/bin/run project:create-project --repository={repo_owner}/{repo_name} --ansi
+      - ./vendor/bin/run project:run-phpcs --repository={repo_owner}/{repo_name} --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
