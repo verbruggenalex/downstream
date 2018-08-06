@@ -23,13 +23,559 @@ pipeline:
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
 
-  encasia-reference:
+  agm-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
     when:
       status: [ success, failure ]
       matrix:
         MACHINE_NAME: machine-1
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/agm-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/agm-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  agri-eip-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-1
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/agri-eip-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/agri-eip-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  amr-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-1
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/amr-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/amr-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  anti-fraud-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-1
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/anti-fraud-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/anti-fraud-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  antitrafficking-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-1
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/antitrafficking-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/antitrafficking-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  argiculture-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-1
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/argiculture-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/argiculture-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  basext-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-1
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/basext-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/basext-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  cem-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-1
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/cem-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/cem-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  chafea-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-1
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/chafea-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/chafea-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  cim-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-1
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/cim-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/cim-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  clima-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-1
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/clima-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/clima-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  comm-digitaltransformation-blog-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-1
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/comm-digitaltransformation-blog-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/comm-digitaltransformation-blog-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  commpo-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-1
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/commpo-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/commpo-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  consular-protection-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-1
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/consular-protection-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/consular-protection-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  creativeeurope-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-1
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/creativeeurope-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/creativeeurope-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  crosportal-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-1
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/crosportal-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/crosportal-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  culture-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-1
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/culture-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/culture-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  daphne-toolkit-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-1
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/daphne-toolkit-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/daphne-toolkit-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  devco-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-1
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/devco-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/devco-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  digital-agenda-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-2
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/digital-agenda-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/digital-agenda-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  dm-trainet-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-2
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/dm-trainet-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/dm-trainet-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  dms-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-2
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/dms-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/dms-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  dt_brp_reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-2
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/dt_brp_reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/dt_brp_reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  dt_cwt_reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-2
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/dt_cwt_reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/dt_cwt_reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  dt_info_reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-2
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/dt_info_reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/dt_info_reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  dt_pol_reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-2
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/dt_pol_reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/dt_pol_reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  eac-eqf-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-2
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/eac-eqf-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/eac-eqf-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  eac-eyp-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-2
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/eac-eyp-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/eac-eyp-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  eacea-site-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-2
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/eacea-site-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/eacea-site-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  easme-site-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-2
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/easme-site-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/easme-site-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  echo-site-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-2
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/echo-site-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/echo-site-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  ecoap_stayconnected-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-2
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/ecoap_stayconnected-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/ecoap_stayconnected-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  edpb-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-2
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/edpb-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/edpb-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  edpsweb-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-2
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/edpsweb-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/edpsweb-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  education2-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-2
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/education2-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/education2-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  eductraining-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-2
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/eductraining-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/eductraining-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  eeas-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-2
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/eeas-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/eeas-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  efsa-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-2
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/efsa-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/efsa-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  eiopa-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-2
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/eiopa-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/eiopa-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  eip-aha-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-2
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/eip-aha-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/eip-aha-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  ejtp-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-2
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/ejtp-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/ejtp-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  ema-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-2
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/ema-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/ema-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  encasia-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-2
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/encasia-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/encasia-reference --ansi
@@ -42,7 +588,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-1
+        MACHINE_NAME: machine-2
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/ener-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/ener-reference --ansi
@@ -55,7 +601,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-1
+        MACHINE_NAME: machine-2
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/enrd-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/enrd-reference --ansi
@@ -68,10 +614,270 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-1
+        MACHINE_NAME: machine-2
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/env-efe-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/env-efe-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  epale-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-2
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/epale-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/epale-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  epsc-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-2
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/epsc-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/epsc-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  epso-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-2
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/epso-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/epso-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  epsocontact-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-2
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/epsocontact-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/epsocontact-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  era-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-2
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/era-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/era-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  erasmusplus-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-2
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/erasmusplus-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/erasmusplus-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  erasmusplus2-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-2
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/erasmusplus2-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/erasmusplus2-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  ersc-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-2
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/ersc-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/ersc-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  esf-tc-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-2
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/esf-tc-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/esf-tc-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  euandme-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-2
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/euandme-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/euandme-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  eu-aid-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-2
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/eu-aid-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/eu-aid-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  eu-invest-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-3
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/eu-invest-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/eu-invest-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  euetfa-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-3
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/euetfa-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/euetfa-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  eufinance-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-3
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/eufinance-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/eufinance-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  euip-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-3
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/euip-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/euip-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  euprojects-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-3
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/euprojects-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/euprojects-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  europaeu-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-3
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/europaeu-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/europaeu-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  eurydice-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-3
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/eurydice-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/eurydice-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  eusdgs-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-3
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/eusdgs-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/eusdgs-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  eusinglesky-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-3
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/eusinglesky-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/eusinglesky-reference --ansi
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
 
@@ -81,7 +887,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-1
+        MACHINE_NAME: machine-3
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/ewrc-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/ewrc-reference --ansi
@@ -94,7 +900,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-1
+        MACHINE_NAME: machine-3
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/expert-pane-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/expert-pane-reference --ansi
@@ -107,7 +913,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-1
+        MACHINE_NAME: machine-3
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/eych-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/eych-reference --ansi
@@ -120,10 +926,75 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-1
+        MACHINE_NAME: machine-3
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/farnet-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/farnet-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  food-animals-plants-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-3
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/food-animals-plants-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/food-animals-plants-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  fpi-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-3
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/fpi-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/fpi-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  fra-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-3
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/fra-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/fra-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  futurium-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-3
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/futurium-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/futurium-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  globalstrategy-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-3
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/globalstrategy-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/globalstrategy-reference --ansi
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
 
@@ -133,7 +1004,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-1
+        MACHINE_NAME: machine-3
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/growth-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/growth-reference --ansi
@@ -146,7 +1017,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-1
+        MACHINE_NAME: machine-3
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/health-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/health-reference --ansi
@@ -159,7 +1030,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-1
+        MACHINE_NAME: machine-3
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/home-affairs-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/home-affairs-reference --ansi
@@ -172,7 +1043,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-1
+        MACHINE_NAME: machine-3
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/horizon2020-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/horizon2020-reference --ansi
@@ -185,7 +1056,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-1
+        MACHINE_NAME: machine-3
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/iee-projects-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/iee-projects-reference --ansi
@@ -198,7 +1069,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-2
+        MACHINE_NAME: machine-3
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/inforegio-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/inforegio-reference --ansi
@@ -211,7 +1082,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-2
+        MACHINE_NAME: machine-3
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/inea-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/inea-reference --ansi
@@ -224,7 +1095,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-2
+        MACHINE_NAME: machine-3
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/inseparable-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/inseparable-reference --ansi
@@ -237,7 +1108,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-2
+        MACHINE_NAME: machine-3
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/isa-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/isa-reference --ansi
@@ -250,7 +1121,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-2
+        MACHINE_NAME: machine-3
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/jrccties-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/jrccties-reference --ansi
@@ -263,7 +1134,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-2
+        MACHINE_NAME: machine-3
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/jrcsh-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/jrcsh-reference --ansi
@@ -276,7 +1147,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-2
+        MACHINE_NAME: machine-3
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/kci-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/kci-reference --ansi
@@ -289,7 +1160,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-2
+        MACHINE_NAME: machine-3
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/know4pol-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/know4pol-reference --ansi
@@ -302,7 +1173,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-2
+        MACHINE_NAME: machine-3
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/mare-emd-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/mare-emd-reference --ansi
@@ -315,7 +1186,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-2
+        MACHINE_NAME: machine-3
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/mare-magaz-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/mare-magaz-reference --ansi
@@ -328,7 +1199,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-2
+        MACHINE_NAME: machine-3
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/mariecurie-actions-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/mariecurie-actions-reference --ansi
@@ -341,7 +1212,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-2
+        MACHINE_NAME: machine-3
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/mariecurie2-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/mariecurie2-reference --ansi
@@ -354,10 +1225,790 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-2
+        MACHINE_NAME: machine-3
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/maritime-affaires-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/maritime-affaires-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  maritimeforum-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-3
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/maritimeforum-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/maritimeforum-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  microdata-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-3
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/microdata-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/microdata-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  migr-fisheries-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-4
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/migr-fisheries-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/migr-fisheries-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  migr-move-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-4
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/migr-move-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/migr-move-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  mossportal-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-4
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/mossportal-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/mossportal-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  n-lex-migration-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-4
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/n-lex-migration-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/n-lex-migration-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  near-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-4
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/near-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/near-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  newsroom-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-4
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/newsroom-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/newsroom-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  oil-mit-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-4
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/oil-mit-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/oil-mit-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  organic-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-4
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/organic-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/organic-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  pics-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-4
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/pics-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/pics-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  pmo-contact-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-4
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/pmo-contact-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/pmo-contact-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  ppcm-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-4
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/ppcm-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/ppcm-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  primeinfrastructure-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-4
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/primeinfrastructure-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/primeinfrastructure-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  publicare-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-4
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/publicare-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/publicare-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  reps-austria-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-4
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/reps-austria-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/reps-austria-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  reps-barcelona-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-4
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/reps-barcelona-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/reps-barcelona-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  reps-belgium-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-4
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/reps-belgium-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/reps-belgium-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  reps-bulgaria-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-4
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/reps-bulgaria-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/reps-bulgaria-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  reps-ceskarepublika-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-4
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/reps-ceskarepublika-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/reps-ceskarepublika-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  reps-croatia-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-4
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/reps-croatia-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/reps-croatia-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  reps-cyprus-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-4
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/reps-cyprus-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/reps-cyprus-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  reps-denmark-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-4
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/reps-denmark-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/reps-denmark-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  reps-deutschland-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-4
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/reps-deutschland-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/reps-deutschland-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  reps-estonia-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-4
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/reps-estonia-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/reps-estonia-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  reps-finland-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-4
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/reps-finland-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/reps-finland-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  reps-france-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-4
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/reps-france-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/reps-france-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  reps-greece-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-4
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/reps-greece-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/reps-greece-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  reps-hungary-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-4
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/reps-hungary-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/reps-hungary-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  reps-ireland-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-4
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/reps-ireland-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/reps-ireland-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  reps-italy-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-4
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/reps-italy-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/reps-italy-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  reps-latvia-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-4
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/reps-latvia-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/reps-latvia-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  reps-lietuva-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-4
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/reps-lietuva-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/reps-lietuva-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  reps-luxembourg-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-4
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/reps-luxembourg-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/reps-luxembourg-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  reps-malta-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-4
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/reps-malta-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/reps-malta-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  reps-netherlands-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-4
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/reps-netherlands-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/reps-netherlands-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  reps-polska-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-4
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/reps-polska-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/reps-polska-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  reps-portugal-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-4
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/reps-portugal-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/reps-portugal-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  reps-romania-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-4
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/reps-romania-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/reps-romania-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  reps-slovakia-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-4
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/reps-slovakia-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/reps-slovakia-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  reps-slovenia-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-5
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/reps-slovenia-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/reps-slovenia-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  reps-spain-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-5
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/reps-spain-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/reps-spain-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  reps-sweden-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-5
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/reps-sweden-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/reps-sweden-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  reps-unitedkingdom-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-5
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/reps-unitedkingdom-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/reps-unitedkingdom-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  road-safety-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-5
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/road-safety-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/road-safety-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  roma-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-5
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/roma-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/roma-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  safety_alerts-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-5
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/safety_alerts-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/safety_alerts-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  scicnet-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-5
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/scicnet-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/scicnet-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  service-catalogue-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-5
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/service-catalogue-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/service-catalogue-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  sfc2014-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-5
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/sfc2014-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/sfc2014-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  sport-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-5
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/sport-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/sport-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  srb-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-5
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/srb-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/srb-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  stages-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-5
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/stages-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/stages-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  stages2-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-5
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/stages2-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/stages2-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  taxedu-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-5
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/taxedu-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/taxedu-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  taxud-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-5
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/taxud-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/taxud-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  teachers-corner-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-5
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/teachers-corner-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/teachers-corner-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  vocational-skills-week-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-5
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/vocational-skills-week-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/vocational-skills-week-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  youthwiki-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-5
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/youthwiki-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/youthwiki-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  youth-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-5
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/youth-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/youth-reference --ansi
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
 
@@ -365,4 +2016,7 @@ matrix:
   MACHINE_NAME:
     - machine-1
     - machine-2
+    - machine-3
+    - machine-4
+    - machine-5
 

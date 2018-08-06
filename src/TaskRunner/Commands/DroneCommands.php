@@ -33,15 +33,29 @@ class DroneCommands extends AbstractCommands implements FilesystemAwareInterface
         $drone = $this->taskWriteToFile('.drone.yml')
           ->textFromFile('config/toolkit.drone.yml')
           ->place('php_version', $php_version);
-        $repositories = $this->getConfig()->get('repositories');
-        foreach ($repositories as $repo) {
+        $machines = $this->getConfig()->get('project.machines');
+        $repositories = $this->getConfig()->get('project.repositories');
+        $repos_per_machine =  round(count($repositories) / ($machines -1));
+        foreach ($repositories as $number => $repo) {
+            $machine_name = 'machine-' . round(($number + $repos_per_machine) / $repos_per_machine);
             $owner = explode('/', $repo)[0];
             $name = explode('/', $repo)[1];
             $drone->textFromFile('config/toolkit.phpcs.yml')
+            ->place('machine_name', $machine_name)
             ->place('php_version', $php_version)
             ->place('repo_owner', $owner)
             ->place('repo_name', $name);
         }
+
+        if ($machines > 1) {
+            $drone->line('matrix:');
+            $drone->line('  MACHINE_NAME:');
+            for ($x = 1; $x <= $machines; $x++) {
+                $drone->line('    - machine-' . $x);
+            }
+            $drone->line('');
+        }
+        var_dump($repos_per_machine);
         $drone->run();
     }
 
@@ -62,17 +76,19 @@ class DroneCommands extends AbstractCommands implements FilesystemAwareInterface
         $workingDir = $this->getConfig()->get('runner.working_dir');
         $projectBasedir = $repodir . '/' . $projectRepository;
 
+        $phpcs = $this->taskExecStack()->stopOnFail();
         if ($composerJson = file_get_contents($projectBasedir . '/composer.json')) {
             $composer = json_decode($composerJson, TRUE);
             if (isset($composer['require']['ec-europa/toolkit'])) {
-                $this->taskExec('./toolkit/phing test-run-phpcs -logger phing.listener.AnsiColorLogger')->dir($projectBasedir)->run();
+                $phpcs->exec('./toolkit/phing test-run-phpcs -logger phing.listener.AnsiColorLogger')->dir($projectBasedir)->run();
             }
             else {
             //if (isset($composer['require']['ec-europa/subsite-starterkit'])) {
-                $this->taskExec('./bin/phing setup-php-codesniffer -logger phing.listener.AnsiColorLogger')->dir($projectBasedir)->run();
-                $this->taskExec('./bin/phpcs')->dir($projectBasedir)->run();
+                $phpcs->exec('./bin/phing setup-php-codesniffer -logger phing.listener.AnsiColorLogger')->dir($projectBasedir)->run();
+                $phpcs->exec('./bin/phpcs')->dir($projectBasedir)->run();
             }
         }
+        $phpcs->run();
     }
 
     /**
@@ -108,7 +124,7 @@ class DroneCommands extends AbstractCommands implements FilesystemAwareInterface
                 $this->taskGitStack()->cloneShallow($gitUrl, $projectBasedir, 'master')->run();
 
                 if ($composerJson = file_get_contents($projectBasedir . '/composer.json')) {
-                    $this->taskComposerInstall()->workingDir($projectBasedir)->run();
+                    $this->taskComposerInstall()->workingDir($projectBasedir)->ansi()->run();
                     $composer = json_decode($composerJson, TRUE);
                     // if (isset($composer['require']['ec-europa/toolkit'])) {
                     //     $this->taskExec('./toolkit/phing build-platform build-subsite-dev')->dir($projectBasedir)->run();
