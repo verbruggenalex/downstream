@@ -72,6 +72,8 @@ pipeline:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
     commands:
+      - export CHECKSUM=$(md5sum composer.lock | cut -d ' ' -f 1)
+      - tar -xzf /cache/composer/$${CHECKSUM}.tar.gz || composer install --ansi --no-suggest && tar -czf /cache/composer/$${CHECKSUM}.tar.gz ./vendor/
       - ./vendor/bin/run project:create-project --ansi --repository=${REPOSITORY}
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
