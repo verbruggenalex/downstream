@@ -46,6 +46,28 @@ class DroneCommands extends AbstractCommands implements FilesystemAwareInterface
     }
 
     /**
+     * @command project:run-phpcs
+     */
+    public function runPhpcs()
+    {
+        // Configuration.
+        $projectRepository = $this->getConfig()->get('project.repository');
+        $projectBasedir = $this->getConfig()->get('project.basedir');
+
+        if ($composerJson = file_get_contents($projectBasedir . '/composer.json')) {
+            $composer = json_decode($composerJson, TRUE);
+            if (isset($composer['require']['ec-europa/toolkit'])) {
+                $this->taskExec('../../vendor/ec-europa/toolkit/bin/phing test-run-phpcs -logger phing.listener.AnsiColorLogger')->dir($projectBasedir)->run();
+            }
+            else {
+            //if (isset($composer['require']['ec-europa/subsite-starterkit'])) {
+                $this->taskExec('../../vendor/ec-europa/subsite-starterkit/bin/phing setup-php-codesniffer -logger phing.listener.AnsiColorLogger')->dir($projectBasedir)->run();
+                $this->taskExec('../../vendor/ec-europa/subsite-starterkit/bin/phpcs')->dir($projectBasedir)->run();
+            }
+        }
+    }
+
+    /**
      * @command project:create-project
      */
     public function createProject()

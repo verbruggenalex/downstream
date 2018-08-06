@@ -28,7 +28,3 @@ project:
   repository: ${REPOSITORY}
   basedir: ${project.repository}
   cachedir: /cache
-
-commands:
-  project:phpcs:
-    - "/test/downstream/vendor/ec-europa/toolkit/bin/phing -f ${project.basedir}/build.xml test-run-phpcs -D'toolkit.dir'='/test/downstream/vendor/ec-europa/toolkit' -logger phing.listener.AnsiColorLogger"
