@@ -28,7 +28,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        - MACHINE_NAME=machine-1
+        MACHINE_NAME: machine-1
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/agm-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/agm-reference --ansi
@@ -40,7 +40,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        - MACHINE_NAME=machine-1
+        MACHINE_NAME: machine-1
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/agri-eip-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/agri-eip-reference --ansi
@@ -52,7 +52,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        - MACHINE_NAME=machine-1
+        MACHINE_NAME: machine-1
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/amr-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/amr-reference --ansi
@@ -64,7 +64,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        - MACHINE_NAME=machine-1
+        MACHINE_NAME: machine-1
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/anti-fraud-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/anti-fraud-reference --ansi
@@ -76,7 +76,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        - MACHINE_NAME=machine-1
+        MACHINE_NAME: machine-1
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/antitrafficking-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/antitrafficking-reference --ansi
@@ -88,7 +88,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        - MACHINE_NAME=machine-2
+        MACHINE_NAME: machine-2
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/argiculture-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/argiculture-reference --ansi
@@ -100,7 +100,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        - MACHINE_NAME=machine-2
+        MACHINE_NAME: machine-2
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/basext-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/basext-reference --ansi
@@ -112,7 +112,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        - MACHINE_NAME=machine-2
+        MACHINE_NAME: machine-2
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/cem-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/cem-reference --ansi
@@ -124,7 +124,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        - MACHINE_NAME=machine-2
+        MACHINE_NAME: machine-2
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/chafea-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/chafea-reference --ansi
@@ -136,7 +136,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        - MACHINE_NAME=machine-2
+        MACHINE_NAME: machine-2
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/cim-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/cim-reference --ansi
