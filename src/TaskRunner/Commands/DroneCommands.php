@@ -22,12 +22,12 @@ class DroneCommands extends AbstractCommands implements FilesystemAwareInterface
     use TaskRunnerTraits\ConfigurationTokensTrait;
     use TaskRunnerTraits\FilesystemAwareTrait;
     use TaskRunnerTasks\CollectionFactory\loadTasks;
-    use NuvoleWebTasks\Config\Php\loadTasks;
+    use NuvoleWebTasks\Config\loadTasks;
 
     /**
-     * @command drone:generate-yml
+     * @command project:generate-drone
      */
-    public function generateYml()
+    public function generateDrone()
     {
         $php_version = 71;
         $drone = $this->taskWriteToFile('.drone.yml')
@@ -55,7 +55,6 @@ class DroneCommands extends AbstractCommands implements FilesystemAwareInterface
             }
             $drone->line('');
         }
-        var_dump($repos_per_machine);
         $drone->run();
     }
 
