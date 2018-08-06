@@ -20,7 +20,6 @@ pipeline:
     commands:
       - export CHECKSUM=$(md5sum composer.lock | cut -d ' ' -f 1)
       - tar -xzf /cache/composer/$${CHECKSUM}.tar.gz || composer install --ansi --no-suggest && tar -czf /cache/composer/$${CHECKSUM}.tar.gz ./vendor/
-      - ./vendor/bin/run project:create-project --ansi --repository=${REPOSITORY}
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
 
@@ -31,7 +30,10 @@ pipeline:
       matrix:
         - MACHINE_NAME=machine-1
     commands:
-      - ./vendor/bin/run project:run-phpcs --ansi --repository=ec-europa/agm-reference
+      - ./vendor/bin/run project:create-project --repository=ec-europa/agm-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/agm-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
 
   agri-eip-reference:
     image: fpfis/php71-build
@@ -40,7 +42,10 @@ pipeline:
       matrix:
         - MACHINE_NAME=machine-1
     commands:
-      - ./vendor/bin/run project:run-phpcs --ansi --repository=ec-europa/agri-eip-reference
+      - ./vendor/bin/run project:create-project --repository=ec-europa/agri-eip-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/agri-eip-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
 
   amr-reference:
     image: fpfis/php71-build
@@ -49,7 +54,10 @@ pipeline:
       matrix:
         - MACHINE_NAME=machine-1
     commands:
-      - ./vendor/bin/run project:run-phpcs --ansi --repository=ec-europa/amr-reference
+      - ./vendor/bin/run project:create-project --repository=ec-europa/amr-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/amr-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
 
   anti-fraud-reference:
     image: fpfis/php71-build
@@ -58,7 +66,10 @@ pipeline:
       matrix:
         - MACHINE_NAME=machine-1
     commands:
-      - ./vendor/bin/run project:run-phpcs --ansi --repository=ec-europa/anti-fraud-reference
+      - ./vendor/bin/run project:create-project --repository=ec-europa/anti-fraud-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/anti-fraud-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
 
   antitrafficking-reference:
     image: fpfis/php71-build
@@ -67,7 +78,10 @@ pipeline:
       matrix:
         - MACHINE_NAME=machine-1
     commands:
-      - ./vendor/bin/run project:run-phpcs --ansi --repository=ec-europa/antitrafficking-reference
+      - ./vendor/bin/run project:create-project --repository=ec-europa/antitrafficking-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/antitrafficking-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
 
   argiculture-reference:
     image: fpfis/php71-build
@@ -76,7 +90,10 @@ pipeline:
       matrix:
         - MACHINE_NAME=machine-2
     commands:
-      - ./vendor/bin/run project:run-phpcs --ansi --repository=ec-europa/argiculture-reference
+      - ./vendor/bin/run project:create-project --repository=ec-europa/argiculture-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/argiculture-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
 
   basext-reference:
     image: fpfis/php71-build
@@ -85,7 +102,10 @@ pipeline:
       matrix:
         - MACHINE_NAME=machine-2
     commands:
-      - ./vendor/bin/run project:run-phpcs --ansi --repository=ec-europa/basext-reference
+      - ./vendor/bin/run project:create-project --repository=ec-europa/basext-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/basext-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
 
   cem-reference:
     image: fpfis/php71-build
@@ -94,7 +114,10 @@ pipeline:
       matrix:
         - MACHINE_NAME=machine-2
     commands:
-      - ./vendor/bin/run project:run-phpcs --ansi --repository=ec-europa/cem-reference
+      - ./vendor/bin/run project:create-project --repository=ec-europa/cem-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/cem-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
 
   chafea-reference:
     image: fpfis/php71-build
@@ -103,7 +126,10 @@ pipeline:
       matrix:
         - MACHINE_NAME=machine-2
     commands:
-      - ./vendor/bin/run project:run-phpcs --ansi --repository=ec-europa/chafea-reference
+      - ./vendor/bin/run project:create-project --repository=ec-europa/chafea-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/chafea-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
 
   cim-reference:
     image: fpfis/php71-build
@@ -112,7 +138,10 @@ pipeline:
       matrix:
         - MACHINE_NAME=machine-2
     commands:
-      - ./vendor/bin/run project:run-phpcs --ansi --repository=ec-europa/cim-reference
+      - ./vendor/bin/run project:create-project --repository=ec-europa/cim-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/cim-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
 
 matrix:
   MACHINE_NAME:
