@@ -1,5 +1,6 @@
 {
     "require": {
+        "ec-europa/subsite-starterkit": "dev-master",
         "ec-europa/toolkit": "dev-master",
         "openeuropa/task-runner": "^0.7.0",
         "gboddin/php-github-cli": "^0.2.11"
@@ -9,9 +10,23 @@
             "VerbruggenAlex\\Downstream\\": "./src/"
         }
     },
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "ec-europa/subsite-starterkit",
+                "version": "master",
+                "dist": {
+                    "url": "https://github.com/ec-europa/subsite-starterkit/archive/master.zip",
+                    "type": "zip"
+                }
+            }
+        }
+    ],
     "scripts": {
-        "post-install-cmd": "@toolkit-install",
-        "post-update-cmd": "@toolkit-install",
-        "toolkit-install": "PROJECT=$(pwd) composer run-script toolkit-install -d ./vendor/ec-europa/toolkit"
+        "post-install-cmd": [ "@toolkit-install", "@starterkit-install" ],
+        "post-update-cmd": [ "@toolkit-install", "@starterkit-install" ],
+        "toolkit-install": "PROJECT=$(pwd) composer run-script toolkit-install -d ./vendor/ec-europa/toolkit",
+        "starterkit-install": "composer install -d ./vendor/ec-europa/subsite-starterkit --ansi"
     }
 }

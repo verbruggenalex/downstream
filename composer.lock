@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c45423a0290d7df6a28d7e02a90fd0aa",
+    "content-hash": "1c62cc09171b0fb66bdbc2c1c59423d4",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -437,6 +437,17 @@
                 "notation"
             ],
             "time": "2017-01-20T21:14:22+00:00"
+        },
+        {
+            "name": "ec-europa/subsite-starterkit",
+            "version": "master",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/ec-europa/subsite-starterkit/archive/master.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "library"
         },
         {
             "name": "ec-europa/toolkit",
@@ -2311,6 +2322,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "ec-europa/subsite-starterkit": 20,
         "ec-europa/toolkit": 20
     },
     "prefer-stable": false,
