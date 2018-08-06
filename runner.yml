@@ -56,7 +56,7 @@ project:
     - ec-europa/dt_info_reference
     - ec-europa/dt_pol_reference
     - ec-europa/eac-eqf-reference
-    - ec-europa/eac-eyp-reference
+#    - ec-europa/eac-eyp-reference
     - ec-europa/eacea-site-reference
     - ec-europa/easme-site-reference
     - ec-europa/echo-site-reference

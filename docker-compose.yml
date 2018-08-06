@@ -1,0 +1,7 @@
+version: '3'
+services:
+  web:
+    image: fpfis/php71-build
+    working_dir: ${PWD}
+    volumes:
+      - ${PWD}:${PWD}
