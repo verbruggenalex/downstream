@@ -95,7 +95,7 @@ class DroneCommands extends AbstractCommands implements FilesystemAwareInterface
         
         // To be made configurable.
         $gitBranch = 'master';
-        $gitUrl = 'https://' . $githubToken . '@github.com:' . $projectRepository . '.git';
+        $gitUrl = 'https://' . $githubToken . '@github.com/' . $projectRepository . '.git';
         $gitHash = preg_split ("/\s+/", $this->taskGitStack()->exec('ls-remote ' . $gitUrl . ' ' . $gitBranch)->printOutput(false)->run()->getMessage())[0];
         $gitCacheFile = $cacheDir . '/' . $projectRepository . '/build-dev-' . $gitHash . '.tar.gz';
 
