@@ -23,429 +23,13 @@ pipeline:
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
 
-  agm-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-1
-    commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/agm-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/agm-reference --ansi
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-
-  agri-eip-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-1
-    commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/agri-eip-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/agri-eip-reference --ansi
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-
-  amr-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-1
-    commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/amr-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/amr-reference --ansi
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-
-  anti-fraud-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-1
-    commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/anti-fraud-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/anti-fraud-reference --ansi
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-
-  antitrafficking-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-1
-    commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/antitrafficking-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/antitrafficking-reference --ansi
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-
-  argiculture-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-1
-    commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/argiculture-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/argiculture-reference --ansi
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-
-  basext-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-1
-    commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/basext-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/basext-reference --ansi
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-
-  cem-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-1
-    commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/cem-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/cem-reference --ansi
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-
-  chafea-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-1
-    commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/chafea-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/chafea-reference --ansi
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-
-  cim-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-1
-    commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/cim-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/cim-reference --ansi
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-
-  clima-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-1
-    commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/clima-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/clima-reference --ansi
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-
-  comm-digitaltransformation-blog-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-1
-    commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/comm-digitaltransformation-blog-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/comm-digitaltransformation-blog-reference --ansi
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-
-  commpo-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-1
-    commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/commpo-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/commpo-reference --ansi
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-
-  consular-protection-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-1
-    commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/consular-protection-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/consular-protection-reference --ansi
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-
-  creativeeurope-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-1
-    commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/creativeeurope-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/creativeeurope-reference --ansi
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-
-  crosportal-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-1
-    commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/crosportal-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/crosportal-reference --ansi
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-
-  culture-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-1
-    commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/culture-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/culture-reference --ansi
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-
-  daphne-toolkit-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-1
-    commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/daphne-toolkit-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/daphne-toolkit-reference --ansi
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-
-  devco-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-1
-    commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/devco-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/devco-reference --ansi
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-
-  digital-agenda-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-1
-    commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/digital-agenda-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/digital-agenda-reference --ansi
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-
-  dm-trainet-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-2
-    commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/dm-trainet-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/dm-trainet-reference --ansi
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-
-  dms-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-2
-    commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/dms-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/dms-reference --ansi
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-
-  dt_brp_reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-2
-    commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/dt_brp_reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/dt_brp_reference --ansi
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-
-  dt_cwt_reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-2
-    commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/dt_cwt_reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/dt_cwt_reference --ansi
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-
-  dt_info_reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-2
-    commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/dt_info_reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/dt_info_reference --ansi
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-
-  dt_pol_reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-2
-    commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/dt_pol_reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/dt_pol_reference --ansi
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-
-  eac-eqf-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-2
-    commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/eac-eqf-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/eac-eqf-reference --ansi
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-
-  eac-eyp-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-2
-    commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/eac-eyp-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/eac-eyp-reference --ansi
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-
-  eacea-site-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-2
-    commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/eacea-site-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/eacea-site-reference --ansi
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-
-  easme-site-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-2
-    commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/easme-site-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/easme-site-reference --ansi
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-
-  echo-site-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-2
-    commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/echo-site-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/echo-site-reference --ansi
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-
-  eco-innovation-projects-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-2
-    commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/eco-innovation-projects-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/eco-innovation-projects-reference --ansi
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-
   ecoap_stayconnected-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-2
+        MACHINE_NAME: machine-1
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/ecoap_stayconnected-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/ecoap_stayconnected-reference --ansi
@@ -458,7 +42,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-2
+        MACHINE_NAME: machine-1
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/edpb-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/edpb-reference --ansi
@@ -471,7 +55,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-2
+        MACHINE_NAME: machine-1
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/edpsweb-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/edpsweb-reference --ansi
@@ -484,7 +68,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-2
+        MACHINE_NAME: machine-1
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/education2-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/education2-reference --ansi
@@ -497,7 +81,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-2
+        MACHINE_NAME: machine-1
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/eductraining-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/eductraining-reference --ansi
@@ -510,7 +94,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-2
+        MACHINE_NAME: machine-1
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/eeas-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/eeas-reference --ansi
@@ -523,7 +107,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-2
+        MACHINE_NAME: machine-1
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/efsa-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/efsa-reference --ansi
@@ -536,7 +120,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-2
+        MACHINE_NAME: machine-1
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/eiopa-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/eiopa-reference --ansi
@@ -549,7 +133,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-2
+        MACHINE_NAME: machine-1
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/eip-aha-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/eip-aha-reference --ansi
@@ -562,7 +146,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-2
+        MACHINE_NAME: machine-1
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/ejtp-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/ejtp-reference --ansi
@@ -575,7 +159,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-2
+        MACHINE_NAME: machine-1
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/ema-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/ema-reference --ansi
@@ -588,7 +172,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-2
+        MACHINE_NAME: machine-1
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/emnies-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/emnies-reference --ansi
@@ -601,7 +185,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-2
+        MACHINE_NAME: machine-1
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/encasia-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/encasia-reference --ansi
@@ -614,7 +198,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-2
+        MACHINE_NAME: machine-1
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/ener-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/ener-reference --ansi
@@ -627,7 +211,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-2
+        MACHINE_NAME: machine-1
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/enrd-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/enrd-reference --ansi
@@ -640,7 +224,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-2
+        MACHINE_NAME: machine-1
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/env-efe-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/env-efe-reference --ansi
@@ -809,7 +393,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-3
+        MACHINE_NAME: machine-2
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/euetfa-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/euetfa-reference --ansi
@@ -822,7 +406,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-3
+        MACHINE_NAME: machine-2
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/eufinance-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/eufinance-reference --ansi
@@ -835,7 +419,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-3
+        MACHINE_NAME: machine-2
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/euip-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/euip-reference --ansi
@@ -848,7 +432,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-3
+        MACHINE_NAME: machine-2
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/euprojects-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/euprojects-reference --ansi
@@ -861,7 +445,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-3
+        MACHINE_NAME: machine-2
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/europaeu-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/europaeu-reference --ansi
@@ -874,7 +458,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-3
+        MACHINE_NAME: machine-2
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/europahub-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/europahub-reference --ansi
@@ -887,7 +471,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-3
+        MACHINE_NAME: machine-2
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/eurydice-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/eurydice-reference --ansi
@@ -900,7 +484,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-3
+        MACHINE_NAME: machine-2
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/eusdgs-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/eusdgs-reference --ansi
@@ -913,7 +497,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-3
+        MACHINE_NAME: machine-2
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/eusinglesky-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/eusinglesky-reference --ansi
@@ -926,7 +510,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-3
+        MACHINE_NAME: machine-2
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/euvp-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/euvp-reference --ansi
@@ -939,7 +523,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-3
+        MACHINE_NAME: machine-2
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/ewrc-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/ewrc-reference --ansi
@@ -952,7 +536,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-3
+        MACHINE_NAME: machine-2
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/expert-pane-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/expert-pane-reference --ansi
@@ -965,7 +549,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-3
+        MACHINE_NAME: machine-2
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/eych-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/eych-reference --ansi
@@ -978,7 +562,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-3
+        MACHINE_NAME: machine-2
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/farnet-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/farnet-reference --ansi
@@ -991,7 +575,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-3
+        MACHINE_NAME: machine-2
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/food-animals-plants-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/food-animals-plants-reference --ansi
@@ -1004,7 +588,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-3
+        MACHINE_NAME: machine-2
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/fpi-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/fpi-reference --ansi
@@ -1017,7 +601,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-3
+        MACHINE_NAME: machine-2
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/fra-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/fra-reference --ansi
@@ -1030,7 +614,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-3
+        MACHINE_NAME: machine-2
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/futurium-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/futurium-reference --ansi
@@ -1043,7 +627,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-3
+        MACHINE_NAME: machine-2
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/globalstrategy-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/globalstrategy-reference --ansi
@@ -1056,7 +640,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-3
+        MACHINE_NAME: machine-2
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/grid-communications-toolkit-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/grid-communications-toolkit-reference --ansi
@@ -1329,7 +913,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-4
+        MACHINE_NAME: machine-3
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/microdata-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/microdata-reference --ansi
@@ -1342,7 +926,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-4
+        MACHINE_NAME: machine-3
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/migr-fisheries-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/migr-fisheries-reference --ansi
@@ -1355,7 +939,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-4
+        MACHINE_NAME: machine-3
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/migr-move-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/migr-move-reference --ansi
@@ -1368,7 +952,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-4
+        MACHINE_NAME: machine-3
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/mossportal-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/mossportal-reference --ansi
@@ -1381,7 +965,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-4
+        MACHINE_NAME: machine-3
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/n-lex-migration-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/n-lex-migration-reference --ansi
@@ -1394,7 +978,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-4
+        MACHINE_NAME: machine-3
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/near-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/near-reference --ansi
@@ -1407,7 +991,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-4
+        MACHINE_NAME: machine-3
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/newsroom-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/newsroom-reference --ansi
@@ -1420,7 +1004,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-4
+        MACHINE_NAME: machine-3
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/oil-mit-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/oil-mit-reference --ansi
@@ -1433,7 +1017,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-4
+        MACHINE_NAME: machine-3
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/organic-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/organic-reference --ansi
@@ -1446,7 +1030,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-4
+        MACHINE_NAME: machine-3
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/pics-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/pics-reference --ansi
@@ -1459,7 +1043,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-4
+        MACHINE_NAME: machine-3
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/pmo-contact-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/pmo-contact-reference --ansi
@@ -1472,7 +1056,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-4
+        MACHINE_NAME: machine-3
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/ppcm-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/ppcm-reference --ansi
@@ -1849,7 +1433,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-5
+        MACHINE_NAME: machine-4
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/reps-slovenia-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/reps-slovenia-reference --ansi
@@ -1862,7 +1446,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-5
+        MACHINE_NAME: machine-4
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/reps-spain-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/reps-spain-reference --ansi
@@ -1875,7 +1459,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-5
+        MACHINE_NAME: machine-4
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/reps-sweden-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/reps-sweden-reference --ansi
@@ -1888,7 +1472,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        MACHINE_NAME: machine-5
+        MACHINE_NAME: machine-4
     commands:
       - ./vendor/bin/run project:create-project --repository=ec-europa/reps-unitedkingdom-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/reps-unitedkingdom-reference --ansi
