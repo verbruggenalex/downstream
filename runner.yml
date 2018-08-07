@@ -18,6 +18,8 @@ runner:
 github:
   # GitHub personal access token token.
   # @link https://github.com/settings/tokens
+  name: Alexander Verbruggen
+  email: alexander.verbruggen@ext.ec.europa.eu
   token: $GITHUB_API_TOKEN
 
 # -----------------------------------------------------------------------------

@@ -27,21 +27,29 @@ class DroneCommands extends AbstractCommands implements FilesystemAwareInterface
     /**
      * @command project:generate-drone
      */
-    public function generateDrone()
+    public function generateDrone(array $options = [
+      'project.repositories' => InputOption::VALUE_REQUIRED,
+      'project.machines' => InputOption::VALUE_REQUIRED,
+      'project.pipeline' => InputOption::VALUE_REQUIRED,
+    ])
     {
+        $project = $this->getConfig()->get('project');
+        var_dump($project);
+        $github = $this->getConfig()->get('github');
         $php_version = 71;
         $drone = $this->taskWriteToFile('.drone.yml')
-          ->textFromFile('config/toolkit.drone.yml')
+          ->textFromFile('config/drone.yml')
           ->place('php_version', $php_version);
-        $machines = $this->getConfig()->get('project.machines');
-        $machine_divider = $machines > 1 ? $machines-1 : 1;
-        $repositories = $this->getConfig()->get('project.repositories');
-        $repos_per_machine =  round(count($repositories) / $machine_divider);
-        foreach ($repositories as $number => $repo) {
+
+        $machines = $project['machines'] > 1 ? $project['machines'] - 1 : 1;
+        $repos_per_machine =  round(count($project['repositories']) / $machines);
+
+
+        foreach ($project['repositories'] as $number => $repo) {
             $machine_name = 'machine-' . round(($number + $repos_per_machine) / $repos_per_machine);
             $owner = explode('/', $repo)[0];
             $name = explode('/', $repo)[1];
-            $drone->textFromFile('config/toolkit.phpcs.yml')
+            $drone->textFromFile('config/' . $project['pipeline'] . '.yml')
             ->place('machine_name', $machine_name)
             ->place('php_version', $php_version)
             ->place('repo_owner', $owner)
@@ -57,6 +65,12 @@ class DroneCommands extends AbstractCommands implements FilesystemAwareInterface
             $drone->line('');
         }
         $drone->run();
+
+        $this->taskGitStack()->stopOnFail()
+         ->exec('git remote set-url origin https://' . $github['token'] . '@github.com/verbruggenalex/downstream.git')
+         ->exec('git config --global user.email ' . $github['email'])
+         ->exec('git config --global user.name ' . $github['name'])
+         ->run();
     }
 
     /**
