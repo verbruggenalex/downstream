@@ -34,7 +34,6 @@ class DroneCommands extends AbstractCommands implements FilesystemAwareInterface
     ])
     {
         $project = $this->getConfig()->get('project');
-        var_dump($project);
         $github = $this->getConfig()->get('github');
         $php_version = 71;
         $drone = $this->taskWriteToFile('.drone.yml')
@@ -64,10 +63,11 @@ class DroneCommands extends AbstractCommands implements FilesystemAwareInterface
             }
             $drone->line('');
         }
+        $this->taskGitStack()->stopOnFail()->checkout($project['pipeline'])->merge('master')->run();
+
         $drone->run();
 
         $this->taskGitStack()->stopOnFail()
-         ->checkout($project['pipeline'])->merge($master)
          ->exec('git remote set-url origin https://' . $github['token'] . '@github.com/verbruggenalex/downstream.git')
          ->exec('git config --global user.email ' . $github['email'])
          ->exec('git config --global user.name ' . $github['name'])
