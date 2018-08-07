@@ -41,25 +41,25 @@ class DroneCommands extends AbstractCommands implements FilesystemAwareInterface
           ->textFromFile('config/drone.yml')
           ->place('php_version', $php_version);
 
-        $machines = $project['machines'] > 1 ? $project['machines'] - 1 : 1;
+        $machines = $project['machines'];
+        $machine_number = 1;
         $repos_per_machine =  round(count($project['repositories']) / $machines);
 
-
         foreach ($project['repositories'] as $number => $repo) {
-            $machine_name = 'machine-' . round(($number + $repos_per_machine) / $repos_per_machine);
+            $machine_number = ($number >= $machine_number * $repos_per_machine) ? $machine_number + 1 : $machine_number;
             $owner = explode('/', $repo)[0];
             $name = explode('/', $repo)[1];
             $drone->textFromFile('config/' . $project['pipeline'] . '.yml')
-            ->place('machine_name', $machine_name)
+            ->place('machine_name', 'machine-' . $machine_number)
             ->place('php_version', $php_version)
             ->place('repo_owner', $owner)
             ->place('repo_name', $name);
         }
 
-        if ($machines > 0) {
+        if ($machines >= 1) {
             $drone->line('matrix:');
             $drone->line('  MACHINE_NAME:');
-            for ($x = 0; $x <= $machines; $x++) {
+            for ($x = 1; $x <= $machines; $x++) {
                 $drone->line('    - machine-' . $x);
             }
             $drone->line('');
@@ -70,6 +70,9 @@ class DroneCommands extends AbstractCommands implements FilesystemAwareInterface
          ->exec('git remote set-url origin https://' . $github['token'] . '@github.com/verbruggenalex/downstream.git')
          ->exec('git config --global user.email ' . $github['email'])
          ->exec('git config --global user.name ' . $github['name'])
+         ->add('.drone.yml')
+         ->commit('Start new pipe.')
+         ->push('origin', 'master')
          ->run();
     }
 
