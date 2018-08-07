@@ -73,7 +73,7 @@ class DroneCommands extends AbstractCommands implements FilesystemAwareInterface
          ->exec('git config --global user.name ' . $github['name'])
          ->add('.drone.yml')
          ->commit('Start new pipe.')
-         ->push('origin', 'master')
+         ->push('origin', $project['pipeline'])
          ->run();
     }
 
