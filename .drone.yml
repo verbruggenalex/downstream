@@ -36,7 +36,7 @@ pipeline:
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
 
-  agri-eip-reference:
+  agm-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
     when:
@@ -44,51 +44,12 @@ pipeline:
       matrix:
         MACHINE_NAME: machine-1
     commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/agri-eip-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/agri-eip-reference --ansi
+      - ./vendor/bin/run project:create-project --repository=ec-europa/agm-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/agm-reference --ansi
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
 
-  amr-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-1
-    commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/amr-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/amr-reference --ansi
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-
-  anti-fraud-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-1
-    commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/anti-fraud-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/anti-fraud-reference --ansi
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-
-  antitrafficking-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-1
-    commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/antitrafficking-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/antitrafficking-reference --ansi
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-
-  argiculture-reference:
+  agm-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
     when:
@@ -96,60 +57,8 @@ pipeline:
       matrix:
         MACHINE_NAME: machine-2
     commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/argiculture-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/argiculture-reference --ansi
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-
-  basext-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-2
-    commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/basext-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/basext-reference --ansi
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-
-  cem-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-2
-    commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/cem-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/cem-reference --ansi
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-
-  chafea-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-2
-    commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/chafea-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/chafea-reference --ansi
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-
-  clima-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-2
-    commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/clima-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/clima-reference --ansi
+      - ./vendor/bin/run project:create-project --repository=ec-europa/agm-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/agm-reference --ansi
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
 
