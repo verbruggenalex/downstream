@@ -1,4 +1,4 @@
-project:
+projects:
   agm:
     title: "AGM Portal"
     repository_url: "https://github.com/ec-europa/agm-reference"
