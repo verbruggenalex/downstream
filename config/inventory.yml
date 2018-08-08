@@ -1,0 +1,816 @@
+project:
+  agm:
+    title: "AGM Portal"
+    repository_url: "https://github.com/ec-europa/agm-reference"
+    production_url: "https://ec.europa.eu/tools/agm"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/agm"
+  agri-eip:
+    title: "EIP-AGRI Agriculture & innovation"
+    repository_url: "https://github.com/ec-europa/agri-eip-reference"
+    production_url: "https://ec.europa.eu/eip/agriculture"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/agri-eip"
+  amr:
+    title: "EU Action on Antimicrobial Resistance"
+    repository_url: "https://github.com/ec-europa/amr-reference"
+    production_url: "https://ec.europa.eu/health/amr"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/amr"
+  anti-fraud:
+    title: "OLAF European Anti-fraud Office"
+    repository_url: "https://github.com/ec-europa/anti-fraud-reference"
+    production_url: "https://ec.europa.eu/anti-fraud"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/antifraud"
+  antitrafficking:
+    title: "Together Against Trafficking in Human Beings"
+    repository_url: "https://github.com/ec-europa/antitrafficking-reference"
+    production_url: "https://ec.europa.eu/anti-trafficking"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/antitrafficking"
+  argiculture:
+    title: "Agriculture and rural development"
+    repository_url: "https://github.com/ec-europa/argiculture-reference"
+    production_url: "https://ec.europa.eu/agriculture"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/agriculture"
+  basext:
+    title: "BASEXT - Statistical portal of International data and metadata"
+    repository_url: "https://github.com/ec-europa/basext-reference"
+    production_url: "https://webgate.ec.europa.eu/multisite/basext"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/basext"
+  cem:
+    title: "Comm Europa Management"
+    repository_url: "https://github.com/ec-europa/cem-reference"
+    production_url: "https://webgate.ec.europa.eu/multisite/cem"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/cem"
+  chafea:
+    title: "CHAFEA Promotion of agricultural products"
+    repository_url: "https://github.com/ec-europa/chafea-reference"
+    production_url: "https://ec.europa.eu/chafea/agri"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/chafea"
+  cim:
+    title: "Children in Migration"
+    repository_url: "https://github.com/ec-europa/cim-reference"
+    production_url: "https://webgate.ec.europa.eu/protecting-children-in-migration/"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/cim"
+  clima:
+    title: "Climate Action"
+    repository_url: "https://github.com/ec-europa/clima-reference"
+    production_url: "https://webgate.ec.europa.eu/multisite/clima"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/clima"
+  comm-digitaltransformation-blog:
+    title: "EU Digital - Transforming online communication at the European Commission"
+    repository_url: "https://github.com/ec-europa/comm-digitaltransformation-blog-reference"
+    production_url: "https://blogs.ec.europa.eu/eu-digital"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/comm-digitaltransformation-blog"
+  commpo:
+    title: "COMMPO"
+    repository_url: "https://github.com/ec-europa/commpo-reference"
+    production_url: "https://webgate.ec.europa.eu/multisite/commpo"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/commpo"
+  consular-protection:
+    title: "Consular Protection"
+    repository_url: "https://github.com/ec-europa/consular-protection-reference"
+    production_url: "https://ec.europa.eu/consularprotection"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/consular-protection"
+  creativeeurope:
+    title: "Creative Europe - Supporting Europe''s cultural and creative sectors"
+    repository_url: "https://github.com/ec-europa/creativeeurope-reference"
+    production_url: "https://ec.europa.eu/programmes/creative-europe"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/creative-europe"
+  crosportal:
+    title: "Collaboration in Research and Methodology for Official Statistics"
+    repository_url: "https://github.com/ec-europa/crosportal-reference"
+    production_url: "https://ec.europa.eu/eurostat/cros"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/crosportal"
+  culture:
+    title: "CULTURE - Supporting Europe''s cultural and creative sectors"
+    repository_url: "https://github.com/ec-europa/culture-reference"
+    production_url: "https://ec.europa.eu/culture"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/culture"
+  daphne-toolkit:
+    title: "Projects funded under the Daphne Funding Programme"
+    repository_url: "https://github.com/ec-europa/daphne-toolkit-reference"
+    production_url: "https://ec.europa.eu/justice/grants/results/daphne-toolkit"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/daphne-toolkit"
+  devco:
+    title: "International Cooperation and Development"
+    repository_url: "https://github.com/ec-europa/devco-reference"
+    production_url: "https://ec.europa.eu/europeaid"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/devco"
+  digit-ict:
+    title: "DIGIT-ICT Conference"
+    repository_url: "https://github.com/ec-europa/digit-ict-reference"
+    production_url: "https://ec.europa.eu/digit-ict"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/digit-ict"
+  digital-agenda:
+    title: "Digital Single Market"
+    repository_url: "https://github.com/ec-europa/digital-agenda-reference"
+    production_url: "https://ec.europa.eu/digital-single-market"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/digital-agenda"
+  dm-trainet:
+    title: "European Disaster Management Training Network"
+    repository_url: "https://github.com/ec-europa/dm-trainet-reference"
+    production_url: "https://webgate.ec.europa.eu/dm-training-network"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/dm-trainet"
+  dms:
+    title: "EMPL - Direct Management Suite"
+    repository_url: "https://github.com/ec-europa/dms-reference"
+    production_url: "https://webgate.ec.europa.eu/multisite/dms"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/dms"
+  dt-brp:
+    title: "Better Regulation Policy"
+    repository_url: "https://github.com/ec-europa/dt_brp_reference"
+    production_url: "https://ec.europa.eu/info/law/better-regulation"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/brp"
+  dt-cwt:
+    title: "The Commissioners"
+    repository_url: "https://github.com/ec-europa/dt_cwt_reference"
+    production_url: "https://ec.europa.eu/commission/commissioners"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/cwt"
+  dt-info:
+    title: "Your guide to policies, information and services"
+    repository_url: "https://github.com/ec-europa/dt_info_reference"
+    production_url: "https://ec.europa.eu/info"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/info"
+  dt-pol:
+    title: "The European Commission''s priorities"
+    repository_url: "https://github.com/ec-europa/dt_pol_reference"
+    production_url: "https://ec.europa.eu/commission"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/beta-political"
+  eac-eqf:
+    title: "Learning Opportunities and Qualifications in Europe"
+    repository_url: "https://github.com/ec-europa/eac-eqf-reference"
+    production_url: "https://ec.europa.eu/ploteus"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/eac-eqf"
+  eac-eyp:
+    title: "European Youth Portal"
+    repository_url: "https://github.com/ec-europa/eac-eyp-reference"
+    production_url: "https://europa.eu/youth"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/youth"
+  eacea-site:
+    title: "Education, Audiovisual and Culture Executive Agency"
+    repository_url: "https://github.com/ec-europa/eacea-site-reference"
+    production_url: "https://eacea.ec.europa.eu/"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/eacea-site"
+  easme-site:
+    title: "Executive Agency for Small and Medium-sized Enterprises"
+    repository_url: "https://github.com/ec-europa/easme-site-reference"
+    production_url: "https://ec.europa.eu/easme"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/easme-site"
+  echo-site:
+    title: "European Civil Protection and Humanitarian Aid Operations"
+    repository_url: "https://github.com/ec-europa/echo-site-reference"
+    production_url: "https://ec.europa.eu/echo"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/echo-site"
+  ecn-brief:
+    title: "European Competition Network"
+    repository_url: "https://github.com/ec-europa/ecn-brief-reference"
+    production_url: "https://webgate.ec.europa.eu/multisite/ecn-brief"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/ecn-brief"
+  eco-innovation-projects:
+    title: "Eco-innovation"
+    repository_url: "https://github.com/ec-europa/eco-innovation-projects-reference"
+    production_url: "https://ec.europa.eu/environment/eco-innovation/projects"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/eco-innovation-projects"
+  ecoap-stayconnected:
+    title: "Eco-innovation Action Plan"
+    repository_url: "https://github.com/ec-europa/ecoap_stayconnected-reference"
+    production_url: "https://ec.europa.eu/environment/ecoap"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/ecoap_stayconnected"
+  edpb:
+    title: "European Data Protection Board"
+    repository_url: "https://github.com/ec-europa/edpb-reference"
+    production_url: "https://webgate.ec.europa.eu/multisite/edpb"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/edpb"
+  edpsweb:
+    title: "European Data Protection Supervisor"
+    repository_url: "https://github.com/ec-europa/edpsweb-reference"
+    production_url: "https://edps.europa.eu"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/edp"
+  education2:
+    title: "Education and training"
+    repository_url: "https://github.com/ec-europa/education2-reference"
+    production_url: "https://ec.europa.eu/education"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/education"
+  eductraining:
+    title: "Education and training"
+    repository_url: "https://github.com/ec-europa/eductraining-reference"
+    production_url: "https://ec.europa.eu/education"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/education"
+  eeas:
+    title: "European Union External Action"
+    repository_url: "https://github.com/ec-europa/eeas-reference"
+    production_url: "https://eeas.europa.eu"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/eeas"
+  efsa:
+    title: "European Food Safety Authority"
+    repository_url: "https://github.com/ec-europa/efsa-reference"
+    production_url: "http://www.efsa.europa.eu"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/efsa"
+  eiopa:
+    title: "European Insurance and Occupational Pensions Authority"
+    repository_url: "https://github.com/ec-europa/eiopa-reference"
+    production_url: "https://webgate.ec.europa.eu/multisite/eiopa"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/eiopa"
+  eip-aha:
+    title: "European Innovation Partnership on Active and Healthy Ageing"
+    repository_url: "https://github.com/ec-europa/eip-aha-reference"
+    production_url: "https://ec.europa.eu/eip/ageing"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/eipaha"
+  ejtp:
+    title: "European Justice Training Platform"
+    repository_url: "https://github.com/ec-europa/ejtp-reference"
+    production_url: "https://webgate.ec.europa.eu/multisite/ejtp"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/ejtp"
+  ema:
+    title: "European Medicine Agency"
+    repository_url: "https://github.com/ec-europa/ema-reference"
+    production_url: "https://webgate.ec.europa.eu/multisite/ema"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/ema"
+  emnies:
+    title: "EMN IES - European Migration Network Information Exchange System Select your language"
+    repository_url: "https://github.com/ec-europa/emnies-reference"
+    production_url: "https://webgate.ec.europa.eu/emn-ies"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/emnies"
+  encasia:
+    title: "European Network of Civil Aviation Safety Investigation Authorities"
+    repository_url: "https://github.com/ec-europa/encasia-reference"
+    production_url: "https://webgate.ec.europa.eu/multisite/encasia"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/encasia"
+  ener:
+    title: "Energy"
+    repository_url: "https://github.com/ec-europa/ener-reference"
+    production_url: "https://ec.europa.eu/energy"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/ener"
+  enrd:
+    title: "The European Network for Rural Development (ENRD)"
+    repository_url: "https://github.com/ec-europa/enrd-reference"
+    production_url: "https://enrd.ec.europa.eu"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/enrd"
+  env-efe:
+    title: "Environment for Europeans"
+    repository_url: "https://github.com/ec-europa/env-efe-reference"
+    production_url: "https://ec.europa.eu/environment/efe"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/efe"
+  epale:
+    title: "Electronic Platform for Adult Learning in Europe"
+    repository_url: "https://github.com/ec-europa/epale-reference"
+    production_url: "https://ec.europa.eu/epale"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/epale"
+  epsc:
+    title: "EPSC - European Political Strategy Centre"
+    repository_url: "https://github.com/ec-europa/epsc-reference"
+    production_url: "https://ec.europa.eu/epsc"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/epsc"
+  epso:
+    title: "European Personnel Selection Office"
+    repository_url: "https://github.com/ec-europa/epso-reference"
+    production_url: "https://epso.europa.eu"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/epso"
+  epsocontact:
+    title: "European Personnel Selection Office"
+    repository_url: "https://github.com/ec-europa/epsocontact-reference"
+    production_url: "https://epso.europa.eu"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/epsocontact"
+  era:
+    title: "European Union Agency for Railways"
+    repository_url: "https://github.com/ec-europa/era-reference"
+    production_url: "https://webgate.ec.europa.eu/multisite/era"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/era"
+  erasmusplus:
+    title: "Erasmus+"
+    repository_url: "https://github.com/ec-europa/erasmusplus-reference"
+    production_url: "https://ec.europa.eu/programmes/erasmus-plus"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/erasmusplus"
+  erasmusplus2:
+    title: "Erasmus+"
+    repository_url: "https://github.com/ec-europa/erasmusplus2-reference"
+    production_url: "https://ec.europa.eu/programmes/erasmus-plus"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/"
+  ersc:
+    title: "European Road Safety Charter"
+    repository_url: "https://github.com/ec-europa/ersc-reference"
+    production_url: "https://webgate.ec.europa.eu/multisite/ersc"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/"
+  esf-tc:
+    title: "European Social Fund - Transnationality"
+    repository_url: "https://github.com/ec-europa/esf-tc-reference"
+    production_url: "https://ec.europa.eu/esf/transnationality"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/esf"
+  euandme:
+    title: "EU AND ME"
+    repository_url: "https://github.com/ec-europa/euandme-reference"
+    production_url: "https://webgate.ec.europa.eu/multisite/euandme"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/euandme"
+  eu-aid:
+    title: "European Civil Protection and Humanitarian Aid Operations"
+    repository_url: "https://github.com/ec-europa/eu-aid-reference"
+    production_url: "https://webgate.ec.europa.eu/echo/eu-aid-volunteers_en"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/eu-aid"
+  eu-invest:
+    title: "EU investment"
+    repository_url: "https://github.com/ec-europa/eu-invest-reference"
+    production_url: "https://europa.eu/investeu"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/investeu"
+  euetfa:
+    title: "EU Emergency Trust Fund for Africa"
+    repository_url: "https://github.com/ec-europa/euetfa-reference"
+    production_url: "https://webgate.ec.europa.eu/multisite/euetfa"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/euetfa"
+  eufinance:
+    title: "EU finance"
+    repository_url: "https://github.com/ec-europa/eufinance-reference"
+    production_url: "http://europa.eu/youreurope/business/funding-grants/access-to-finance/search"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/eufinance"
+  euip:
+    title: "EU Immigration Portal"
+    repository_url: "https://github.com/ec-europa/euip-reference"
+    production_url: "https://webgate.ec.europa.eu/multisite/immigration"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/"
+  euprojects:
+    title: "EU Funded Projects"
+    repository_url: "https://github.com/ec-europa/euprojects-reference"
+    production_url: "https://ec.europa.eu/budget/euprojects"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/euprojects"
+  europaeu:
+    title: "Official website of the European Union"
+    repository_url: "https://github.com/ec-europa/europaeu-reference"
+    production_url: "https://europa.eu/european-union"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/europaeu"
+  europahub:
+    title: "Europa Hub"
+    repository_url: "https://github.com/ec-europa/europahub-reference"
+    production_url: "https://webgate.ec.europa.eu/europa-hub/"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/europahub"
+  eurydice:
+    title: "EACEA National Policies Platform (Eurydice)"
+    repository_url: "https://github.com/ec-europa/eurydice-reference"
+    production_url: "https://eacea.ec.europa.eu/national-policies/eurydice"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/eurydice"
+  eusdgs:
+    title: "Sustainable Development Goals"
+    repository_url: "https://github.com/ec-europa/eusdgs-reference"
+    production_url: "https://ec.europa.eu/sustainable-development"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/eusdgs"
+  eusinglesky:
+    title: "Single European Sky Performance"
+    repository_url: "https://github.com/ec-europa/eusinglesky-reference"
+    production_url: "https://webgate.ec.europa.eu/eusinglesky"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/eusinglesky"
+  euvp:
+    title: "European Union Visitors Programme"
+    repository_url: "https://github.com/ec-europa/euvp-reference"
+    production_url: "https://europa.eu/euvp"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/euvp"
+  ewrc:
+    title: "European Week of Regions and Cities"
+    repository_url: "https://github.com/ec-europa/ewrc-reference"
+    production_url: "http://ec.europa.eu/regional_policy/regions-and-cities"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/ewrc/"
+  expert-pane:
+    title: "Health and Food Safety - Expert Panel on Effective ways of Investing in Health"
+    repository_url: "https://github.com/ec-europa/expert-pane-reference"
+    production_url: "https://ec.europa.eu/health/expert_panel"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/expertpanel"
+  eych:
+    title: "European Year of Cultural Heritage"
+    repository_url: "https://github.com/ec-europa/eych-reference"
+    production_url: "https://webgate.ec.europa.eu/multisite/eych"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/eych"
+  farnet:
+    title: "FARNET Fisheries Areas Network"
+    repository_url: "https://github.com/ec-europa/farnet-reference"
+    production_url: "https://webgate.ec.europa.eu/fpfis/cms/farnet2"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/farnet"
+  food-animals-plants:
+    title: "Food Safety"
+    repository_url: "https://github.com/ec-europa/food-animals-plants-reference"
+    production_url: "https://ec.europa.eu/food"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/food"
+  fpi:
+    title: "Service for Foreign Policy Instruments"
+    repository_url: "https://github.com/ec-europa/fpi-reference"
+    production_url: "http://ec.europa.eu/dgs/fpi"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/fpi"
+  fra:
+    title: "European Union Agency for Fundamental Rights"
+    repository_url: "https://github.com/ec-europa/fra-reference"
+    production_url: "https://webgate.ec.europa.eu/multisite/fra"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/fra"
+  futurium:
+    title: "Platform dedicated to European citizens for discussing EU policies"
+    repository_url: "https://github.com/ec-europa/futurium-reference"
+    production_url: "https://ec.europa.eu/futurium"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/futurium"
+  globalstrategy:
+    title: "EU Global Strategy"
+    repository_url: "https://github.com/ec-europa/globalstrategy-reference"
+    production_url: "https://europa.eu/globalstrategy"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/globalstrategy"
+  grid-communications-toolkit:
+    title: "Grid Infrastructure Communication Toolkit"
+    repository_url: "https://github.com/ec-europa/grid-communications-toolkit-reference"
+    production_url: "https://webgate.ec.europa.eu/multisite/gridcommunicationstoolkit"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/gridcommunicationstoolkit"
+  growth:
+    title: "GROWTH Internal Market, Industry, Entrepreneurship and SMEs"
+    repository_url: "https://github.com/ec-europa/growth-reference"
+    production_url: "https://ec.europa.eu/growth"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/growth"
+  health:
+    title: "Public Health"
+    repository_url: "https://github.com/ec-europa/health-reference"
+    production_url: "https://ec.europa.eu/health"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/health"
+  home-affairs:
+    title: "Migration and Home Affairs"
+    repository_url: "https://github.com/ec-europa/home-affairs-reference"
+    production_url: "https://webgate.ec.europa.eu/multisite/homeaffairs"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/homeaffairs"
+  horizon2020:
+    title: "Horizon 2020 - EU Research and Innovation programme"
+    repository_url: "https://github.com/ec-europa/horizon2020-reference"
+    production_url: "https://ec.europa.eu/programmes/horizon2020"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/horizon2020"
+  hr-contact:
+    title: "HR-CONTACT"
+    repository_url: "https://github.com/ec-europa/hr-contact-reference"
+    production_url: "https://webgate.ec.europa.eu/multisite/hr-contact"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/hr-contact"
+  iee-projects:
+    title: "Intelligent Energy Europe"
+    repository_url: "https://github.com/ec-europa/iee-projects-reference"
+    production_url: "https://ec.europa.eu/energy/intelligent/projects"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/iee-projects"
+  inforegio:
+    title: "INFOREGIO"
+    repository_url: "https://github.com/ec-europa/inforegio-reference"
+    production_url: "https://webgate.ec.europa.eu/multisite/inforegio"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/inforegio"
+  inea:
+    title: "Innovation and Networks Executive Agency"
+    repository_url: "https://github.com/ec-europa/inea-reference"
+    production_url: "https://ec.europa.eu/inea"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/inea"
+  inseparable:
+    title: "Fisheries - Inseparable"
+    repository_url: "https://github.com/ec-europa/inseparable-reference"
+    production_url: "https://ec.europa.eu/fisheries/inseparable"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/inseparable"
+  isa:
+    title: "Interoperability solutions for public administrations, businesses and citizens"
+    repository_url: "https://github.com/ec-europa/isa-reference"
+    production_url: "https://ec.europa.eu/isa2"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/isa"
+  jrccties:
+    title: "JRC Science Hub Communities"
+    repository_url: "https://github.com/ec-europa/jrccties-reference"
+    production_url: "https://ec.europa.eu/jrc/communities"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/jrccties"
+  jrcsh:
+    title: "EU Science Hub"
+    repository_url: "https://github.com/ec-europa/jrcsh-reference"
+    production_url: "https://ec.europa.eu/jrc"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/jrcsh"
+  kci:
+    title: "Knowledge Centre on Interpretation"
+    repository_url: "https://github.com/ec-europa/kci-reference"
+    production_url: ""
+    playground_url: ""
+  know4pol:
+    title: "Knowledge for policy"
+    repository_url: "https://github.com/ec-europa/know4pol-reference"
+    production_url: "https://webgate.ec.europa.eu/multisite/know4pol"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/know4pol"
+  mare-emd:
+    title: "European Maritime Day"
+    repository_url: "https://github.com/ec-europa/mare-emd-reference"
+    production_url: "https://ec.europa.eu/maritimeaffairs/maritimeday"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/mare-emd"
+  mare-magaz:
+    title: "Maritime Affairs and Fisheries - Online magazine"
+    repository_url: "https://github.com/ec-europa/mare-magaz-reference"
+    production_url: "https://ec.europa.eu/dgs/maritimeaffairs_fisheries/magazine"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/mare-magaz"
+  mariecurie-actions:
+    title: "Marie Skłodowska-Curie Actions"
+    repository_url: "https://github.com/ec-europa/mariecurie-actions-reference"
+    production_url: "https://ec.europa.eu/research/mariecurieactions"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/mariecurie"
+  mariecurie2:
+    title: "Marie Skłodowska-Curie Actions"
+    repository_url: "https://github.com/ec-europa/mariecurie2-reference"
+    production_url: "https://webgate.ec.europa.eu/multisite/mariecurie2"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/mariecurie2"
+  maritime-affaires:
+    title: "Maritime affairs"
+    repository_url: "https://github.com/ec-europa/maritime-affaires-reference"
+    production_url: "https://ec.europa.eu/maritimeaffairs"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/maritimeaffairs"
+  maritimeforum:
+    title: "Maritime Forum"
+    repository_url: "https://github.com/ec-europa/maritimeforum-reference"
+    production_url: "https://webgate.ec.europa.eu/maritimeforum"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/maritimeforum"
+  microdata:
+    title: "Microdata Access Workflow Tool"
+    repository_url: "https://github.com/ec-europa/microdata-reference"
+    production_url: "https://webgate.ec.europa.eu/multisite/microdata"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/microdata"
+  migr-fisheries:
+    title: "Fisheries"
+    repository_url: "https://github.com/ec-europa/migr-fisheries-reference"
+    production_url: "https://ec.europa.eu/fisheries"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/fisheries"
+  migr-move:
+    title: "Mobility and Transport"
+    repository_url: "https://github.com/ec-europa/migr-move-reference"
+    production_url: "https://ec.europa.eu/transport"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/transport"
+  mossportal:
+    title: "Moss Portal - Taxation and customs union"
+    repository_url: "https://github.com/ec-europa/mossportal-reference"
+    production_url: "https://webgate.ec.europa.eu/multisite/mossportal"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/mossportal"
+  n-lex-migration:
+    title: "N-Lex - A common gateway to National Law"
+    repository_url: "https://github.com/ec-europa/n-lex-migration-reference"
+    production_url: "https://webgate.ec.europa.eu/multisite/n-lex-migration"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/n-lex-migration"
+  near:
+    title: "European Neighbourhood Policy And Enlargement Negotiations"
+    repository_url: "https://github.com/ec-europa/near-reference"
+    production_url: "https://ec.europa.eu/neighbourhood-enlargement"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/near"
+  newsroom:
+    title: "European Union Newsroom"
+    repository_url: "https://github.com/ec-europa/newsroom-reference"
+    production_url: "https://europa.eu/newsroom"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/newsroom"
+  oil-mit:
+    title: "OIL - MIT"
+    repository_url: "https://github.com/ec-europa/oil-mit-reference"
+    production_url: "https://ec.europa.eu/infrastructure-logistics/mit"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/oil-mit"
+  organic:
+    title: "Agriculture and rural development - Organic Farming"
+    repository_url: "https://github.com/ec-europa/organic-reference"
+    production_url: "https://ec.europa.eu/agriculture/organic"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/organic"
+  pics:
+    title: "DG TAXUD Programmes Information and Collaboration Space"
+    repository_url: "https://github.com/ec-europa/pics-reference"
+    production_url: "https://webgate.ec.europa.eu/pics"
+    playground_url: "https://webgate.ec.europa.eu/fpfis/playground-pics"
+  pmo-contact:
+    title: "PMO Contact"
+    repository_url: "https://github.com/ec-europa/pmo-contact-reference"
+    production_url: "https://ec.europa.eu/pmo/contact"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/pmocontact"
+  ppcm:
+    title: "Participant Portal Content Management"
+    repository_url: "https://github.com/ec-europa/ppcm-reference"
+    production_url: "https://intragate.ec.europa.eu/research/ppcm"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/ppcm"
+  primeinfrastructure:
+    title: "Platform of Rail Infrastructure Managers in Europe"
+    repository_url: "https://github.com/ec-europa/primeinfrastructure-reference"
+    production_url: "https://webgate.ec.europa.eu/multisite/primeinfrastructure"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/primeinfrastructure"
+  publicare:
+    title: "PubliCare - The Publications Office website for its customers"
+    repository_url: "https://github.com/ec-europa/publicare-reference"
+    production_url: "https://webgate.ec.europa.eu/multisite/publicare"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/publicare"
+  rawmaterials:
+    title: "The European Innovation Partnership (EIP) on Raw Materials"
+    repository_url: "https://github.com/ec-europa/rawmaterials-reference"
+    production_url: "https://ec.europa.eu/growth/tools-databases/eip-raw-materials/"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/rawmaterials"
+  reps-austria:
+    title: "Representation in Austria"
+    repository_url: "https://github.com/ec-europa/reps-austria-reference"
+    production_url: "https://ec.europa.eu/austria"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/austria"
+  reps-barcelona:
+    title: "Representation in Barcelona"
+    repository_url: "https://github.com/ec-europa/reps-barcelona-reference"
+    production_url: "https://ec.europa.eu/spain/barcelona"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/barcelona"
+  reps-belgium:
+    title: "Representation in Belgium"
+    repository_url: "https://github.com/ec-europa/reps-belgium-reference"
+    production_url: "https://ec.europa.eu/belgium"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/belgium"
+  reps-bulgaria:
+    title: "Representation in Bulgaria"
+    repository_url: "https://github.com/ec-europa/reps-bulgaria-reference"
+    production_url: "https://ec.europa.eu/bulgaria"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/bulgaria"
+  reps-ceskarepublika:
+    title: "Representation in Czech Republic"
+    repository_url: "https://github.com/ec-europa/reps-ceskarepublika-reference"
+    production_url: "https://ec.europa.eu/czech-republic"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/czech-republic"
+  reps-croatia:
+    title: "Representation in Croatia"
+    repository_url: "https://github.com/ec-europa/reps-croatia-reference"
+    production_url: "https://ec.europa.eu/croatia"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/croatia"
+  reps-cyprus:
+    title: "Representation in Cyprus"
+    repository_url: "https://github.com/ec-europa/reps-cyprus-reference"
+    production_url: "https://ec.europa.eu/cyprus"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/cyprus"
+  reps-denmark:
+    title: "Representation in Denmark"
+    repository_url: "https://github.com/ec-europa/reps-denmark-reference"
+    production_url: "https://ec.europa.eu/denmark"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/denmark"
+  reps-deutschland:
+    title: "Representation in Germany"
+    repository_url: "https://github.com/ec-europa/reps-deutschland-reference"
+    production_url: "https://ec.europa.eu/germany"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/deutschland"
+  reps-estonia:
+    title: "Representation in Estonia"
+    repository_url: "https://github.com/ec-europa/reps-estonia-reference"
+    production_url: "https://ec.europa.eu/estonia"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/estonia"
+  reps-finland:
+    title: "Representation in Finland"
+    repository_url: "https://github.com/ec-europa/reps-finland-reference"
+    production_url: "https://ec.europa.eu/finland"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/finland"
+  reps-france:
+    title: "Representation in France"
+    repository_url: "https://github.com/ec-europa/reps-france-reference"
+    production_url: "https://ec.europa.eu/france"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/france"
+  reps-greece:
+    title: "Representation in Greece"
+    repository_url: "https://github.com/ec-europa/reps-greece-reference"
+    production_url: "https://webgate.ec.europa.eu/multisite/greece"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/greece"
+  reps-hungary:
+    title: "Representation in Hungary"
+    repository_url: "https://github.com/ec-europa/reps-hungary-reference"
+    production_url: "https://ec.europa.eu/hungary"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/hungary"
+  reps-ireland:
+    title: "Representation in Ireland"
+    repository_url: "https://github.com/ec-europa/reps-ireland-reference"
+    production_url: "https://ec.europa.eu/ireland"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/ireland"
+  reps-italy:
+    title: "Representation in Italy"
+    repository_url: "https://github.com/ec-europa/reps-italy-reference"
+    production_url: "https://ec.europa.eu/italy"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/italy"
+  reps-latvia:
+    title: "Representation in Latvia"
+    repository_url: "https://github.com/ec-europa/reps-latvia-reference"
+    production_url: "https://ec.europa.eu/latvia"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/latvia"
+  reps-lietuva:
+    title: "Representation in Lithuania"
+    repository_url: "https://github.com/ec-europa/reps-lietuva-reference"
+    production_url: "https://ec.europa.eu/lithuania"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/lithuania"
+  reps-luxembourg:
+    title: "Representation in Luxembourg"
+    repository_url: "https://github.com/ec-europa/reps-luxembourg-reference"
+    production_url: "https://ec.europa.eu/luxembourg"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/luxembourg"
+  reps-malta:
+    title: "Representation in Malta"
+    repository_url: "https://github.com/ec-europa/reps-malta-reference"
+    production_url: "https://ec.europa.eu/malta"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/malta"
+  reps-netherlands:
+    title: "Representation in Netherlands"
+    repository_url: "https://github.com/ec-europa/reps-netherlands-reference"
+    production_url: "https://ec.europa.eu/netherlands"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/netherlands"
+  reps-polska:
+    title: "Representation in Poland"
+    repository_url: "https://github.com/ec-europa/reps-polska-reference"
+    production_url: "https://ec.europa.eu/poland"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/poland"
+  reps-portugal:
+    title: "Representation in Portugal"
+    repository_url: "https://github.com/ec-europa/reps-portugal-reference"
+    production_url: "https://ec.europa.eu/portugal"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/portugal"
+  reps-romania:
+    title: "Representation in Romania"
+    repository_url: "https://github.com/ec-europa/reps-romania-reference"
+    production_url: "https://ec.europa.eu/romania"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/romania"
+  reps-slovakia:
+    title: "Representation in Slovakia"
+    repository_url: "https://github.com/ec-europa/reps-slovakia-reference"
+    production_url: "https://ec.europa.eu/slovakia"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/slovaskia"
+  reps-slovenia:
+    title: "Representation in Slovenia"
+    repository_url: "https://github.com/ec-europa/reps-slovenia-reference"
+    production_url: "https://ec.europa.eu/slovenia"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/slovenia"
+  reps-spain:
+    title: "Representation in Spain"
+    repository_url: "https://github.com/ec-europa/reps-spain-reference"
+    production_url: "https://ec.europa.eu/spain"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/spain"
+  reps-sweden:
+    title: "Representation in Sweden"
+    repository_url: "https://github.com/ec-europa/reps-sweden-reference"
+    production_url: "https://ec.europa.eu/sweden"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/sweden"
+  reps-unitedkingdom:
+    title: "Representation in United Kingdom"
+    repository_url: "https://github.com/ec-europa/reps-unitedkingdom-reference"
+    production_url: "https://ec.europa.eu/unitedkingdom"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/unitedkingdom"
+  road-safety:
+    title: "Mobility and Transport - Road Safety"
+    repository_url: "https://github.com/ec-europa/road-safety-reference"
+    production_url: "https://ec.europa.eu/transport/road_safety"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/roadsafety"
+  roma:
+    title: "ROMA Integration Measures Reporting Tool"
+    repository_url: "https://github.com/ec-europa/roma-reference"
+    production_url: "https://webgate.ec.europa.eu/roma"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/roma"
+  safety-alerts:
+    title: "Safety Alerts IT tool"
+    repository_url: "https://github.com/ec-europa/safety_alerts-reference"
+    production_url: "https://webgate.ec.europa.eu/multisite/safetyalerts"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/safetyalerts"
+  scicnet:
+    title: "SCICNET"
+    repository_url: "https://github.com/ec-europa/scicnet-reference"
+    production_url: "https://webgate.ec.europa.eu/multisite/scicnet"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/scicnet"
+  service-catalogue:
+    title: "DIGIT Service Catalogue"
+    repository_url: "https://github.com/ec-europa/service-catalogue-reference"
+    production_url: "https://www.cc.cec/itservices"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/service-catalogue"
+  sfc2014:
+    title: "System for Fund Management in the European Union"
+    repository_url: "https://github.com/ec-europa/sfc2014-reference"
+    production_url: "https://ec.europa.eu/sfc"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/sfc2014"
+  speech-repository:
+    title: "Speech Repository"
+    repository_url: "https://github.com/ec-europa/speech-repository-reference"
+    production_url: "https://webgate.ec.europa.eu/sr"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/sr"
+  sport:
+    title: "SPORT - Supporting fair play and cooperation in sport"
+    repository_url: "https://github.com/ec-europa/sport-reference"
+    production_url: "https://ec.europa.eu/sport"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/sport"
+  srb:
+    title: "Single Resolution Board"
+    repository_url: "https://github.com/ec-europa/srb-reference"
+    production_url: "https://srb.europa.eu/"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/srbsite"
+  stages:
+    title: "Traineeships"
+    repository_url: "https://github.com/ec-europa/stages-reference"
+    production_url: "https://ec.europa.eu/stages"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/stages"
+  stages2:
+    title: "Traineeships"
+    repository_url: "https://github.com/ec-europa/stages2-reference"
+    production_url: "https://ec.europa.eu/stages"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/stages"
+  taxedu:
+    title: "TAXEDU web-portal"
+    repository_url: "https://github.com/ec-europa/taxedu-reference"
+    production_url: "https://webgate.ec.europa.eu/multisite/taxedu"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/taxedu"
+  taxud:
+    title: "Taxation and Customs Union"
+    repository_url: "https://github.com/ec-europa/taxud-reference"
+    production_url: "https://ec.europa.eu/taxation_customs"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/taxation"
+  teachers-corner:
+    title: "Teachers'' Corner"
+    repository_url: "https://github.com/ec-europa/teachers-corner-reference"
+    production_url: "https://europa.eu/teachers-corner"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/teacherscorner"
+  vocational-skills-week:
+    title: "European Vocational Skills Week"
+    repository_url: "https://github.com/ec-europa/vocational-skills-week-reference"
+    production_url: "https://ec.europa.eu/social/vocational-skills-week"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/"
+  youthwiki:
+    title: "Youth Wiki"
+    repository_url: "https://github.com/ec-europa/youthwiki-reference"
+    production_url: "https://eacea.ec.europa.eu/national-policies"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/youthwiki"
+  youth:
+    title: "YOUTH - Supporting youth actions in Europe"
+    repository_url: "https://github.com/ec-europa/youth-reference"
+    production_url: "https://ec.europa.eu/youth"
+    playground_url: "https://webgate.ec.europa.eu/playground-multisite/youth"
