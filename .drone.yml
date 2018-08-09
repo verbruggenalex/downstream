@@ -23,7 +23,60 @@ pipeline:
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
 
+  agm-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-1
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/agm-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/agm-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  agri-eip-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-1
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/agri-eip-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/agri-eip-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  amr-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-2
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/amr-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/amr-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
+  anti-fraud-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-2
+    commands:
+      - ./vendor/bin/run project:create-project --repository=ec-europa/anti-fraud-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/anti-fraud-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
 matrix:
   MACHINE_NAME:
     - machine-1
+    - machine-2
 
