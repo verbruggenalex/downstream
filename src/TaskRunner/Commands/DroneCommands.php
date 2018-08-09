@@ -49,7 +49,7 @@ class DroneCommands extends AbstractCommands implements FilesystemAwareInterface
 
         $php_version = 71;
         $drone = $this->taskWriteToFile('.drone.yml')
-          ->textFromFile('config/toolkit.drone.yml')
+          ->textFromFile('config/drone.yml')
           ->place('php_version', $php_version);
 
         $machine_number = 1;
