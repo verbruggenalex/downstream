@@ -82,7 +82,7 @@ class DroneCommands extends AbstractCommands implements FilesystemAwareInterface
          ->exec('git remote set-url origin https://' . $github['token'] . '@github.com/verbruggenalex/downstream.git')
          ->exec('git config --global user.email ' . $github['email'])
          ->exec('git config --global user.name ' . $github['name'])
-         ->add('.drone.yml')->commit('Start new pipe.')->push('origin', $project['pipeline'])->run();
+         ->add('.drone.yml')->commit('Start new pipe.')->push('origin', $pipeline)->run();
     }
 
     /**
