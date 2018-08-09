@@ -25,6 +25,14 @@ class DroneCommands extends AbstractCommands implements FilesystemAwareInterface
     use NuvoleWebTasks\Config\loadTasks;
 
     /**
+     * {@inheritdoc}
+     */
+    public function getConfigurationFile()
+    {
+        return __DIR__.'/../../../config/inventory.yml';
+    }
+
+    /**
      * @command drone:generate-yml
      */
     public function generateYml()
@@ -33,10 +41,11 @@ class DroneCommands extends AbstractCommands implements FilesystemAwareInterface
         $drone = $this->taskWriteToFile('.drone.yml')
           ->textFromFile('config/toolkit.drone.yml')
           ->place('php_version', $php_version);
-        $repositories = $this->getConfig()->get('repositories');
-        foreach ($repositories as $repo) {
-            $owner = explode('/', $repo)[0];
-            $name = explode('/', $repo)[1];
+        $inventory = $this->getConfig()->get('inventory');
+        $projects = $this->getConfig()->get('projects');
+        foreach ($projects as $project) {
+            $owner = explode('/', $inventory[$project]['repository_url'])[3];
+            $name = explode('/', $inventory[$project]['repository_url'])[4];
             $drone->textFromFile('config/toolkit.phpcs.yml')
             ->place('php_version', $php_version)
             ->place('repo_owner', $owner)
