@@ -25,30 +25,48 @@ class DroneCommands extends AbstractCommands implements FilesystemAwareInterface
     use NuvoleWebTasks\Config\loadTasks;
 
     /**
+     * {@inheritdoc}
+     */
+    public function getConfigurationFile()
+    {
+        return __DIR__.'/../../../config/inventory.yml';
+    }
+
+    /**
      * @command project:generate-drone
      */
     public function generateDrone(array $options = [
-      'project.repositories' => InputOption::VALUE_REQUIRED,
-      'project.machines' => InputOption::VALUE_REQUIRED,
-      'project.pipeline' => InputOption::VALUE_REQUIRED,
+      'projects' => InputOption::VALUE_REQUIRED,
+      'machines' => InputOption::VALUE_REQUIRED,
+      'pipeline' => InputOption::VALUE_REQUIRED,
     ])
     {
-        $project = $this->getConfig()->get('project');
+        $inventory = $this->getConfig()->get('inventory');
+        $projects = $this->getConfig()->get('projects');
+        $machines = $this->getConfig()->get('machines');
+        $pipeline = $this->getConfig()->get('pipeline');
         $github = $this->getConfig()->get('github');
+
+        $this->taskGitStack()
+            ->stopOnFail()
+            ->exec('git remote set-url origin https://' . $github['token'] . '@github.com/verbruggenalex/downstream.git')
+            ->exec('git config --global user.email ' . $github['email'])
+            ->exec('git config --global user.name ' . $github['name'])
+            ->checkout($pipeline)->merge('origin/master')->run();
+
         $php_version = 71;
         $drone = $this->taskWriteToFile('.drone.yml')
           ->textFromFile('config/drone.yml')
           ->place('php_version', $php_version);
 
-        $machines = $project['machines'];
         $machine_number = 1;
-        $repos_per_machine =  round(count($project['repositories']) / $machines);
+        $repos_per_machine =  round(count($projects) / $machines);
 
-        foreach ($project['repositories'] as $number => $repo) {
+        foreach ($projects as $number => $project) {
             $machine_number = ($number >= $machine_number * $repos_per_machine) ? $machine_number + 1 : $machine_number;
-            $owner = explode('/', $repo)[0];
-            $name = explode('/', $repo)[1];
-            $drone->textFromFile('config/' . $project['pipeline'] . '.yml')
+            $owner = explode('/', $inventory[$project]['repository_url'])[3];
+            $name = explode('/', $inventory[$project]['repository_url'])[4];
+            $drone->textFromFile('config/' . $pipeline . '.yml')
             ->place('machine_name', 'machine-' . $machine_number)
             ->place('php_version', $php_version)
             ->place('repo_owner', $owner)
@@ -63,15 +81,40 @@ class DroneCommands extends AbstractCommands implements FilesystemAwareInterface
             }
             $drone->line('');
         }
-        $this->taskGitStack()->stopOnFail()->checkout($project['pipeline'])->merge('master')->run();
 
         $drone->run();
+        $this->taskGitStack()
+            ->stopOnFail()
+            ->add('.drone.yml')
+            ->commit('Start new pipe.')
+            ->push('origin', $pipeline)
+            ->run();
+    }
 
-        $this->taskGitStack()->stopOnFail()
-         ->exec('git remote set-url origin https://' . $github['token'] . '@github.com/verbruggenalex/downstream.git')
-         ->exec('git config --global user.email ' . $github['email'])
-         ->exec('git config --global user.name ' . $github['name'])
-         ->add('.drone.yml')->commit('Start new pipe.')->push('origin', $project['pipeline'])->run();
+    /**
+     * @command project:generate-backstop
+     *
+     * @option project   Project id.
+     *
+     * @param array $options
+     */
+    public function generateBackstopJsonFromInventory(array $options = [
+      'project' => InputOption::VALUE_REQUIRED,
+    ])
+    {
+        // Configuration.
+        $inventory = $this->getConfig()->get('inventory');
+        $repodir = $this->getConfig()->get('project.repodir');
+        $projectId = $options['project'];
+        $workingDir = $this->getConfig()->get('runner.working_dir');
+        $projectBasedir = $repodir . '/' . $projectRepository;
+        $backstopJsonFile = file_get_contents('config/backstop.json');
+        $backstopJson = json_decode($backstopJsonFile, true);
+        // Merge url into the default scenario.
+        $defaultScenario = array_merge($backstopJson['scenarios'][0], array(
+            'label' => $inventory[$projectId]['title'],
+            'url' => $inventory[$projectId]['production_url'],
+        ));
     }
 
     /**
