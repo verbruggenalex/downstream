@@ -23,7 +23,7 @@ pipeline:
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
 
-  chafea-reference:
+  devco-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
     when:
@@ -31,12 +31,12 @@ pipeline:
       matrix:
         MACHINE_NAME: machine-1
     commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/chafea-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/chafea-reference --ansi
+      - ./vendor/bin/run project:create-project --repository=ec-europa/devco-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/devco-reference --ansi
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
 
-  cim-reference:
+  digit-ict-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
     when:
@@ -44,12 +44,12 @@ pipeline:
       matrix:
         MACHINE_NAME: machine-1
     commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/cim-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/cim-reference --ansi
+      - ./vendor/bin/run project:create-project --repository=ec-europa/digit-ict-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/digit-ict-reference --ansi
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
 
-  clima-reference:
+  digital-agenda-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
     when:
@@ -57,8 +57,8 @@ pipeline:
       matrix:
         MACHINE_NAME: machine-1
     commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/clima-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/clima-reference --ansi
+      - ./vendor/bin/run project:create-project --repository=ec-europa/digital-agenda-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/digital-agenda-reference --ansi
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
 
