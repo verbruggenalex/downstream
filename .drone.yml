@@ -23,6 +23,19 @@ pipeline:
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
 
+  daphne-toolkit-reference:
+    image: fpfis/php71-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: machine-1
+    commands:
+      - timeout 6Os ./vendor/bin/run project:create-project --repository=ec-europa/daphne-toolkit-reference --ansi
+      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/daphne-toolkit-reference --ansi
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+
   devco-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
@@ -31,7 +44,7 @@ pipeline:
       matrix:
         MACHINE_NAME: machine-1
     commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/devco-reference --ansi
+      - timeout 6Os ./vendor/bin/run project:create-project --repository=ec-europa/devco-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/devco-reference --ansi
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
@@ -44,7 +57,7 @@ pipeline:
       matrix:
         MACHINE_NAME: machine-1
     commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/digit-ict-reference --ansi
+      - timeout 6Os ./vendor/bin/run project:create-project --repository=ec-europa/digit-ict-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/digit-ict-reference --ansi
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
@@ -57,7 +70,7 @@ pipeline:
       matrix:
         MACHINE_NAME: machine-1
     commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/digital-agenda-reference --ansi
+      - timeout 6Os ./vendor/bin/run project:create-project --repository=ec-europa/digital-agenda-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/digital-agenda-reference --ansi
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
@@ -70,7 +83,7 @@ pipeline:
       matrix:
         MACHINE_NAME: machine-1
     commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/dm-trainet-reference --ansi
+      - timeout 6Os ./vendor/bin/run project:create-project --repository=ec-europa/dm-trainet-reference --ansi
       - ./vendor/bin/run project:run-phpcs --repository=ec-europa/dm-trainet-reference --ansi
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
