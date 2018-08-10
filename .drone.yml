@@ -62,19 +62,6 @@ pipeline:
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
 
-  dm-trainet-reference:
-    image: fpfis/php71-build
-    secrets: [ github_api_token ]
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-1
-    commands:
-      - ./vendor/bin/run project:create-project --repository=ec-europa/dm-trainet-reference --ansi
-      - ./vendor/bin/run project:run-phpcs --repository=ec-europa/dm-trainet-reference --ansi
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-
 matrix:
   MACHINE_NAME:
     - machine-1
