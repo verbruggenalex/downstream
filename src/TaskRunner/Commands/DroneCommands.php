@@ -47,6 +47,8 @@ class DroneCommands extends AbstractCommands implements FilesystemAwareInterface
         $pipeline = $this->getConfig()->get('pipeline');
         $github = $this->getConfig()->get('github');
 
+        $this->taskGitStack()->stopOnFail()->checkout($pipeline)->merge('master')->run();
+
         $php_version = 71;
         $drone = $this->taskWriteToFile('.drone.yml')
           ->textFromFile('config/drone.yml')
@@ -74,7 +76,6 @@ class DroneCommands extends AbstractCommands implements FilesystemAwareInterface
             }
             $drone->line('');
         }
-        $this->taskGitStack()->stopOnFail()->checkout($pipeline)->merge('master')->run();
 
         $drone->run();
 
@@ -83,6 +84,32 @@ class DroneCommands extends AbstractCommands implements FilesystemAwareInterface
          ->exec('git config --global user.email ' . $github['email'])
          ->exec('git config --global user.name ' . $github['name'])
          ->add('.drone.yml')->commit('Start new pipe.')->push('origin', $pipeline)->run();
+    }
+
+    /**
+     * @command project:generate-backstop
+     *
+     * @option project   Project id.
+     *
+     * @param array $options
+     */
+    public function generateBackstopJsonFromInventory(array $options = [
+      'project' => InputOption::VALUE_REQUIRED,
+    ])
+    {
+        // Configuration.
+        $inventory = $this->getConfig()->get('inventory');
+        $repodir = $this->getConfig()->get('project.repodir');
+        $projectId = $options['project'];
+        $workingDir = $this->getConfig()->get('runner.working_dir');
+        $projectBasedir = $repodir . '/' . $projectRepository;
+        $backstopJsonFile = file_get_contents('config/backstop.json');
+        $backstopJson = json_decode($backstopJsonFile, true);
+        // Merge url into the default scenario.
+        $defaultScenario = array_merge($backstopJson['scenarios'][0], array(
+            'label' => $inventory[$projectId]['title'],
+            'url' => $inventory[$projectId]['production_url'],
+        ));
     }
 
     /**
