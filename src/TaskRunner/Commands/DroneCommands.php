@@ -52,7 +52,7 @@ class DroneCommands extends AbstractCommands implements FilesystemAwareInterface
             ->exec('git remote set-url origin https://' . $github['token'] . '@github.com/verbruggenalex/downstream.git')
             ->exec('git config --global user.email ' . $github['email'])
             ->exec('git config --global user.name ' . $github['name'])
-            ->checkout($pipeline)->merge('master')->run();
+            ->checkout($pipeline)->merge('origin/master')->run();
 
         $php_version = 71;
         $drone = $this->taskWriteToFile('.drone.yml')
