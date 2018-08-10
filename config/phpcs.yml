@@ -6,7 +6,7 @@
       matrix:
         MACHINE_NAME: {machine_name}
     commands:
-      - timeout 6Os ./vendor/bin/run project:create-project --repository={repo_owner}/{repo_name} --ansi
+      - timeout 6O ./vendor/bin/run project:create-project --repository={repo_owner}/{repo_name} --ansi
       - ./vendor/bin/run project:run-phpcs --repository={repo_owner}/{repo_name} --ansi
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
