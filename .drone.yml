@@ -32,7 +32,7 @@ pipeline:
         MACHINE_NAME: machine-1
     commands:
       - timeout 60 ./vendor/bin/run project:create-project --repository=ec-europa/agm-reference --ansi
-      - ./vendor/bin/run toolkit:build-template --template=ec-europa.platform.2 --ansi --progress-delay=300
+      - mkdir template && ./vendor/bin/run toolkit:build-template --template=ec-europa.platform.2 --ansi --progress-delay=300
       - ./vendor/bin/run drupal:make-to-composer --make-file=repositories/ec-europa/agm-reference/resources/site.make --ansi --progress-delay=300
       - ./vendor/bin/run toolkit:install-template --ansi --progress-delay=300
     volumes:
@@ -47,7 +47,7 @@ pipeline:
         MACHINE_NAME: machine-1
     commands:
       - timeout 60 ./vendor/bin/run project:create-project --repository=ec-europa/agri-eip-reference --ansi
-      - ./vendor/bin/run toolkit:build-template --template=ec-europa.platform.2 --ansi --progress-delay=300
+      - mkdir template && ./vendor/bin/run toolkit:build-template --template=ec-europa.platform.2 --ansi --progress-delay=300
       - ./vendor/bin/run drupal:make-to-composer --make-file=repositories/ec-europa/agri-eip-reference/resources/site.make --ansi --progress-delay=300
       - ./vendor/bin/run toolkit:install-template --ansi --progress-delay=300
     volumes:
