@@ -264,21 +264,11 @@ inventory:
     repository_url: "https://github.com/ec-europa/epso-reference"
     production_url: "https://epso.europa.eu"
     playground_url: "https://webgate.ec.europa.eu/playground-multisite/epso"
-  epsocontact:
-    title: "European Personnel Selection Office"
-    repository_url: "https://github.com/ec-europa/epsocontact-reference"
-    production_url: "https://epso.europa.eu"
-    playground_url: "https://webgate.ec.europa.eu/playground-multisite/epsocontact"
   era:
     title: "European Union Agency for Railways"
     repository_url: "https://github.com/ec-europa/era-reference"
     production_url: "https://webgate.ec.europa.eu/multisite/era"
     playground_url: "https://webgate.ec.europa.eu/playground-multisite/era"
-  erasmusplus:
-    title: "Erasmus+"
-    repository_url: "https://github.com/ec-europa/erasmusplus-reference"
-    production_url: "https://ec.europa.eu/programmes/erasmus-plus"
-    playground_url: "https://webgate.ec.europa.eu/playground-multisite/erasmusplus"
   erasmusplus2:
     title: "Erasmus+"
     repository_url: "https://github.com/ec-europa/erasmusplus2-reference"

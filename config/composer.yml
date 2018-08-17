@@ -1,0 +1,15 @@
+  {repo_name}:
+    image: fpfis/php{php_version}-build
+    secrets: [ github_api_token ]
+    when:
+      status: [ success, failure ]
+      matrix:
+        MACHINE_NAME: {machine_name}
+    commands:
+      - timeout 60 ./vendor/bin/run project:create-project --repository={repo_owner}/{repo_name} --ansi
+      - ./vendor/bin/run toolkit:build-template --template=ec-europa.platform.2 --ansi --progress-delay=300
+      - ./vendor/bin/run drupal:make-to-composer --make-file=repositories/{repo_owner}/{repo_name}/resources/site.make --ansi --progress-delay=300
+      - ./vendor/bin/run toolkit:install-template --ansi --progress-delay=300
+    volumes:
+      - /cache/${DRONE_REPO_NAME}:/cache
+

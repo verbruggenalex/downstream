@@ -47,13 +47,6 @@ class DroneCommands extends AbstractCommands implements FilesystemAwareInterface
         $pipeline = $this->getConfig()->get('pipeline');
         $github = $this->getConfig()->get('github');
 
-        $this->taskGitStack()
-            ->stopOnFail()
-            ->exec('git remote set-url origin https://' . $github['token'] . '@github.com/verbruggenalex/downstream.git')
-            ->exec('git config --global user.email ' . $github['email'])
-            ->exec('git config --global user.name ' . $github['name'])
-            ->checkout($pipeline)->merge('origin/master')->run();
-
         $php_version = 71;
         $drone = $this->taskWriteToFile('.drone.yml')
           ->textFromFile('config/drone.yml')
@@ -81,14 +74,15 @@ class DroneCommands extends AbstractCommands implements FilesystemAwareInterface
             }
             $drone->line('');
         }
+        $this->taskGitStack()->stopOnFail()->checkout($pipeline)->merge('master')->run();
 
         $drone->run();
-        $this->taskGitStack()
-            ->stopOnFail()
-            ->add('.drone.yml')
-            ->commit('Start new pipe.')
-            ->push('origin', $pipeline)
-            ->run();
+
+        $this->taskGitStack()->stopOnFail()
+         ->exec('git remote set-url origin https://' . $github['token'] . '@github.com/verbruggenalex/downstream.git')
+         ->exec('git config --global user.email ' . $github['email'])
+         ->exec('git config --global user.name ' . $github['name'])
+         ->add('.drone.yml')->commit('Start new pipe.')->push('origin', $pipeline)->run();
     }
 
     /**
