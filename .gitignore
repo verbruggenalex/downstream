@@ -2,3 +2,5 @@
 /toolkit
 /repositories/
 /template/
+/composer.lock
+/drush/

@@ -3,6 +3,8 @@
         "ec-europa/toolkit": "dev-release/4.x as 4.0.0",
         "gboddin/php-github-cli": "^0.2.11"
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "VerbruggenAlex\\Downstream\\": "./src/"

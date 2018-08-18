@@ -74,7 +74,7 @@ class DroneCommands extends AbstractCommands implements FilesystemAwareInterface
             }
             $drone->line('');
         }
-        $this->taskGitStack()->stopOnFail()->checkout($pipeline)->merge('master')->run();
+        $this->taskGitStack()->stopOnFail()->checkout($pipeline)->merge('origin/master')->run();
 
         $drone->run();
 
