@@ -23,7 +23,7 @@ pipeline:
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
 
-  erasmusplus2-reference:
+  agri-eip-reference:
     image: fpfis/php71-build
     secrets: [ github_api_token ]
     when:
@@ -31,25 +31,12 @@ pipeline:
       matrix:
         MACHINE_NAME: machine-1
     commands:
-      - timeout 60 ./vendor/bin/run project:create-project --repository=ec-europa/erasmusplus2-reference --ansi
-      - ls -la repositories/ec-europa/erasmusplus2-reference
+      - timeout 60 ./vendor/bin/run project:create-project --repository=ec-europa/agri-eip-reference --ansi
       - mkdir template && ./vendor/bin/run toolkit:build-template --template=ec-europa.platform.2 --ansi --progress-delay=300
-      - ./vendor/bin/run drupal:make-to-composer --make-file=repositories/ec-europa/erasmusplus2-reference/resources/site.make --ansi --progress-delay=300
+      - ./vendor/bin/run drupal:make-to-composer --make-file=repositories/ec-europa/agri-eip-reference/resources/site.make --ansi --progress-delay=300
       - ./vendor/bin/run toolkit:install-template --ansi --progress-delay=300
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
-  tunnel:
-    image: fpfis/drone-frpc-plugin:latest
-    secrets: [ frpc_token, frpc_server ]
-    environment:
-      - PLUGIN_ENDPOINT=web:8080
-      - PLUGIN_GEN_AUTH=yes
-      - PLUGIN_DOMAIN=${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}-${DRONE_JOB_NUMBER}.ci.fpfis.tech.ec.europa.eu
-      - PLUGIN_URL_OUTPUT_FILE=/test/toolkit/.frpc
-    when:
-      status: [ success, failure ]
-      matrix:
-        MACHINE_NAME: machine-1
 
 matrix:
   MACHINE_NAME:
